@@ -1,0 +1,10 @@
+<br>
+ <h1 style="color: green">%title%</h1>
+ <hr>
+ <b>L'operazione è stata completata con successo!</b><br>
+ <br>
+ <hr>
+ <br>
+ <span style="color: green">%error%</span>
+ <br><br>
+ <a href='/u/%user%/files/'><button class="w3-button w3-green w3-text-white">Vai ai File</button></a>

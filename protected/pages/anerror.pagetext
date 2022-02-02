@@ -1,0 +1,10 @@
+<br>
+ <h1 style="color: red">%title%</h1>
+ <hr>
+ <b>ERROR NUMBER: </b>%en%<br>
+ <br>
+ <hr>
+ <br>
+ <span style="color: orange">%error%</span>
+ <br><br>
+ <a href='%back%'><button style="w3-button w3-red w3-text-white">Indietro</button></a>
