@@ -4,6 +4,8 @@ $dir = $_GET["dir"];
 $type = $_GET["type"];
 $shared = $_GET["sharedurl"];
 
+$dir = str_replace("%20", " ", $dir);
+
 session_start();
 if ($type == "shared" && file_exists("protected/shared/$shared")) {
   // Carichiamo il loader

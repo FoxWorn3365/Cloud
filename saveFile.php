@@ -5,6 +5,8 @@ $u = $_POST["user"];
 $file = $_POST["dir"]; 
 $contents = filter_var($_POST["contenuto"], FILTER_SANITIZE_STRING);
 
+$file = str_replace("%20", " ", $file);
+
 if (empty($u)) {
   die("User");
 }

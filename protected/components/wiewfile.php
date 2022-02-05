@@ -2,6 +2,8 @@
 // Recupero le info del file
 
 $bb = str_replace("%20", " ", $bb);
+$bb = str_replace("%28", "(", $bb);
+$bb = str_replace("%29", ")", $bb);
 
 // Mostro il file
 $ext = explode(".", $bb);

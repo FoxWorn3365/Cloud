@@ -96,7 +96,6 @@ if (stripos($url, "/oldshared/") !== false) {
     require_once("protected/components/uploadfile_header.php");
     require_once("protected/components/uploadAFile.php");
   } elseif (stripos($url, '/u/' . $pp[0] . '/up/') !== false) {
-    session_start();
     require_once("protected/components/security.php");
     // Recupero il file
     $bb = str_replace('/u/' . $pp[0] . '/up/', '', $url);
@@ -159,6 +158,71 @@ if (stripos($url, "/oldshared/") !== false) {
     $u = $author;
     require_once("protected/components/header.php");
     require_once("protected/components/buildshared_file.php");
+  }
+
+  if (stripos($url, '/s/' . $link . '/getimage/') !== false) {
+    $bb = str_replace('/u/' . $pp[0] . '/getimage/', '', $url);
+    require_once("protected/components/build_content_file_shared.php");
+  }
+} elseif (stripos($url, "/m/") !== false) {
+  // Recuperiamo subito la risorsa richiesta
+  $rq = str_replace("/m/", "", $url);
+  $music = explode("/", $rq);
+  $music = $music[0];
+  $music = str_replace("%20", " ", $music);
+  if (!file_exists("protected/music/$music")) {
+    require_once("protected/components/header.php");
+    require_once("protected/components/build_music_catalog_error.php");
+    die();
+  }
+
+  $url = str_replace("%20", " ", $url);
+
+  if ($url == "/m/$music") {
+    require_once("protected/components/header.php");
+    require_once("protected/components/build_music.php");
+  } elseif ($url == "/m/$music/related") {
+    require_once("protected/components/header.php");
+    require_once("protected/components/music_related_load.php");
+  } else {
+    die("INVALID URL");
+  }
+} elseif (stripos($url, "/q/") !== false) {
+  // QUERY SEARCH PER RICHIESTE INTERESSANTI
+  $rq = str_replace("/q/", "", $url);
+  $search = explode("/", $rq);
+  $type = $search[0];
+  $request = $search[1];
+
+  $request = str_replace("%20", " ", $request);
+
+  $url = str_replace("%20", " ", $url);
+  if ($type == "music") {
+    // Qui facciamo lavorare le query adatte per la piccola sezione musicale
+    // Per sicurezza carichiamo le informazioni della canzone
+    $song = json_decode(file_get_contents("protected/disk/diskOfMusic/info/$request"));
+
+    // OK, ora procediamo con il raccoglimento di tutte le richieste tramite 'ma è uguale a?'
+    // Ovviamente diamo il lavoro a file in components/ che se no è vuota come cartella
+    if ($url == "/q/music/$request/sing") {
+      // Andiamo a recuperare LE CANZONI
+      // per più info ricorda che c'è il file in oth/musicinfo.template :D
+      require_once("protected/components/music_getRelatedSongs.php");
+    } elseif ($url == "/q/music/$request/spotify") {
+      echo '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/'. $song->related->spotify. '?utm_source=generator" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>';
+    } elseif ($url == "/q/music/$request/youtube") {
+      echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $song->related->youtube. '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    } elseif ($url == "/q/music/$request/google") {
+      echo 'La richiesta con Google non è al momento stata re-integrata!';
+    } elseif ($url == "/q/music/$request/website") {
+      echo '<a href="' . $song->related->websiteURL. '">' . $song->related->websiteURL. '</a>';
+    } elseif ($url == "/q/music/$request/author") {
+      echo $song->related->authors;
+    } else {
+      die("RICHIESTA INVALIDA!");
+    }
+  } else {
+    die("Invalid TYPE");
   }
 } else {
   require_once("protected/components/header.php");

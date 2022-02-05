@@ -2,6 +2,8 @@
 // Recupero le info del file
 
 $bb = str_replace("%20", " ", $bb);
+$bb = str_replace("%28", "(", $bb);
+$bb = str_replace("%29", ")", $bb);
 
 // Mostro il file
 $ext = explode(".", $bb);
@@ -13,7 +15,7 @@ require_once("protected/components/wiew_header.php");
 if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
    echo '<pre>' . file_get_contents("protected/disk/" . $user->dir . "/$bb") . '</pre>';
 } elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg") {
-   echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '">';
+   echo '<img src="/s/' .$link. '/getimage/' .$bb . '">';
 } elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg") {
 ?>
 <audio controls>
@@ -22,7 +24,7 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
   Il tuo browser non sopporta il tag audio di HTML!
 </audio>
 <?php
-} elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi") {
+} elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi" || $ext[$cc-1] == "ogg") {
 ?>
 <video height="50%" width="25%" controls>
   <source src="<?= '/video?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="video/mp4">

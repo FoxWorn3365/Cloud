@@ -1,0 +1,23 @@
+{
+"name":"NOME DELLA CANZONE",
+"author":"AUTORI, E ALTRO",
+"data":"1999",
+"presence":"Abortnite",
+"shared":"link dello share dper visualizzare la canzone",
+"related": {
+    "youtube":"linkdell'embedyoutube",
+    "spotify":"trackidspotify",
+    "websiteURL":"https://example.com",
+    "authors":"Dio, Cane, NO"
+},
+"sing": {
+     0: {
+       "name":"Greatest Memories (Full)",
+       "url":"greatest memories full"
+     },
+     1: {
+       "name":"Greatest Memories (Minigame)",
+       "url":"greatest memories minigame"
+     }
+} 
+}
