@@ -5,6 +5,8 @@
   <br>
   <h3>Opzioni</h3>
   <a href="file"><button class="w3-button w3-orange w3-text-white">Vai ai tuoi File</button></a>
+  <a href="/u/<?= $pp[0]; ?>/sharedList/"><button class="w3-button w3-orange w3-text-white">Vai ai file Condivisi</button></a>
+  <a href="/logout"><button class="w3-button w3-red w3-text-white">Esci</button></a>
   <br>
   <h3>Gestione dello Spazio</h3>
   <b>Il tuo spazio totale:</b> <?= $user->diskSpace; ?>GB

@@ -24,11 +24,13 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
   Il tuo browser non sopporta il tag audio di HTML!
 </audio>
 <?php
-} elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi" || $ext[$cc-1] == "ogg") {
+} elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "mkv") {
 ?>
-<video height="50%" width="25%" controls>
-  <source src="<?= '/video?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="video/mp4">
-  <source src="<?= '/video?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="video/avi">
+<video controls>
+  <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb . '&type=shared&sharedurl=' . $link; ?>" type="video/mp4">
+  <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb . '&type=shared&sharedurl=' . $link; ?>" type="video/avi">
+  <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb . '&type=shared&sharedurl=' . $link; ?>" type="video/webm">
+  <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb . '&type=shared&sharedurl=' . $link; ?>" type="video/mkv">
   Il tuo browser non supporta il tag video di HTML!
 </video>
 <?php

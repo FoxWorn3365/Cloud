@@ -15,5 +15,5 @@ $info = json_decode(file_get_contents("protected/disk/diskOfMusic/info/$music"))
   Il tuo browser non supporta il tag Audio!
  </audio>
  <br>
- <img src="/music_copertina?track=<?= $music; ?>"><br><br><a href="https://cloud.fcosma.it/m/<?= $music; ?>/related"><button class="w3-button w3-orange w3-text-white" style="font-size: 50px">Relativo al Brano</button></a><br>
+ <img src="/music_copertina?track=<?= $music; ?>"><br><br><hr><br><br><a href="https://cloud.fcosma.it/m/<?= $music; ?>/related"><button class="w3-button w3-orange w3-text-white" style="font-size: 50px">Relativo al Brano</button></a><br>
  In questa sezione delle cose <b>Relative al brano</b> puoi trovare canzoni correlate, il link di youtube e spotify e altre cose interessanti riguardo alla canzone

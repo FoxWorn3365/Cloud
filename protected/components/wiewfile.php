@@ -24,11 +24,13 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
   Il tuo browser non sopporta il tag audio di HTML!
 </audio>
 <?php
-} elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi") {
+} elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "mkv") {
 ?>
 <video controls>
   <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/mp4">
   <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/avi">
+  <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/webm">
+  <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/x-matroska">
   Il tuo browser non supporta il tag video di HTML!
 </video>
 <?php
