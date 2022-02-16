@@ -7,6 +7,9 @@ if (file_exists($dir)) {
    header("Content-Length: " . filesize($dir));
    readfile($dir);
 } else {
-   die("ERRORE: Copertina inesistente!");
+   $dir = "protected/music/copertine/.png";
+   header("Content-Type: image/png");
+   header("Content-Length: " . filesize($dir));
+   readfile($dir);
 }
 ?>

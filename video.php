@@ -26,7 +26,7 @@ $user = json_decode(file_get_contents("protected/users/$u/userinfo.conf"));
 
 $file='protected/disk/' . $user->dir . '/' . $dir;
 
-header('Content-Type: video/mp4'); #Optional if you'll only load it from other pages
+header('Content-Type: video/mp4 video/x-matroska'); #Optional if you'll only load it from other pages
 header('Accept-Ranges: bytes');
 header('Content-Length:'.filesize($file));
 

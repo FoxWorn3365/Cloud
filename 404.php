@@ -119,6 +119,29 @@ if (stripos($url, "/oldshared/") !== false) {
     } else {
      die("ERROR 02: Permession denied");
     }
+  } elseif (stripos($url, '/u/' . $pp[0] . '/share/') !== false) {
+    require_once("protected/components/security.php");
+    // Recupero il file
+    $bb = str_replace('/u/' . $pp[0] . '/share/', '', $url);
+    require_once("protected/components/header.php");
+    require_once("protected/components/shareAFile.php");
+  } elseif ($url == "/u/$pp[0]/sharedList/") {
+    require_once("protected/components/security.php");
+    require_once("protected/components/header.php");
+    require_once("protected/components/wiewShared.php");
+  } elseif (stripos($url, '/u/' . $pp[0] . '/removeShared/') !== false) {
+    require_once("protected/components/security.php");
+    // Recupero il file
+    $bb = str_replace('/u/' . $pp[0] . '/removeShared/', '', $url);
+    $bb = str_replace("%20", " ", $bb);
+    require_once("protected/components/header.php");
+    $sharedf = explode("{}", file_get_contents("protected/shared/$bb"));
+    if ($sharedf[0] === $pp[0]) {
+        unlink("protected/shared/$bb");
+        require_once("protected/components/wiewShared.php");
+    } else {
+        die("ERROR 02: Permission denied");
+    }
   } else {
     require_once("protected/components/header.php");
     require_once("protected/error/notfound.html");
@@ -143,7 +166,11 @@ if (stripos($url, "/oldshared/") !== false) {
   // shared[3] -> eventuale password
   $user = json_decode(file_get_contents("protected/users/$author/userinfo.conf"));
 
-  if ($type == "file") {
+  if (!empty($shared[3]) && empty($_SESSION[md5($url)])) {
+     require_once("protected/components/header.php");
+     require_once("protected/components/sharedLogin.php");
+  } else {
+   if ($type == "file") {
     // Ok, è un file singolo quindi lo mostro con il file wiewer
     // Ricordiamo di inserire i parametri base quindi l'autore con $u e $bb quindi la dir
     // Intanto ho già recuperato la configurazione dell'autore
@@ -151,13 +178,14 @@ if (stripos($url, "/oldshared/") !== false) {
     $bb = $shared[2];
     require_once("protected/components/header.php");
     require_once("protected/components/wiewfile_shared.php");
-  } elseif ($type == "dir") {
+   } elseif ($type == "dir") {
     // Ok, qua la situazione si complica poichè dobbiamo condividere la directory e TUTTI I FILE LEGATI AD ESSA
     // Impostiamo i valori principali
     $dd = $shared[2] . '*';
     $u = $author;
     require_once("protected/components/header.php");
     require_once("protected/components/buildshared_file.php");
+   }
   }
 
   if (stripos($url, '/s/' . $link . '/getimage/') !== false) {
