@@ -7,3 +7,5 @@ Come creare nuovi utenti
    - Se è presente allora ci sarà la password in hash(sha512())
    - Se non è presente quando l'utente proverà ad accedere con il nome utente il cloud gli farà inserire una password
 4) Il file lastaccess indica con uno strtotime("now") a quando risale l'ultimo accesso al cloud per quell'utente
+
+L'utente music contiene i file per la musica
