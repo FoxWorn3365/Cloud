@@ -1,3 +1,9 @@
+<style>
+#resized {
+  max-height: 50%;
+  max-width: 100%
+}
+</style>
 <?php
 // Recupero le info del file
 
@@ -13,9 +19,11 @@ $cc = count($ext);
 require_once("protected/components/wiew_header.php");
 
 if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
+   echo "<div style='position: absolute; text-align: left; left: 20%'>";
    echo '<pre>' . file_get_contents("protected/disk/" . $user->dir . "/$bb") . '</pre>';
+   echo "</div>";
 } elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg") {
-   echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '">';
+   echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '" id="resized">';
 } elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg") {
 ?>
 <audio controls>
