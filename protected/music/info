@@ -1,0 +1,9 @@
+CARTELLA MUSICA
+
+Il cloud, prima di andare a pescare la musica nella directory disk/diskOfMusic
+verifica che sia presente un file con lo stesso slug qua
+
+Per aggiungere una canzone bisogna creare questi file
+music/nome della canzone
+disk/diskOfMusic/info/nome della canzone
+disk/diskOfMusic/track/ 
