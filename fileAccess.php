@@ -14,6 +14,6 @@ if ($password === $shared[3]) {
   $_SESSION[md5($url)] = "access_TRUE()";
   header("Location: ".$_SERVER["HTTP_REFERER"]);
 } else {
-  die("Password errata!");
+  header("Location: ".$_SERVER["HTTP_REFERER"]);
 }
 

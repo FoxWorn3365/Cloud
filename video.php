@@ -1,24 +1,26 @@
 <?php
 $u = $_GET["user"];
-$dir = $_GET["dir"];
 $type = $_GET["type"];
 $shared = $_GET["sharedurl"];
-
-$dir = str_replace("%20", " ", $dir);
 
 session_start();
 if ($type == "shared" && file_exists("protected/shared/$shared")) {
   // Carichiamo il loader
   $sh = explode("{}", file_get_contents("protected/shared/$shared"));
-  if ($sh[0] === $u && $sh[2] == $dir) {
+  if ($sh[0] === $u && empty($sha[3])) {
     // Ok, non dico niente
-    $do = true;
+    $dir = str_replace("%20", " ", $sh[2]);
+  } elseif ($sh[0] === $u && !empty($sha[3]) && !empty($_SESSION[md5('/s/' .$shared)])) {
+    // Ok, non dico niente
+    $dir = str_replace("%20", " ", $sh[2]);
   } else {
-    die("Permessi dello shared insufficenti");
+    die("Permessi dello shared insufficenti / accesso negato");
   }
 } else {
   if ($_SESSION["user"] !== $u) {
      die("ERROR 02: Permission denied");
+  } else {
+     $dir = $_GET["dir"];
   }
 }
 

@@ -26,15 +26,8 @@ if ($type == "shared" && file_exists("protected/shared/$shared")) {
 
 $user = json_decode(file_get_contents("protected/users/$u/userinfo.conf"));
 
-$mp3 ='protected/disk/' . $user->dir . '/' . $dir;
-if(file_exists($mp3)) {
-  header('Content-Type: audio/mpeg');
-  header('Content-Disposition: inline; filename="' .$url. '"');
-  header('Content-length: '. filesize($mp3));
-  header('Cache-Control: no-cache');
-  header('Content-Transfer-Encoding: chunked'); 
-  readfile($mp3);
-  exit;
-} else {
-    echo "no file";
-}
+$file='protected/disk/' . $user->dir . '/' . $dir;
+
+header("Content-Type: image/jpg image/png image/jpeg");
+header("Content-Length: " . filesize("protected/disk/$user->dir/$dir"));
+readfile("protected/disk/$user->dir/$dir");

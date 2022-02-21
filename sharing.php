@@ -27,10 +27,10 @@ $string = "$user{}file{}$file";
 if (!empty($password)) {
   // Ok, niente password
   file_put_contents("protected/shared/$s", $string . '{}' . $password);
-  $password = "<span style='color: red'>NO</span>";
+  $password = "<span style='color: green'>SI</span>";
 } else {
   file_put_contents("protected/shared/$s", $string);
-  $password = "<span style='color: green'>SI</span>";
+  $password = "<span style='color: red'>NO</span>";
 }
 require("protected/components/header.php");
 ?>

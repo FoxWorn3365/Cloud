@@ -152,6 +152,7 @@ if (stripos($url, "/oldshared/") !== false) {
   $link = explode("/", $sh);
   $link = $link[0];
   if (!file_exists("protected/shared/$link")) {
+    require_once("protected/components/header.php");
     require_once("protected/error/notshared.html");
     die();
   }
@@ -189,7 +190,7 @@ if (stripos($url, "/oldshared/") !== false) {
   }
 
   if (stripos($url, '/s/' . $link . '/getimage/') !== false) {
-    $bb = str_replace('/u/' . $pp[0] . '/getimage/', '', $url);
+    $bb = str_replace('/s/' . $link . '/getimage/', '', $url);
     require_once("protected/components/build_content_file_shared.php");
   }
 } elseif (stripos($url, "/m/") !== false) {
@@ -252,6 +253,18 @@ if (stripos($url, "/oldshared/") !== false) {
   } else {
     die("Invalid TYPE");
   }
+} elseif (stripos($url, "/link/") !== false) {
+  $rq = str_replace("/link/", "", $url);
+  $search = explode("/", $rq);
+
+  if (!file_exists("protected/link/$search[0]")) {
+    require_once("protected/components/header.php");
+    require_once("protected/error/notshared.html");
+  }
+
+  $linnk = file_get_contents("protected/link/$search[0]");
+
+  header("Location: $linnk");
 } else {
   require_once("protected/components/header.php");
   die("Richiesta non valida!");
