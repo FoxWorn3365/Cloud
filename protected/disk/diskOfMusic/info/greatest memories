@@ -1,0 +1,23 @@
+{
+  "name":"Greatest Memories",
+  "author":"HMNK, TechniKen, BLit's Games",
+  "data":"2019",
+  "presence":"Camp Buddy (2019)",
+  "shared":"euw9cfn97c4tn4t924",
+  "related": {
+        "youtube":"QgHHeeAxTb4",
+        "spotify":"7mzVktm1QJTNOULHTVU4Wx",
+        "websiteURL":"https://blitsgames.com/", 
+        "author":null
+  },
+  "sing": {
+        "0": {
+          "name":"Greatest Memories (FULL)",
+          "url":"greatest memories full"
+        },
+        "1": {
+          "name":"Greatest Memories (Violin)",
+          "url":"greatest memories violin"
+        }
+  }
+}
