@@ -7,3 +7,4 @@ Per aggiungere una canzone bisogna creare questi file
 music/nome della canzone   --> Basta che il file sia presente, abilita lo slug https://cloud.cloud.test/m/nome%20della%20canzone (%20 = spazio nell'URL)
 disk/diskOfMusic/info/nome della canzone    --> Un file in json che contiene le informazioni principali di una canzone (vedi disk/diskOfMusic/info per più informazioni)
 disk/diskOfMusic/track/nome della canzone.ogg   --> Il file in .ogg della canzone
+music/copertine/nome della canzone.png   --> Copertina della canzone in png
