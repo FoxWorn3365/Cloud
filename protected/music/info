@@ -4,6 +4,6 @@ Il cloud, prima di andare a pescare la musica nella directory disk/diskOfMusic
 verifica che sia presente un file con lo stesso slug qua
 
 Per aggiungere una canzone bisogna creare questi file
-music/nome della canzone
-disk/diskOfMusic/info/nome della canzone
-disk/diskOfMusic/track/ 
+music/nome della canzone   --> Basta che il file sia presente, abilita lo slug https://cloud.cloud.test/m/nome%20della%20canzone (%20 = spazio nell'URL)
+disk/diskOfMusic/info/nome della canzone    --> Un file in json che contiene le informazioni principali di una canzone (vedi disk/diskOfMusic/info per più informazioni)
+disk/diskOfMusic/track/nome della canzone.ogg   --> Il file in .ogg della canzone
