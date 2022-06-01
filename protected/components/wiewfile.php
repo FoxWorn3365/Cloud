@@ -19,10 +19,11 @@ $cc = count($ext);
 require_once("protected/components/wiew_header.php");
 
 if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
-   echo "<div style='position: absolute; text-align: left; left: 20%'>";
+   echo "<div style='position: absolute; text-align: left; left: 50px; width: 95%'>";
    echo '<pre>' . file_get_contents("protected/disk/" . $user->dir . "/$bb") . '</pre>';
+   echo '<br><br><br><br><br>';
    echo "</div>";
-} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg") {
+} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "gif") {
    echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '" id="resized">';
 } elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg") {
 ?>
@@ -34,7 +35,7 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
 <?php
 } elseif ($ext[$cc-1] == "mp4" || $ext[$cc-1] == "avi" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "mkv") {
 ?>
-<video controls>
+<video controls style='width: 50%;'>
   <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/mp4">
   <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/avi">
   <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/webm">

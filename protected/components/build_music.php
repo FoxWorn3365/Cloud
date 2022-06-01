@@ -1,7 +1,13 @@
 <?php
 // Recuperiamo subito la canzone con le sue info
 $info = json_decode(file_get_contents("protected/disk/diskOfMusic/info/$music"));
+
+// Salviamo subito la visita come statistica
+$h = file_get_contents("protected/music/$music");
+$h = (int)$h;
+file_put_contents("protected/music/$music", $h + 1);
 ?>
+<info type="foxCloud:INFO" name="accessi_alla_pagina" value="<?= $h; ?>">
 <br>
  <h1>Fcosma Cloud - Musica</h1>
  <hr>

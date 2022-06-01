@@ -11,7 +11,7 @@
    $ig = json_decode(file_get_contents("protected/users/$mt/userinfo.conf"));
 
  ?>
-  <meta name="description" content="Pagina dell'utente <?= $mt; ?>, ovvero <?= $ig->name; ?>">
+<meta name="description" content="Pagina dell'utente <?= $mt; ?>, ovvero <?= $ig->name; ?>">
  <?php
  } elseif (stripos($url, "/s/") !== false) {
    // Recupero le info
@@ -20,12 +20,11 @@
    $mt = $mt[0];
 
    $ig = explode("{}",  file_get_contents("protected/shared/$mt"));
- ?>
-  <meta name="description" content="File <?= $mt; ?>, condiviso da <?= $ig[0]; ?>">
- <?php
+   echo '<meta name="description" content="File ' . $ig[2] . ', condiviso da ' . $ig[0]. '">
+';
  } else {
  ?>
-  <meta name="description" content="IL cloud di Federico è uno spazio digitale dove si possono caricare e scaricare file online">
+<meta name="description" content="Il cloud di Federico è uno spazio digitale dove si possono caricare e scaricare file online">
  <?php
  }
 ?>

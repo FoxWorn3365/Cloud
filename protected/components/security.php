@@ -5,7 +5,7 @@ $temp = $_SESSION["user"];
 
 
 if (empty($temp)) {
-  require_once("login.php");
+  require_once("login_in.php");
   die();
 } elseif ($temp !== $pp[0]) {
   // Non è la sua dashboard
