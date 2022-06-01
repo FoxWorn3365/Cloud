@@ -1,0 +1,6 @@
+<h1 style="color: green">File caricato con Successo!</h1>
+  Seguono i dettagli del caricamento:<br>
+  <b>Nome File:</b> %filename%<br>
+  <b>Directory:</b> %dir%%filename%<br><br>
+  <br>
+  <a href='/u/%user%/files/%dir%/'><button class="w3-button w3-orange w3-text-white">Torna ai tuoi File</button></a>
