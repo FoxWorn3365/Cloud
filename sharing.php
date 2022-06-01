@@ -40,9 +40,14 @@ require("protected/components/header.php");
  <h3 style="color: green">File condiviso con successo!</h3>
  <br><br><br>
  <b>Codice dello shared:</b> <?= $s; ?><br>
- <b>Link dello shared:</b> https://cloud.fcosma.it/s/<?= $s; ?><br>
+ <b>Link dello shared:</b> <a onclick='copyurl()'>https://cloud.fcosma.it/s/<?= $s; ?></a><br>
  <b>Password:</b> <?= $password; ?>
  <br><br><br>
  <a href="/u/<?= $user; ?>/sharedList/"><button class="w3-button w3-orange w3-text-white">Vai agli Shared</button></a>
  <a href="/u/<?= $user; ?>/file"><button class="w3-button w3-orange w3-text-white">Vai ai tuoi File</button></a>
  <br><br><br>
+ <script>
+ function copyurl() {
+   navigator.clipboard.writeText('https://cloud.fcosma.it/s/<?= $s; ?>');
+ }
+ </script>

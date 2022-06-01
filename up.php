@@ -49,7 +49,7 @@ $userfile_name = $_FILES['userfile']['name'];
 if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
   //Se l'operazione è andata a buon fine...
   $text = file_get_contents("protected/pages/upload_success.pagetext");
-  $texta = str_replace("%user%", $u, str_replace("%dir%", $bb, str_replace("%filename%", $userfile_name, $text)));
+  $texta = str_replace("%user%", $u, str_replace("%dir%", $dir, str_replace("%filename%", $userfile_name, $text)));
   shell_exec("sudo chmod 0777 /var/www/cloud/$uploaddir . $userfile_name");
   require_once("protected/components/header.php");
   echo $texta;

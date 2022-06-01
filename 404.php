@@ -2,8 +2,16 @@
 session_start();
 // (C) 2022 - FoxWorn3365
 
+// require_once("protected/components/plugin.php");
+// use Plugin\Main;
+
+// $plugin = new Main();
+
 // Get URL
 $url = $_SERVER["REQUEST_URI"];
+
+// Carichiamo subito il pluginManager
+// $plugin->start("plugins/", "folder");
 
 // Verifico che l'utente sia loggato e in caso che un file sia condiviso
 if (stripos($url, "/oldshared/") !== false) {
@@ -125,6 +133,18 @@ if (stripos($url, "/oldshared/") !== false) {
     $bb = str_replace('/u/' . $pp[0] . '/share/', '', $url);
     require_once("protected/components/header.php");
     require_once("protected/components/shareAFile.php");
+  } elseif (stripos($url, '/u/' . $pp[0] . '/new/') !== false) {
+    require_once("protected/components/security.php");
+    // Recupero il file
+    $bb = str_replace('/u/' . $pp[0] . '/new/', '', $url);
+    require_once("protected/components/header.php");
+    require_once("protected/components/newFile.php");
+  } elseif (stripos($url, '/u/' . $pp[0] . '/rename/') !== false) {
+    require_once("protected/components/security.php");
+    // Recupero il file
+    $bb = str_replace('/u/' . $pp[0] . '/rename/', '', $url);
+    require_once("protected/components/header.php");
+    require_once("protected/components/renameFile.php");
   } elseif ($url == "/u/$pp[0]/sharedList/") {
     require_once("protected/components/security.php");
     require_once("protected/components/header.php");
@@ -146,6 +166,7 @@ if (stripos($url, "/oldshared/") !== false) {
     require_once("protected/components/header.php");
     require_once("protected/error/notfound.html");
   }
+  require_once("protected/components/footer.php");
 } elseif (stripos($url, "/s/") !== false) {
   // GWAAA SHARED!
   $sh = str_replace("/s/", "", $url);
@@ -193,6 +214,7 @@ if (stripos($url, "/oldshared/") !== false) {
     $bb = str_replace('/s/' . $link . '/getimage/', '', $url);
     require_once("protected/components/build_content_file_shared.php");
   }
+  require_once("protected/components/footer.php");
 } elseif (stripos($url, "/m/") !== false) {
   // Recuperiamo subito la risorsa richiesta
   $rq = str_replace("/m/", "", $url);
