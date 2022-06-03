@@ -9,9 +9,6 @@ $u = explode("/", $link);
 
 if (empty($type)) {
   // Autenticazione base via sessione utente
-  if ($u[0] !== $user) {
-    die("Permessi insufficenti!");
-  }
   // OK, ora abbiamo autenticato l'utente
   // facciamo quello che dobbiamo fare
   $uconf = json_decode(file_get_contents("protected/users/$u[0]/userinfo.conf"));
