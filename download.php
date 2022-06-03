@@ -11,7 +11,7 @@ if (empty($type)) {
   // Autenticazione base via sessione utente
   // OK, ora abbiamo autenticato l'utente
   // facciamo quello che dobbiamo fare
-  $uconf = json_decode(file_get_contents("protected/users/$u[0]/userinfo.conf"));
+  $uconf = json_decode(file_get_contents('protected/users/' . $user . '/userinfo.conf'));
 
   $file = 'protected/disk/' .$uconf->dir. '/' . $file;
 } else {
