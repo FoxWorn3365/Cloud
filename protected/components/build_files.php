@@ -41,7 +41,7 @@
      } else {
        $icona = '<i class="fa-solid fa-file"></i>';
      }
-     echo "$icona <u><a href='/u/$pp[0]/fileopen/$h$f'>$f</a> <span style='position: absolute; text-align: right; right: -50%'>". filesize($file)/1000 . "</span><a href='/download?url=/u/$pp[0]/files/$h$f' style='position: absolute; text-align: right; right: -75%'><i class='fa fa-cloud-download' aria-hidden='true'></i></a> <a style='position: absolute; text-align: right; right: -80%' href='/u/$pp[0]/deleteFile/$h$f'><i class='fa fa-trash' aria-hidden='true'></i></a><a style='position: absolute; text-align: right; right: -85%' href='/u/$pp[0]/share/$h$f'><i class='fa-solid fa-share-from-square'></i></i></a><a style='position: absolute; text-align: right; right: -90%' href='/u/$pp[0]/rename/$h$f'><i class='fa-solid fa-pen-to-square'></i></a></u><br>";
+     echo "$icona <u><a href='/u/$pp[0]/fileopen/$h$f'>$f</a> <span style='position: absolute; text-align: right; right: -50%'>". filesize($file)/1000 . "</span><a href='/download?url=$h$f' style='position: absolute; text-align: right; right: -75%'><i class='fa fa-cloud-download' aria-hidden='true'></i></a> <a style='position: absolute; text-align: right; right: -80%' href='/u/$pp[0]/deleteFile/$h$f'><i class='fa fa-trash' aria-hidden='true'></i></a><a style='position: absolute; text-align: right; right: -85%' href='/u/$pp[0]/share/$h$f'><i class='fa-solid fa-share-from-square'></i></i></a><a style='position: absolute; text-align: right; right: -90%' href='/u/$pp[0]/rename/$h$f'><i class='fa-solid fa-pen-to-square'></i></a></u><br>";
      $count++;
    }
  }
