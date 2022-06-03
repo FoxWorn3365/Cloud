@@ -11,7 +11,7 @@ if (empty($type)) {
   // Autenticazione base via sessione utente
   // OK, ora abbiamo autenticato l'utente
   // facciamo quello che dobbiamo fare
-  $uconf = json_decode(file_get_contents('protected/users/' . $user . '/userinfo.conf'));
+  $uconf = json_decode(file_get_contents("protected/users/$user/userinfo.conf"));
 
   $file = 'protected/disk/' .$uconf->dir. '/' . $file;
 } else {
@@ -26,7 +26,7 @@ if (empty($type)) {
   }
   
   $sh = explode('{}', file_get_contents('protected/shared/' . $shared));
-  $useri = json_decode(file_get_contents("protected/users/' . $sh[0] . '/userinfo.conf"));
+  $useri = json_decode(file_get_contents('protected/users/' . $sh[0] . '/userinfo.conf'));
   $file = 'protected/disk/' . $useri->dir . '/' . $sh[2];
 }
 
@@ -41,5 +41,5 @@ if (file_exists($file)) {
     readfile($file);
     exit;
 } else {
-    die("Invalid token");
+    die("Invalid token - $file ");
 }
