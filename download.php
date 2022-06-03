@@ -24,7 +24,7 @@ if (empty($type)) {
     die("ERRORE: Shared VALUE vuoto!");
   }
   
-  if (file_exists('protected/shared/' . $shared)) {
+  if (!file_exists('protected/shared/' . $shared)) {
     die("SHARED FORNITO NON ESISTENTE!");
   }
   
