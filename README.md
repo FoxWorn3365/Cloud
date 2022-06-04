@@ -11,14 +11,14 @@ WebServer consigliato: `nginx`
 Per installare **FoxCloud** è necessario:
 1) Scaricare il repo qua da GitHub (possibilmente l'ultima versione) e caricarlo nel server
 2) Scaricare PHP7.4 per NGINX (`php7.4-fpm`) e avviatelo con `sudo service php7.4-fpm start`
-3) Utilizzare [questa configurazione di NGINX](https://foxcloud.fcosma.it/config/nginx/example) per far andare il WebServer
+3) Utilizzare [questa configurazione di NGINX](https://fcosma.it/FoxCloud/config/nginx/example) per far andare il WebServer
 
 ## Configurazione
 ### Creazione di un utente
 Per creare un utente è necessario:
 1) Andare nella cartella `protected/users/`
 2) Creare una directory con il nome dell'account
-3) Creare un file chiamato `userinfo.conf` modificando [questo esempio](https://foxcloud.fcosma.it/config/user/example)
+3) Creare un file chiamato `userinfo.conf` modificando [questo esempio](https://fcosma.it/FoxCloud/config/user/example)
 4) Creare nella directory `protected/disk/` una directory che ha lo stesso nome del valore `dir` in `userinfo.conf`
 5) Per impostare una password l'utente dovrà entrare inserendo solo l'username e quindi poi inserire la sua nuova password quando richiesto
 ### Eliminazione di un utente
