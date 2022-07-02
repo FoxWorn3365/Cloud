@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $file = filter_var($_GET["file"], FILTER_SANITIZE_STRING);
 
 if (empty($file)) {
