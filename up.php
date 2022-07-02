@@ -1,17 +1,15 @@
 <?php
 session_start();
 
-$bb = str_replace("%20", " ", $bb);
-
 // per prima cosa verifico che il file sia stato effettivamente caricato
 if (!isset($_FILES['userfile']) || !is_uploaded_file($_FILES['userfile']['tmp_name'])) {
   die("Nessun file inviato...");   
 }
 
-$u = $_POST["user"];
+$u = $_SESSION["user"];
 $dir = $_POST["dir"];
 
-if ($_SESSION["user"] !== $u) {
+if (empty($u)) {
   die("Permessi insufficenti: ERRORE 02 -> TU:$u | tu2 = " .$_SESSION['user']);
 }
 
@@ -51,7 +49,6 @@ if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
   $text = file_get_contents("protected/pages/upload_success.pagetext");
   $texta = str_replace("%user%", $u, str_replace("%dir%", $dir, str_replace("%filename%", $userfile_name, $text)));
   shell_exec("sudo chmod 0777 /var/www/cloud/$uploaddir . $userfile_name");
-  require_once("protected/components/header.php");
   echo $texta;
 }else{
   //Se l'operazione è fallta...
