@@ -18,7 +18,12 @@ if (!file_exists('protected/disk/' . $user->dir . '/' . $file)) {
 }
 
 // Ok, ora sistemiamo tutto evidenziando il file
-file_put_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array', file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array') . $file . '//!!\\(())(())(())((((()()()()()(()()984984578475987357/////(/&&\\'));
+if (stripos(file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array'), $file) !== false) {
+  // Rimuoviamolo 
+  file_put_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array', str_replace($file, "", file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array')));
+} else {
+  file_put_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array', file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array') . $file . '//!!\\(())(())(())((((()()()()()(()()984984578475987357/////(/&&\\');
+}
 
 // Ok, tutto apposto, ritorno con un 200
 die(json_encode(array('status' => 200, 'message' => 'File evidenziato!')));
