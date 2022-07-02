@@ -25,7 +25,14 @@ Per creare un utente è necessario:
 Per eliminare l'utente basterà eliminare la sua cartella in `protected/users/`
 
 
-## Changelog della versione v1.0
+## **Changelog**
+## v1.1
+- I file sono visualizzati a tabella finalmente
+- La funzione della musica è stata completamente rimossa
+- Ora si possono evidenziare i vari file
+- Piccola patch ad alcuni file
+
+## v1.0
 ### Aggiunte
 - Aggiunta la possibilità di creare file di testo `.txt`, `.md` e `.fox` direttamente dal cloud
 - Aggiunta la possibilità di rinominare file e directory, tramite l'apposito bottone
