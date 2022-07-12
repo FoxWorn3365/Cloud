@@ -1,9 +1,7 @@
 <?php
 require_once("protected/components/pesoUser.php");
 
-$bb = str_replace("%20", " ", $bb);
-$bb = str_replace("%28", "(", $bb);
-$bb = str_replace("%29", ")", $bb);
+$bb = urlEncode($bb);
 
 ?>
 <div id='formUpload'>
