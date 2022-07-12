@@ -1,4 +1,5 @@
 <?php
+// v1.5
 $contents = filter_var($_POST["file"], FILTER_SANITIZE_STRING);
 $bb = urlEncode($bb);
 
