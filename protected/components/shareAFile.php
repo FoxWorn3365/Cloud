@@ -1,6 +1,6 @@
 <?php
 
-$bb = str_replace("%20", " ", $bb);
+$bb = urlEncode($bb);
 ?>
 <br>
  <h1>Condividi un file</h1>
