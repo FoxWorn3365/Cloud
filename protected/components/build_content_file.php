@@ -1,5 +1,5 @@
 <?php
-$bb = str_replace("%20", " ", $bb);
+$bb = urlEncode($bb);
 
    header("Content-Type: image/jpg");
    header("Content-Length: " . filesize("protected/disk/$user->dir/$bb"));
