@@ -1,7 +1,7 @@
 <?php
 // v1.5
 $contents = filter_var($_POST["file"], FILTER_SANITIZE_STRING);
-$bb = urlEncode($bb);
+$bb = str_replace("%20", " ", $bb);
 
 if (empty($content)) {
   die("Content");
