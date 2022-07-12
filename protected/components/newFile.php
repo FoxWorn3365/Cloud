@@ -1,6 +1,6 @@
 <?php
 
-$bb = urlEncode($bb);
+$bb = str_replace("%20", " ", $bb);
 ?>
 <br>
  <h1>Crea un file</h1>
