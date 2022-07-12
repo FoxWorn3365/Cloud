@@ -1,6 +1,6 @@
 <br>
 <?php
-$bb = urlEncode($bb);
+$bb = str_replace("%20", " ", $bb);
 ?>
  <h1>Crea una nuova Directory</h1>
  <a href="<?= $_SERVER["HTTP_REFERER"]; ?>"><i class="fa fa-level-up" aria-hidden="true"></i></a>
