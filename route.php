@@ -13,6 +13,9 @@ $url = $_SERVER["REQUEST_URI"];
 // Carichiamo subito il pluginManager
 // $plugin->start("plugins/", "folder");
 
+// Carichiamo dei file fondamentali
+require_once("protected/components/urlUtils.php");
+
 // Verifico che l'utente sia loggato e in caso che un file sia condiviso
 if (stripos($url, "/oldshared/") !== false) {
   require_once("protected/components/header.php");
