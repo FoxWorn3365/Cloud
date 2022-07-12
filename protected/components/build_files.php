@@ -9,7 +9,6 @@
  }
 
  $bb = str_replace("%20", " ", $bb) . '*';
- $bb = urlEncode($bb);
 
  require_once("protected/components/files_header.php");
  $count = 0;
