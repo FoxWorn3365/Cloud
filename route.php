@@ -322,6 +322,11 @@ if (stripos($url, "/oldshared/") !== false) {
   $us = str_replace("/admin/edit/user/", "", $url);
   $us = str_replace("/", "", $us);
   require_once("protected/components/build_edit_user.php");
+// SETTORE EASTER-EGG
+} elseif ($url == "/admin/easter-egg/bazinga") {
+  $ee = "bazinga";
+  require_once("protected/components/easter-egg.php");
+// FINE SETTORE
 } else {
   require_once("protected/components/header.php");
   die("Richiesta non valida!");
