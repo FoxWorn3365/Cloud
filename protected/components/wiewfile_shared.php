@@ -12,9 +12,14 @@ $cc = count($ext);
 
 require_once("protected/components/wiew_header.php");
 
-if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
-   echo "<div style='position: absolute; text-align: left; left: 50px; width: 95%'>";
-   echo '<pre>' . file_get_contents("protected/disk/" . $user->dir . "/$bb") . '</pre>';
+if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
+   $tempText = preg_split('/\r\n|\r|\n/', file_get_contents("protected/disk/" . $user->dir . "/$bb"));
+   $text = "<!-- Generato da FoxCloud Line Reader -->";
+   foreach ($tempText as $row) {
+     $text = $text . $row . '<br>';
+   }
+   echo "<div>";
+   echo '<p style="margin: 25px; text-align: left; max-width: 90%">' . $text . '</pre>';
    echo '<br><br><br><br><br>';
    echo "</div>";
 } elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg") {
@@ -58,3 +63,4 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md") {
 } else {
    die("Il file che stai cercando di visualizzare non è supportato!<br>Per aprirlo, scaricalo.");
 }
+
