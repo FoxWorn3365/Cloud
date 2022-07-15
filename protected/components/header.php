@@ -8,7 +8,7 @@
   <meta name="keywords" content="Federico, Cosma, Federico Cosma, Fcosma, Cloud, Fcosma Cloud, PHP">
   <meta name="author" content="Federico Cosma">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="https://syrma.fcosma.it/lol/Hiro_Keitaro.jpg">
+  <link rel="icon" type="image/png" href="https://foxcloud.fcosma.it/assets/img/icon.png">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="https://cdn.rgbcraft.com/static/fontawesome/css/all.min.css">
  </head>
