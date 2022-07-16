@@ -2,6 +2,8 @@
 **FoxCloud** è un cloud completamente in PHP e con qualche pezzo in JS per tenere e gestire i file online.<br>
 Di seguito sono illustrate le informazioni importanti:
 
+## [Documentazione completa](https://foxcloud.fcosma.it/docs/v1.0)
+
 ## Specifiche Tecniche
 Versione minima di PHP richiesta: `PHP5`<br>
 Versione consigliata di PHP: `PHP7.4 / PHP8.0`<br>
@@ -11,7 +13,7 @@ WebServer consigliato: `nginx`
 Per installare **FoxCloud** è necessario:
 1) Scaricare il repo qua da GitHub (possibilmente l'ultima versione) e caricarlo nel server
 2) Scaricare PHP7.4 per NGINX (`php7.4-fpm`) e avviatelo con `sudo service php7.4-fpm start`
-3) Utilizzare [questa configurazione di NGINX](https://fcosma.it/FoxCloud/config/nginx/example) per far andare il WebServer
+3) Utilizzare [questa configurazione di NGINX](https://foxcloud.fcosma.it/docs/v1.0#preparazione-webserver-nginx) per far andare il WebServer
 
 ## Configurazione
 ### Creazione di un utente
