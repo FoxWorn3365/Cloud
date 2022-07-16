@@ -25,9 +25,10 @@ if ($do == "auth") {
   // Autentichiamo l'utente
   $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
   $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
-  require("config.php");
+  // Carichiamo la configurazione
+  $config = json_decode(file_get_contents('protected/config/config.php"));
 
-  if ($username == $admin_username && $password === $admin_password) {
+  if ($username == $config->admin_username && $password === $config->admin_password) {
     // Autenticato con successo!
     $_SESSION["admin"] = $username;
     header("Location: /admin/mep");
