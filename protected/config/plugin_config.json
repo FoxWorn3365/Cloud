@@ -1,0 +1,7 @@
+{
+  "isEnabled":true,
+  "restricted":false,
+  "load": [
+     "myPlugin.phar"
+  ]
+}
