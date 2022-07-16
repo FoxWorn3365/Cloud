@@ -4,6 +4,7 @@
 // +--------------------------------+
 // | (C) 2021 - 2022 FoxWorn3365    |
 // | Tutti i diritti riservati      |
+// | Rilasciato sotto Licenza MIT   |
 // +--------------------------------+
 // | https://foxcloud.fcosma.it/    |
 // +--------------------------------+
@@ -15,16 +16,27 @@
 // Mettiamo sempre gli header corretti :D
 header('HTTP/1.1 200 OK');
 
+// Avviamo la sessione
 session_start();
 
-
-// require_once("protected/components/plugin.php");
-// use Plugin\Main;
-
-// $plugin = new Main();
-
-// Get URL
+// Recuperiamo l'URL
 $url = $_SERVER["REQUEST_URI"];
+
+
+// +--------------------------+
+// |      Plugin Manager      |
+// +--------------------------+
+// | (C) 2021 - 2022 .FoxOrg  |
+// | https://foxorg.fcosma.it |
+// | Tutti i diritti ris.     |
+// +--------------------------+
+
+require_once("protected/components/plugin.php");
+use FoxCloud as Cloud;
+
+$plugins = new Cloud\Plugins();
+$plugins->setPluginsFolder("plugins");
+$plugins->addEventListener($url);
 
 // Carichiamo subito il pluginManager
 // $plugin->start("plugins/", "folder");
