@@ -1,5 +1,6 @@
 # FoxCloud - Versione 1.5
 **FoxCloud** è un cloud creato in PHP per la gestione dei tuoi file online.<br>
+Tramite la nostra interfaccia user-friendly sarà veramente facile gestire i file e gli utenti.
 
 ## Link utili
 -  [Documentazione ufficiale](https://foxcloud.fcosma.it/docs/v1.5)
