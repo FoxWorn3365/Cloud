@@ -26,7 +26,7 @@ if ($do == "auth") {
   $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
   $password = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
   // Carichiamo la configurazione
-  $config = json_decode(file_get_contents('protected/config/config.php"));
+  $config = json_decode(file_get_contents('protected/config/config.php'));
 
   if ($username == $config->admin_username && $password === $config->admin_password) {
     // Autenticato con successo!
