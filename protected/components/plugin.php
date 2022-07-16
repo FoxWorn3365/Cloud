@@ -11,22 +11,17 @@ namespace FoxCloud;
 
 class Plugins {
 
-    public string $folder;
+    protected string $folder;
+    protected array $loadAfter = array();
+    protected string $confDir;
 
     public function setPluginsFolder($dir) {
       $this->folder = $dir;
     }
 
     protected function loadPlugin($name) {
-      $config = $this->loadConfig($name);
       if ($this->pluginExists($name)) {
-        if ($config->load == "before") {
-          require_once('protected/' . $this->folder . '/' . $name);
-        } elseif ($config->load == "after") {
-          include('protected/' . $this->folder . '/' . $name);
-        } else {
-          error_log("[FoxCloud] Errore nel config.json del plugin $name! - Thrown in config.json -> load");
-        }
+        require_once('protected/' . $this->folder . '/' . $name);
       } else {
         error_log("[FoxCloud] Il plugin richiesto non esiste! - Thrown in FoxCloud - Plugin: $name", 0);
       }
@@ -36,7 +31,7 @@ class Plugins {
       return file_get_contents($file);
     }
 
-    protected function loadConfig($name) {
+    protected function getPluginConfig($name) {
       if ($this->pluginExists($name)) {
         return json_decode($this->getFile('phar://protected/' . $this->folder . '/' . $name . '/config.json'));
       } else {
@@ -45,7 +40,8 @@ class Plugins {
     }
 
     public function validatePlugin($name) {
-      if (json_decode($this->getFile('phar://protected/' . $this->folder . '/' . $name . '/config.json'))->type == "phar_plugin") {
+      $pluginConf = json_decode($this->getFile('phar://protected/' . $this->folder . '/' . $name . '/config.json'));
+      if ($pluginConf->type == "phar_plugin" && in_array($this->getFile('version.txt'), $pluginConf->compatibility->cloudVersions)) {
         return true;
       } else {
         error_log("[FoxCloud] Il plugin richiesto non è caricato correttamente! - Thrown in FoxCloud - Plugin: $name - String: phar://protected/" . $this->folder . "/" . $name . "/config.json", 0);
@@ -70,16 +66,83 @@ class Plugins {
 
       return $list;
     }
-    
-    public function addEventListener($url) {
-      // Carichiamo tutti i plugin per vedere se è l'url richiesto
+
+    function loadAfter() {
+      if (!empty($this->loadAfter[0])) {
+        foreach ($this->loadAfter as $plugin) {
+          require 'protected/' . $this->folder . '/' . $plugin;
+        }
+      }
+
+      return true;
+    }
+
+    protected function loadAllPlugins($url) {
       foreach ($this->pluginList() as $plugin) {
-        $pluginConf = $this->loadConfig($plugin);
-        if (in_array($url, $pluginConf->URLs) && $pluginConf->enable == true) {
-          $this->loadPlugin($plugin);
+        $pluginConf = $this->getPluginConfig($plugin);
+        if ($pluginConf->loadEverywhere === true) {
+          if ($pluginConf->load == "before") {
+            $this->loadPlugin($plugin);
+          } else {
+            array_push($this->loadAfter, $plugin);
+          }
+        } else { 
+          if (in_array($url, $pluginConf->URLs) && $pluginConf->enable === true) {
+            if ($pluginConf->load == "before") {
+              $this->loadPlugin($plugin);
+            } else {
+              array_push($this->loadAfter, $plugin);
+            }
+          }
         }
       }
       return true;
     }
+
+    public function definePluginConfigDirectory($dir) {
+      $this->confDir = $dir;
+    }
+
+    protected function getGlobalPluginConfig() {
+      return json_decode($this->getFile('protected/' . $this->confDir));
+    }
+
+    public function loadPluginsFromConfig($url) {
+      $config = $this->getGlobalPluginConfig();
+      foreach ($config->load as $plugin) {
+        if (!$this->pluginExists($plugin)) {
+          error_log("[FoxCloud] ERRORE: Nel file iniziale plugin_config.json un plugin ($plugin) non esiste!");
+          return false;
+        }
+        $pluginConf = $this->getPluginConfig($plugin);
+        if ($pluginConf->loadEverywhere == true) {
+          if ($pluginConf->load == "before") {
+            $this->loadPlugin($plugin);
+          } else {
+            array_push($this->loadAfter, $plugin);
+          }
+        } else { 
+          if (in_array($url, $pluginConf->URLs) && $pluginConf->enable === true) {
+            if ($pluginConf->load == "before") {
+              $this->loadPlugin($plugin);
+            } else {
+              array_push($this->loadAfter, $plugin);
+            }
+          }
+        }
+      }
+      return true;
+    }
+
+    public function addEventListener($url) {
+      if ($this->getGlobalPluginConfig()->isEnabled == true && $this->getGlobalPluginConfig()->restricted == true) {
+        $this->loadPluginsFromConfig($url);
+      } elseif ($this->getGlobalPluginConfig()->isEnabled == true && $this->getGlobalPluginConfig()->restricted == false) {
+        $this->loadAllPlugins($url);
+      } else {
+        error_log("[FoxCloud] Plugins non abilitati!", 0);
+        // Non carichiamo plugins
+      }
+      return true;
+    }
 }
-     
