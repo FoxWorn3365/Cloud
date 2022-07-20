@@ -10,12 +10,8 @@ if (file_exists("protected/users/" . $user. "/userpass.conf")) {
 $_SESSION["user"] = '';
 
 if (!empty($password) && !empty($user)) {
-  unlink("protected/users/$user/userpass.conf");
-  $h = fopen("protected/users/$user/userpass.conf", "w+");
-  fwrite($h, hash("sha512", $password));
-  fclose($h);
+  file_put_contents("protected/users/$user/userpass.conf", hash("sha512", $password));
   header("Location: /login");
 } else {
   die("I campi non sono stati compilati con successo!");
 }
-
