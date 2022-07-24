@@ -86,6 +86,9 @@
      for (let a = 0; a < 250; a++) {
        if (res.evidenziati[a] != "" && document.getElementById(res.evidenziati[a]) != null) {
          document.getElementById(res.evidenziati[a]).style.backgroundColor = "yellow";
+         if (isInDarkMode()) {
+           document.getElementById(res.evidenziati[a]).style.color = "white";
+         }
        }
      }
    }
