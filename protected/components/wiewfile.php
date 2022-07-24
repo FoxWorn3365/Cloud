@@ -30,11 +30,12 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
    echo "</div>";
 } elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "gif") {
    echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '" id="resized">';
-} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg") {
+} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav") {
 ?>
 <audio controls>
   <source src="<?= '/audio?user=' . $pp[0] . '&dir=' . $bb; ?>" type="audio/mpeg">
   <source src="<?= '/audio?user=' . $pp[0] . '&dir=' . $bb; ?>" type="audio/ogg">
+  <source src="<?= '/audio?user=' . $pp[0] . '&dir=' . $bb; ?>" type="audio/wav">
   Il tuo browser non sopporta il tag audio di HTML!
 </audio>
 <?php
