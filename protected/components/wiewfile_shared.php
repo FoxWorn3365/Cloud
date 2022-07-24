@@ -42,11 +42,12 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
  }
  </script>
 <?php
-} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg") {
+} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav") {
 ?>
 <audio controls>
   <source src="<?= '/audio?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="audio/mpeg">
   <source src="<?= '/audio?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="audio/ogg">
+  <source src="<?= '/audio?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="audio/wav">
   Il tuo browser non sopporta il tag audio di HTML!
 </audio>
 <?php
