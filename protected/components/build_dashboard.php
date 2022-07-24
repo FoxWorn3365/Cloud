@@ -17,27 +17,3 @@ require_once("protected/components/pesoUser.php");
 
   <b>Spazio usato:</b> <?= $gb; ?>GB (<?= $mb; ?>MB)<br>
   <b>Spazio libero:</b> <?= $free ?>GB (<?= $freeMB ?>MB )
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Libero',     <?= $free; ?>],
-          ['Usato',      <?= $used; ?>]
-        ]);
-
-        var options = {
-          title: 'Il tuo Spazio (GB)'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
-    <center><div id="piechart" style="width: 900px; height: 500px; background-color: #f8f8f8"></div></center>
