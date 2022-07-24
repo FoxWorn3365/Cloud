@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <?php require_once("protected/components/meta.php"); ?>
 
-  <meta name="keywords" content="Federico, Cosma, Federico Cosma, Fcosma, Cloud, Fcosma Cloud, PHP">
+  <meta name="keywords" content="FoxCloud, Cloud, File, PHP, PHP Made, PHP Art">
   <meta name="author" content="Federico Cosma">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="https://foxcloud.fcosma.it/assets/img/icon.png">
