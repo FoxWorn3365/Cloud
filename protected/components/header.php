@@ -18,8 +18,11 @@
    <span id='temp_2'></span>
    <span id='debug_1'></span>
   </div>
-  <div id='footer' class='w3-container w3-bottom w3-white'  style='padding: 5px'>
-   <span>&copy; 2021 - 2022 <a href='https://foxcloud.fcosma.it/'>FoxCloud</a> by Federico Cosma (FoxWorn3365) | Rilasciato sotto <a href='https://fcosma.it/FBM/view?licenza=71hued189'><img src='https://fcosma.it/FBM/fbm_white.png' height="20" width="50"></a><a class='w3-right w3-button' onclick='changeTon()'><i id='ton' class="fa-solid fa-sun"></i></a></span>
+  <div id='footer' class='w3-container w3-bottom'  style='padding: 5px'>
+   <br><br>
+   <div id='footerContent' class='w3-white' style='padding: 0px; position: absolute; bottom: 0px; text-align: center; width: 100%'>
+    <span>&copy; 2021 - 2022 <a href='https://foxcloud.fcosma.it/'>FoxCloud</a> by <a href='https://github.com/FoxWorn3365'>FoxWorn3365</a> | Rilasciato sotto <a href='https://github.com/FoxWorn3365/Cloud/blob/v1.5/LICENSE'>GNU General Public License v3.0<a class='w3-right w3-button' onclick='changeTon()'><i id='ton' class="fa-solid fa-sun"></i></a></span>
+   </div>
   </div>
   <script>
   function isInDarkMode() {
@@ -63,13 +66,13 @@
       document.getElementById('ton').classList = "fa-solid fa-moon";
       document.getElementById('body').style.color = "white";
       document.getElementById('body').style.backgroundColor = "black";
-      document.getElementById('footer').classList = "w3-container w3-bottom w3-black w3-text-white";
+      document.getElementById('footerContent').classList = "w3-black w3-text-white";
       setViewCookie('dark');
     } else {
       document.getElementById('ton').classList = "fa-solid fa-sun";
       document.getElementById('body').style.color = "black";
       document.getElementById('body').style.backgroundColor = "white";
-      document.getElementById('footer').classList = "w3-container w3-bottom w3-white w3-text-black";
+      document.getElementById('footerContent').classList = "w3-white w3-text-black";
       setViewCookie('light');
     }
   }
