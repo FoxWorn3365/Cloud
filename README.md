@@ -1,21 +1,21 @@
-# FoxCloud - Versione 1.5
+# FoxCloud - Versione 1.7
 **FoxCloud** è un cloud creato in PHP per la gestione dei tuoi file online.<br>
-Tramite la nostra interfaccia user-friendly sarà veramente facile gestire i file e gli utenti.
+Grazie alla sua semplice ma intuitiva interfaccia risulta essere il posto giusto dove tenere i tuoi file.<br>
+Inoltre, grazie al supporto dei plugin puoi integrare senza modificare il sorgente delle funzionalità nuove!
 
 ## Link utili
--  [Documentazione ufficiale](https://foxcloud.fcosma.it/docs/v1.5)
+-  [Documentazione ufficiale](https://foxcloud.fcosma.it/docs/v1.7)
 -  [Sito ufficiale](https://foxcloud.fcosma.it/)
 -  [Plugins per FoxCloud](https://foxcloud.fcosma.it/plugins/browse)
 
 ## Changelog
 ### Aggiunte
-- Aggiunti i plugin
-- Aggiunto il pannello admin
-- Aggiunti gli easter-egg
-- Aggiunta la dark mode (finalmente)
-- Aggiunte le configurazioni per i plugin e per il cloud
+- Aggiornati i plugin, con l'aggiunta degli [eventi](https://foxcloud.fcosma.it/docs/v1.7#plugins-events)
+- Aggiornata la DarkMode
+- Aggiornata la licenza, ora siamo passati dalla MIT alla GNU 3.0
+- Aggiunto il supporto ai file .wav
+- Riparati bug minori
 ### Bug fix
-- Aggiornato il visualizzatore di file, ora va a capo correttamente
 - Patch di sicurezza rispetto al login (anche admin)
 
 
