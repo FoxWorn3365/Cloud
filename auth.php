@@ -2,9 +2,14 @@
 session_start();
 
 // Recupero l'utente e la password
-$u = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
-$p = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
-$r = filter_var($_POST["redi"], FILTER_SANITIZE_STRING);
+if (empty(filter_var($_GET["APP"], FILTER_SANITIZE_STRING))) {
+  $u = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
+  $p = filter_var($_POST["password"], FILTER_SANITIZE_STRING);
+  $r = filter_var($_POST["redi"], FILTER_SANITIZE_STRING);
+} else {
+  $u = filter_var($_GET["username"], FILTER_SANITIZE_STRING);
+  $p = filter_var($_GET["password"], FILTER_SANITIZE_STRING);
+}
 
 // L'utente esiste?
 if (!is_dir("protected/users/$u")) {
@@ -29,6 +34,10 @@ if (hash("sha512", $p) == file_get_contents("protected/users/$u/userpass.conf"))
 
    // Ok, lo loggo con successo!
    $_SESSION["user"] = $u;
+   if (!empty(filter_var($_GET["pt"], FILTER_SANITIZE_STRING))) {
+     die("ST200");
+   }
+
    if ($r != "true") {
      header("Location: /u/$u/dashboard");
    } else {
@@ -37,6 +46,10 @@ if (hash("sha512", $p) == file_get_contents("protected/users/$u/userpass.conf"))
    file_put_contents("protected/users/$u/lastaccess.conf", strtotime("now"));
    exit;
 } else {
+   if (!empty(filter_var($_GET["pt"], FILTER_SANITIZE_STRING))) {
+     die("ST400");
+   }
+
    header("Location: /login?error=password");
    exit;
 }
