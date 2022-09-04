@@ -32,6 +32,9 @@ class Plugins {
 
     protected function loadPlugin($name) {
       if ($this->pluginExists($name)) {
+        if (!is_dir('protected/sys/' . $name)) {
+          @mkdir('protected/sys/' . str_replace(".phar", "", $name), 0770);
+        }
         require_once('protected/' . $this->folder . '/' . $name);
         $this->log("", "[PluginManager] Plugin $name inizializzato con successo!");
       } else {
@@ -151,7 +154,11 @@ class Plugins {
           $this->log('error', "[PluginManager] NoEventTypeOn: PageLoad!", 0);
         }
       } elseif ($event == "request") {
-        if (is_array($params) && in_array($GLOBALS['url'], $params)) {
+        $parametri = array();
+        foreach ($params as $temp) {
+         array_push($parametri, str_replace("%user%", $_SESSION["user"], $temp));
+        }
+        if (is_array($params) && in_array($GLOBALS['url'], $parametri)) {
           if ($type == "before") {
             array_push($GLOBALS['pluginLoadBefore'], $do);
             $this->log("", "[PluginManager] Plugin aggiunto all'evento loadBefore!");
@@ -160,6 +167,22 @@ class Plugins {
             $this->log("", "[PluginManager] Plugin aggiunto all'evento loadAfter!");
           } else {
             $this->log('error', "[PluginManager] NoEventTypeOn: PageLoad!", 0);
+          }
+        }
+      } elseif ($event == "containRequest") {
+        $this->log("[#ACTION]", "[PluginManager] Evento containRequest IN ALPHA INVIATO!");
+        foreach ($params as $temp) {
+          if (stripos($GLOBALS['url'], str_replace("%user%", $_SESSION["user"], $temp)) !== false) {
+            $this->log("[#ACTION]", "[PluginManager] Plugin caricato secondo containRequest in ALPHA!");
+            if ($type == "before") {
+              array_push($GLOBALS['pluginLoadBefore'], $do);
+              $this->log("", "[PluginManager] Plugin aggiunto all'evento loadBefore!");
+            } elseif ($type == "after") {
+              array_push($GLOBALS['pluginLoadAfter'], $do);
+              $this->log("", "[PluginManager] Plugin aggiunto all'evento loadAfter!");
+            } else {
+              $this->log('error', "[PluginManager] NoEventTypeOn: PageLoad!", 0);
+            }
           }
         }
       }
@@ -179,4 +202,3 @@ class Plugins {
       }
     }
 }
-
