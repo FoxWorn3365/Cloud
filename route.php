@@ -357,4 +357,4 @@ if (stripos($url, "/oldshared/") !== false) {
 }
 
 // Ok, ora possiamo caricare i plugin-after-page
-$plugins->execute("after");  
+$plugins->execute("after"); 
