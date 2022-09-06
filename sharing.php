@@ -17,9 +17,10 @@ if (empty($user)) {
 }
 
 $url = $_SERVER["HTTP_REFERER"];
+$server = $_SERVER["SERVER_NAME"];
 $password = $_POST["typePasswordOfShared1"];
 
-$file = str_replace("https://cloud.fcosma.it/u/$user/share/", "", $url);
+$file = str_replace("https://$server/u/$user/share/", "", $url);
 
 $s = randomString(20);
 $string = "$user{}file{}$file";
