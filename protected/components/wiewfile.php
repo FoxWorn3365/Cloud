@@ -28,9 +28,9 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
    echo '<p style="margin: 25px; text-align: left; max-width: 90%">' . $text . '</pre>';
    echo '<br><br><br><br><br>';
    echo "</div>";
-} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "gif") {
+} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "gif") {
    echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '" id="resized">';
-} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav") {
+} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav" || $ext[$cc-1] == "m4a") {
 ?>
 <audio controls>
   <source src="<?= '/audio?user=' . $pp[0] . '&dir=' . $bb; ?>" type="audio/mpeg">
