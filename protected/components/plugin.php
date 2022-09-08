@@ -17,6 +17,7 @@ class Plugins {
     protected $savedBefore = array();
     protected $savedAfter = array();
     protected string $confDir;
+    protected string $plugin;
 
     public function setPluginsFolder($dir) {
       $this->folder = $dir;
@@ -31,17 +32,29 @@ class Plugins {
     }
 
     protected function loadPlugin($name) {
+      $config = $this->getPluginConfig($name);
       if ($this->pluginExists($name)) {
-        if (!is_dir('protected/sys/' . $name)) {
-          @mkdir('protected/sys/' . str_replace(".phar", "", $name), 0770);
+        if (!is_dir('protected/sys/' . $config->name)) {
+          @mkdir('protected/sys/' . $config->name, 0770);
+          $this->log("", "[PluginManager]//[AdvancedConfigManager] Creata la cartella di sistema per il plugin $config->name");
         }
-        require_once('protected/' . $this->folder . '/' . $name);
-        $this->log("", "[PluginManager] Plugin $name inizializzato con successo!");
+  
+        if (!is_dir('protected/config/' . $config->name)) {
+          @mkdir('protected/config/' . $config->name, 0770);
+          file_put_contents('protected/config/' . $config->name . '/config.json', str_replace("%%", '"', "{\n   %%enabled%%:true\n}"));
+          $this->log("", "[PluginManager]//[AdvancedConfigManager] Creata la cartella di configurazione per il plugin $config->name");
+        }
+
+        if (json_decode(file_get_contents('protected/config/' . $config->name . '/config.json'))->enabled == true) {
+          require_once('protected/' . $this->folder . '/' . $name);
+          $this->log("", "[PluginManager] Plugin $name inizializzato con successo!");
+        } else {
+          $this->log("error", "[PluginManager] Il plugin $config->name non è stato caricato poichè non abilitato nella sua config!");
+        }
       } else {
         $this->log("error", "[PluginManager] Il plugin richiesto non esiste! - Thrown in FoxCloud - Plugin: $name", 0);
       }
     }
-
     protected function log($type = '', $content) {
       if ($type == "error") {
         $pre = "[#ERROR]";
@@ -66,7 +79,8 @@ class Plugins {
 
     public function validatePlugin($name) {
       $pluginConf = json_decode($this->getFile('phar://protected/' . $this->folder . '/' . $name . '/config.json'));
-      if ($pluginConf->type == "phar_plugin" && in_array($this->getFile('version.txt'), $pluginConf->compatibility->cloudVersions)) {
+      if (in_array($this->getFile('version.txt'), $pluginConf->compatibility->cloudVersions)) {
+        $this->log("", "[PluginManager] Plugin validato con successo secondo gli standard della versione corrente");
         return true;
       } else {
         $this->log('error', "[PluginManager] Il plugin richiesto non è caricato correttamente! - Thrown in FoxCloud - Plugin: $name - String: phar://protected/" . $this->folder . "/" . $name . "/config.json - Il plugin non presenta una corretta configurazione in config.json", 0);
@@ -76,6 +90,7 @@ class Plugins {
 
     public function pluginExists($name) {
       if (file_exists('protected/' . $this->folder . '/' . $name)) {
+         $this->log("", "[PluginManager] Il plugin è stato rilevato con successo || Plugin: $name");
          // Esiste, verifichiamo che sia valido!
          return $this->validatePlugin($name);
       } else {
@@ -200,5 +215,27 @@ class Plugins {
           $this->log("", "[PluginManager] Caricato i plugin dagli eventi pageLoad // BEFORE");
         }
       }
+    }
+
+    public function getAPI($config) {
+      $namespace = json_decode($config)->name;
+      return new FoxCloud\API($namespace);
+    }
+}
+
+
+class API {
+    public string $namespace;
+
+    public function __construct($namespace) {
+      $this->namespace = $namespace;
+    }
+
+    public function getConfig() {
+      return json_decode(file_get_contents('protected/config/' . $this->namespace . '/config.json'));
+    }  
+
+    public function editConfig($newconfig) {
+      return file_put_contents('protected/config/' . $this->namespace . '/config.json', $newconfig);
     }
 }
