@@ -36,8 +36,8 @@
        $icona = '<i class="fa-solid fa-file-image"></i>';
      } elseif ($ext == "txt" || $ext == "md" || $ext == "fox") {
        $icona = '<i class="fa-solid fa-file-lines"></i>';
-     } elseif ($ext == "ogg" || $ext == "mp3" || $ext == "m4a") {
-       $icona = '<i class="fa-solid fa-file-video"></i>';
+     } elseif ($ext == "ogg" || $ext == "mp3" || $ext == "m4a" || $ext == "wav") {
+       $icona = '<i class="fa-solid fa-file-audio"></i>';
      } elseif ($ext == "zip" || $ext == "gz") {
        $icona = '<i class="fa-solid fa-file-zipper"></i>';
      } elseif ($ext == "html" || $ext == "htm" || $ext == "js" || $ext == "css" || $ext == "php" || $ext == "c") {
