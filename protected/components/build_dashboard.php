@@ -17,3 +17,4 @@ require_once("protected/components/pesoUser.php");
 
   <b>Spazio usato:</b> <?= $gb; ?>GB (<?= $mb; ?>MB)<br>
   <b>Spazio libero:</b> <?= $free ?>GB (<?= $freeMB ?>MB )
+  <br><br><br><br><br>
