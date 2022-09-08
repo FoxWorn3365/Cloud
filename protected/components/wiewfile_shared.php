@@ -22,27 +22,9 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
    echo '<p style="margin: 25px; text-align: left; max-width: 90%">' . $text . '</pre>';
    echo '<br><br><br><br><br>';
    echo "</div>";
-} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg") {
-   echo '<button class="w3-button w3-orange w3-text-white" onclick="resize(0)" id="siz"></button><br><br>';
+} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "gif") {
    echo '<img id="img" src="/image?user=' . $shared[0]. '&sharedurl=' .$link. '&type=shared" style="height: 80%; width: 100%">';
-?>
- <script>
- var mode = 0;
- document.getElementById('siz').innerText = "Ridimensiona";
- function resize() {
-  if (mode == 0) {
-   document.getElementById('siz').innerText = "Originale";
-   document.getElementById('img').style.width = "50%";
-   mode = 1;
-  } else {
-   document.getElementById('siz').innerText = "Ridimensiona";
-   document.getElementById('img').style.width = "";
-   mode = 0;
-  }
- }
- </script>
-<?php
-} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav") {
+} elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav" || $ext[$cc-1] == "m4a") {
 ?>
 <audio controls>
   <source src="<?= '/audio?user=' . $pp[0] . '&type=shared&sharedurl=' . $link. '&dir=' . $bb; ?>" type="audio/mpeg">
@@ -64,4 +46,3 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
 } else {
    die("Il file che stai cercando di visualizzare non è supportato!<br>Per aprirlo, scaricalo.");
 }
-
