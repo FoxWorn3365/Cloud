@@ -32,7 +32,6 @@ class Plugins {
     }
 
     protected function loadPlugin($name) {
-      $this->log("", "[PluginManager] Iniziato il caricamento del plugin $name");
       $config = $this->getPluginConfig($name);
       if ($this->pluginExists($name)) {
         if (!is_dir('protected/sys/' . $config->name)) {
@@ -111,9 +110,7 @@ class Plugins {
     protected function loadAllPlugins($url) {
       foreach ($this->pluginList() as $plugin) {
         $pluginConf = $this->getPluginConfig($plugin);
-        if ($pluginConf->enabled === true) {
-            $this->loadPlugin($plugin);
-        }
+        $this->loadPlugin($plugin);
       }
       return true;
     }
@@ -220,7 +217,7 @@ class Plugins {
 
     public function getAPI($config) {
       $namespace = json_decode($config)->name;
-      return new FoxCloud\API($namespace);
+      return new API($namespace);
     }
 }
 
@@ -240,7 +237,7 @@ class API {
       return file_put_contents('protected/config/' . $this->namespace . '/config.json', $newconfig);
     }
     
-    public function getPluginName() {
+    public function getName() {
       return $namespace;
     }
 }
