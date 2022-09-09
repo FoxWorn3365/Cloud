@@ -6,13 +6,20 @@ Per le versioni dei plugin c'è anche questa legenda:<br>
 - 🟡 Plugin in BETA, quindi instabili ma con meno bug degli ALPHA
 - 🟢 Plugin rilasciati ufficialmente, praticamente privi di bug
 
+**Classificazione dei plugin per categoria**:
+- 😄 Divertimento
+- ➕ Funzionalità aggiuntive
+- 🚨 Sicurezza
+- 🎨 Estetica
+- ⌨️ Accessibilità
+
 **Ricordiamo che noi di .FoxOrg forniamo supporto tecnico solo per i plugin ufficiali**
 ## Lista dei Plugin
-### 🛡️🟡 [ShareLinks](https://github.com/FoxWorn3365/ShareLinks)
+### [➕] 🛡️🟡 [ShareLinks](https://github.com/FoxWorn3365/ShareLinks)
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **ShareLinks** è un semplice plugin per condividere link con gli amici tramite FoxCloud.<br>
 Per condividere un file andate all'URL `/u/NOME UTENTE/link`.<br>
-### 🛡️🟢🛠️ [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
+### [😄] 🛡️🟢🛠️ [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **SuperEasterEgg** è un plugin che aggiunge degli easter egg quando si creano, modificano e rinominano file
 
