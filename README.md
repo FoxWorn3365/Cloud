@@ -6,7 +6,7 @@ Inoltre, grazie al supporto dei plugin puoi integrare senza modificare il sorgen
 ## Link utili
 -  [Documentazione ufficiale](https://foxcloud.fcosma.it/docs/v1.7)
 -  [Sito ufficiale](https://foxcloud.fcosma.it/)
--  [Plugins per FoxCloud](https://foxcloud.fcosma.it/plugins/browse)
+-  [Plugins per FoxCloud](https://github.com/FoxWorn3365/Cloud/blob/v1.7/plugins.md)
 
 ## Changelog
 ### Aggiunte
