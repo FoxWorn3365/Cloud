@@ -238,4 +238,8 @@ class API {
     public function editConfig($newconfig) {
       return file_put_contents('protected/config/' . $this->namespace . '/config.json', $newconfig);
     }
+    
+    public function getPluginName() {
+      return $namespace;
+    }
 }
