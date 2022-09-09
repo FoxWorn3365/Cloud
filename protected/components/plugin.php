@@ -32,7 +32,7 @@ class Plugins {
     }
 
     protected function loadPlugin($name) {
-      $this->log("[PluginManager] Iniziato il caricamento del plugin $name");
+      $this->log("", "[PluginManager] Iniziato il caricamento del plugin $name");
       $config = $this->getPluginConfig($name);
       if ($this->pluginExists($name)) {
         if (!is_dir('protected/sys/' . $config->name)) {
