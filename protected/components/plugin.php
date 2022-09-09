@@ -109,7 +109,6 @@ class Plugins {
 
     protected function loadAllPlugins($url) {
       foreach ($this->pluginList() as $plugin) {
-        $pluginConf = $this->getPluginConfig($plugin);
         $this->loadPlugin($plugin);
       }
       return true;
@@ -130,10 +129,7 @@ class Plugins {
           $this->log('error', "[PluginManager] ERRORE: Nel file iniziale plugin_config.json un plugin ($plugin) non esiste!");
           return false;
         }
-        $pluginConf = $this->getPluginConfig($plugin);
-        if ($pluginConf->enabled === true) {
-          $this->loadPlugin($plugin);
-        } 
+        $this->loadPlugin($plugin);
       }
       return true;
     }
@@ -236,7 +232,7 @@ class API {
     public function editConfig($newconfig) {
       return file_put_contents('protected/config/' . $this->namespace . '/config.json', $newconfig);
     }
-    
+
     public function getName() {
       return $namespace;
     }
