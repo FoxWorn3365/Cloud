@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-$password = $_POST["accessOfGo"];
+$password = filter_var($_POST["accessOfGo"], FILTER_SANITIZE_STRING);
 $url = $_SERVER["HTTP_REFERER"];
 
-$url = str_replace("https://cloud.fcosma.it", "", $url);
+$url = str_replace("https://" . $_SERVER["SERVER_NAME"], "", $url);
 
 $link = str_replace("/s/", "", $url);
 
