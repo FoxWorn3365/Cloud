@@ -9,9 +9,11 @@ Per le versioni dei plugin c'è anche questa legenda:<br>
 **Ricordiamo che noi di .FoxOrg forniamo supporto tecnico solo per i plugin ufficiali**
 ## Lista dei Plugin
 ### 🛡️🟡 [ShareLinks](https://github.com/FoxWorn3365/ShareLinks)
+**Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **ShareLinks** è un semplice plugin per condividere link con gli amici tramite FoxCloud.<br>
 Per condividere un file andate all'URL `/u/NOME UTENTE/link`.<br>
 ### 🛡️🟢🛠️ [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
+**Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **SuperEasterEgg** è un plugin che aggiunge degli easter egg quando si creano, modificano e rinominano file
 
 ## Vuoi creare un plugin per FoxCloud
