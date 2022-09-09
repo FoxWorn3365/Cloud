@@ -11,7 +11,7 @@ Per le versioni dei plugin c'è anche questa legenda:<br>
 ### 🛡️🟡 [ShareLinks](https://github.com/FoxWorn3365/ShareLinks)
 **ShareLinks** è un semplice plugin per condividere link con gli amici tramite FoxCloud.<br>
 Per condividere un file andate all'URL `/u/NOME UTENTE/link`.<br>
-### 🛡️🔴🛠️ [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
+### 🛡️🟢🛠️ [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
 **SuperEasterEgg** è un plugin che aggiunge degli easter egg quando si creano, modificano e rinominano file
 
 ## Vuoi creare un plugin per FoxCloud
