@@ -19,9 +19,13 @@ Per le versioni dei plugin c'è anche questa legenda:<br>
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **ShareLinks** è un semplice plugin per condividere link con gli amici tramite FoxCloud.<br>
 Per condividere un file andate all'URL `/u/NOME UTENTE/link`.<br>
-### [😄] 🛡️🟢🛠️ [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
+### [😄] 🛡️🟢 [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **SuperEasterEgg** è un plugin che aggiunge degli easter egg quando si creano, modificano e rinominano file
+### [🚨 ⌨️] 🛡️🛠️ [CodeChecker](https://github.com/FoxWorn3365/CodeChecker)
+**Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
+**CodeChecker** è un plugin che controlla il sorgente di tutti i plugin caricati per rilevare eventuali plugin dannosi e bloccarli in tempo.
+_Work in progress!_
 
 ## Vuoi creare un plugin per FoxCloud
 Abbiamo una semplice e rapida guida che puoi trovare al [questo link](https://foxcloud.fcosma.it/docs/v1.7#plugins-preparazione)<br>
