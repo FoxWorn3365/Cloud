@@ -210,11 +210,6 @@ class Plugins {
         }
       }
     }
-
-    public function getAPI($config) {
-      $namespace = json_decode($config)->name;
-      return new API($namespace);
-    }
 }
 
 
