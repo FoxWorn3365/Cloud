@@ -217,7 +217,7 @@ class API {
     public string $namespace;
 
     public function __construct($namespace) {
-      $this->namespace = $namespace;
+      $this->namespace = json_decode($namespace)->name;
     }
 
     public function getConfig() {
@@ -231,4 +231,4 @@ class API {
     public function getName() {
       return $namespace;
     }
-}
+}     
