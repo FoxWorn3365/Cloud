@@ -1,8 +1,8 @@
 <?php
 session_start();
 $ses = $_SESSION["user"];
-$u = $_POST["user"];
-$file = $_POST["dir"]; 
+$u = filter_var($_POST["user"], FILTER_SANITIZE_STRING);
+$file = filter_var($_POST["dir"], FILTER_SANITIZE_STRING; 
 $contents = filter_var($_POST["contenuto"], FILTER_SANITIZE_STRING);
 
 $file = str_replace("%20", " ", $file);
