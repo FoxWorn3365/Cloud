@@ -8,6 +8,7 @@
 // +--------------------------+
 
 namespace FoxCloud;
+use PharData as Phparchive;
 
 class Plugins {
 
@@ -46,23 +47,21 @@ class Plugins {
         }
 
         if (json_decode(file_get_contents('protected/config/' . $config->name . '/config.json'))->enabled == true) {
-          require_once('protected/' . $this->folder . '/' . $name);
-          $this->log("", "[PluginManager] Plugin $name inizializzato con successo!");
+          include 'protected/' . $this->folder . '/' . $name;
+          $this->log("", "Plugin $name inizializzato con successo!");
         } else {
-          $this->log("error", "[PluginManager] Il plugin $config->name non è stato caricato poichè non abilitato nella sua config!");
+          $this->log("error", "Il plugin $config->name non è stato caricato poichè non abilitato nella sua config!");
         }
       } else {
-        $this->log("error", "[PluginManager] Il plugin richiesto non esiste! - Thrown in FoxCloud - Plugin: $name", 0);
+        $this->log("error", "Il plugin richiesto non esiste! - Thrown in FoxCloud - Plugin: $name", 0);
       }
     }
-    protected function log($type = '', $content) {
+    protected function log($type = '[#INFO]', $content) {
       if ($type == "error") {
         $pre = "[#ERROR]";
-      } else {
-        $pre = "[#INFO]";
       }
 
-      file_put_contents('protected/sys/latest.log', file_get_contents('protected/sys/latest.log') . "\n[" . date("d/m/Y - H:i:s") . "]:[FoxCloud]:$pre $content");
+      file_put_contents('protected/sys/latest.log', file_get_contents('protected/sys/latest.log') . "\n[" . date("d/m/Y - H:i:s") . "]:[FoxCloud]:$pre$content");
     }
 
     protected function getFile($file) {
@@ -73,24 +72,24 @@ class Plugins {
       if ($this->pluginExists($name)) {
         return json_decode($this->getFile('phar://protected/' . $this->folder . '/' . $name . '/config.json'));
       } else {
-        $this->log('error', "[PluginManager] Il plugin richiesto non esiste! - Thrown in FoxCloud - Plugin: $name", 0);
+        $this->log('error', "Il plugin richiesto non esiste! - Thrown in FoxCloud - Plugin: $name", 0);
       }
     }
 
     public function validatePlugin($name) {
       $pluginConf = json_decode($this->getFile('phar://protected/' . $this->folder . '/' . $name . '/config.json'));
       if (in_array($this->getFile('version.txt'), $pluginConf->compatibility->cloudVersions)) {
-        $this->log("", "[PluginManager] Plugin validato con successo secondo gli standard della versione corrente");
+        $this->log("", "Plugin validato con successo secondo gli standard della versione corrente");
         return true;
       } else {
-        $this->log('error', "[PluginManager] Il plugin richiesto non è caricato correttamente! - Thrown in FoxCloud - Plugin: $name - String: phar://protected/" . $this->folder . "/" . $name . "/config.json - Il plugin non presenta una corretta configurazione in config.json", 0);
+        $this->log('error', "Il plugin richiesto non è caricato correttamente! - Thrown in FoxCloud - Plugin: $name - String: phar://protected/" . $this->folder . "/" . $name . "/config.json - Il plugin non presenta una corretta configurazione in config.json", 0);
         return false;
       }
     }
 
     public function pluginExists($name) {
       if (file_exists('protected/' . $this->folder . '/' . $name)) {
-         $this->log("", "[PluginManager] Il plugin è stato rilevato con successo || Plugin: $name");
+         $this->log("", "Il plugin è stato rilevato con successo || Plugin: $name");
          // Esiste, verifichiamo che sia valido!
          return $this->validatePlugin($name);
       } else {
@@ -126,7 +125,7 @@ class Plugins {
       $config = $this->getGlobalPluginConfig();
       foreach ($config->load as $plugin) {
         if (!$this->pluginExists($plugin)) {
-          $this->log('error', "[PluginManager] ERRORE: Nel file iniziale plugin_config.json un plugin ($plugin) non esiste!");
+          $this->log('error', "ERRORE: Nel file iniziale plugin_config.json un plugin ($plugin) non esiste!");
           return false;
         }
         $this->loadPlugin($plugin);
@@ -144,7 +143,7 @@ class Plugins {
       } elseif ($this->getGlobalPluginConfig()->isEnabled == true && $this->getGlobalPluginConfig()->restricted == false) {
         $this->loadAllPlugins($url);
       } else {
-        $this->log('error', "[PluginManager] Plugins non abilitati!", 0);
+        $this->log('error', "Plugins non abilitati!", 0);
         // Non carichiamo plugins
       }
       return true;
@@ -155,12 +154,12 @@ class Plugins {
       if ($event == "pageLoad") {
         if ($type == "before") {
           array_push($GLOBALS['pluginLoadBefore'], $do);
-          $this->log("", "[PluginManager] Plugin aggiunto all'evento loadBefore!");
+          $this->log("", "Plugin aggiunto all'evento loadBefore!");
         } elseif ($type == "after") {
           array_push($GLOBALS['pluginLoadAfter'], $do);
-          $this->log("", "[PluginManager] Plugin aggiunto all'evento loadAfter!");
+          $this->log("", "Plugin aggiunto all'evento loadAfter!");
         } else {
-          $this->log('error', "[PluginManager] NoEventTypeOn: PageLoad!", 0);
+          $this->log('error', "NoEventTypeOn: PageLoad!", 0);
         }
       } elseif ($event == "request") {
         $parametri = array();
@@ -170,27 +169,27 @@ class Plugins {
         if (is_array($params) && in_array($GLOBALS['url'], $parametri)) {
           if ($type == "before") {
             array_push($GLOBALS['pluginLoadBefore'], $do);
-            $this->log("", "[PluginManager] Plugin aggiunto all'evento loadBefore!");
+            $this->log("", "Plugin aggiunto all'evento loadBefore!");
           } elseif ($type == "after") {
             array_push($GLOBALS['pluginLoadAfter'], $do);
-            $this->log("", "[PluginManager] Plugin aggiunto all'evento loadAfter!");
+            $this->log("", "Plugin aggiunto all'evento loadAfter!");
           } else {
-            $this->log('error', "[PluginManager] NoEventTypeOn: PageLoad!", 0);
+            $this->log('error', "NoEventTypeOn: PageLoad!", 0);
           }
         }
       } elseif ($event == "containRequest") {
-        $this->log("[#ACTION]", "[PluginManager] Evento containRequest IN ALPHA INVIATO!");
+        $this->log("[#ACTION]", "Evento containRequest IN ALPHA INVIATO!");
         foreach ($params as $temp) {
           if (stripos($GLOBALS['url'], str_replace("%user%", $_SESSION["user"], $temp)) !== false) {
-            $this->log("[#ACTION]", "[PluginManager] Plugin caricato secondo containRequest in ALPHA!");
+            $this->log("[#ACTION]", "Plugin caricato secondo containRequest in ALPHA!");
             if ($type == "before") {
               array_push($GLOBALS['pluginLoadBefore'], $do);
-              $this->log("", "[PluginManager] Plugin aggiunto all'evento loadBefore!");
+              $this->log("", "Plugin aggiunto all'evento loadBefore!");
             } elseif ($type == "after") {
               array_push($GLOBALS['pluginLoadAfter'], $do);
-              $this->log("", "[PluginManager] Plugin aggiunto all'evento loadAfter!");
+              $this->log("", "Plugin aggiunto all'evento loadAfter!");
             } else {
-              $this->log('error', "[PluginManager] NoEventTypeOn: PageLoad!", 0);
+              $this->log('error', "NoEventTypeOn: PageLoad!", 0);
             }
           }
         }
@@ -201,12 +200,12 @@ class Plugins {
       if ($type == "after") {
         foreach ($GLOBALS['pluginLoadAfter'] as $action) {
           $action();
-          $this->log("", "[PluginManager] Caricato i plugin dagli eventi pageLoad // AFTER");
+          $this->log("", "Caricato i plugin dagli eventi pageLoad // AFTER");
         }
       } else {
         foreach ($GLOBALS['pluginLoadBefore'] as $action) {
           $action();
-          $this->log("", "[PluginManager] Caricato i plugin dagli eventi pageLoad // BEFORE");
+          $this->log("", "Caricato i plugin dagli eventi pageLoad // BEFORE");
         }
       }
     }
@@ -229,6 +228,55 @@ class API {
     }
 
     public function getName() {
-      return $namespace;
+      return $this->namespace;
+    }
+
+    public function log($type, $content) {
+      file_put_contents('protected/sys/' . $this->namespace . '/plugin.log',  file_get_contents('protected/sys/' . $this->namespace . '/plugin.log') . "\n" . date("[d/m/Y - H:i:s]") . ":$type:[PluginManager\APIs] $content");
+    }
+
+    public function getSystemDir() {
+      return 'protected/sys/' . $this->namespace . '/';
+    }
+ 
+    public function getConfigDir() {
+      return 'protected/config/' . $this->namespace . '/';
     }
 }     
+
+class Utils {
+    public function deleteDir($dir) {
+      $files = array_diff(scandir($dir), array('.','..'));
+      foreach ($files as $file) {
+        if (is_dir("$dir/$file"))  {
+          $this->deleteDir("$dir/$file");
+        } else {
+          unlink("$dir/$file");
+        }
+      }
+      return rmdir($dir);
+    } 
+
+    public function getPharFiles($file) {
+      $temp = rand(1, 9999);
+      @mkdir('protected/sys/temp_' . $temp);
+
+      $phar = new Phparchive($file);
+      $phar->extractTo('protected/sys/temp_' . $temp);
+
+      $list = array();
+      foreach (glob('protected/sys/temp_' . $temp . '/*') as $script) {
+         if (is_dir($script)) {
+           foreach (glob($script . '/*') as $script) {
+              array_push($list, str_replace('protected/sys/temp_' . $temp . '/', '', $script));
+           }
+         } else {
+           array_push($list, str_replace('protected/sys/temp_' . $temp . '/', '', $script));
+         }
+      }
+
+      $this->deleteDir('protected/sys/temp_' . $temp);
+
+      return $list;
+    }
+}
