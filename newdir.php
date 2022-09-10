@@ -2,8 +2,8 @@
 require_once("protected/components/loadpage.php");
 
 session_start();
-$u = $_POST["user"];
-$dir = $_POST["dir"];
+$u = fiter_var($_POST["user"], FILTER_SANITIZE_STRING);
+$dir = filter_var($_POST["dir"], FILTER_SANITIZE_STRING);
 
 $dir = str_replace("%20", " ", $dir);
 
