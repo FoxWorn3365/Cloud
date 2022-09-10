@@ -4,7 +4,7 @@ Grazie alla sua semplice ma intuitiva interfaccia risulta essere il posto giusto
 Inoltre, grazie al supporto dei plugin puoi integrare senza modificare il sorgente delle funzionalità nuove!
 
 ## Link utili
--  [Documentazione ufficiale](https://foxcloud.fcosma.it/docs/v1.7)
+-  [Documentazione ufficiale](https://github.com/FoxWorn3365/Cloud/wiki/v1.7)
 -  [Sito ufficiale](https://foxcloud.fcosma.it/)
 -  [Plugins per FoxCloud](https://github.com/FoxWorn3365/Cloud/blob/v1.7/plugins.md)
 
