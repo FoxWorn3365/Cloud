@@ -1,7 +1,7 @@
 <?php
-$u = $_GET["user"];
-$type = $_GET["type"];
-$shared = $_GET["sharedurl"];
+$u = filter_var($_GET["user"]. FILTER_SANITIZE_STRING);
+$type = filter_var($_GET["type"], FILTER_SANITIZE_STRING);
+$shared = filter_var($_GET["sharedurl"], FILTER_SANITIZR_STRING);
 
 session_start();
 if ($type == "shared" && file_exists("protected/shared/$shared")) {
