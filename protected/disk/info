@@ -1,5 +1,2 @@
-In questa cartella ci andranno tutti i "dischi" degli utenti.
-Per esempio se nella configurazione dell'utente pippo nella sezione dir abbiamo messo diskNumber193 allora
-tutti i file di pippo andranno nella cartella diskNumber193 qua dentro
-
-~La cartella diskOfMusic contiene i file musicali di /m/nome della canzone (guarda music/info)~ RIMOSSO NELLA VERSIONE V1 DEL CLOUD
+# FoxCloud - Storage
+In questa directory verranno inseriti i vari "dischi" degli utenti creati dal [pannello admin](https://github.com/FoxWorn3365/Cloud/wiki/v1.7#pannello-admin)
