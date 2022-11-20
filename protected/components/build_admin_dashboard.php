@@ -16,7 +16,7 @@ function GetDirectorySize($path){
   <h1>Benvenuto nel pannello Admin</h1>
   Da qua potai gestire tutti gli utenti del Cloud!<br>
   <br><br>
-  <a href='/admin/new'><button class='w3-button w3-text-white w3-green'><i class="fa-solid fa-circle-plus"></i></button></a><br>
+  <a href='/admin/new'><button class='foxcloud-button'><i class="fa-solid fa-circle-plus"></i></button></a><br>
   <table class="w3-table">
     <tr>
       <th>Username</th>
