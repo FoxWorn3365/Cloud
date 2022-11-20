@@ -24,7 +24,7 @@ if (empty($_SESSION["user"])) {
  </head>
  <body style="text-align: center; background: white" id='body'>
   <div id='temp_1' style='display: none'></div>
-  <div class="w3-bar foxcloud-navbar">
+  <div class="w3-bar foxcloud-navbar" id='navbar'>
 <?php
 if ($a == "/login") {
 ?>
@@ -34,15 +34,21 @@ if ($a == "/login") {
 <?php
 } else {
 ?>
-    <a href="/" class="w3-bar-item foxcloud-button"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <a href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button"><i class="fa fa-home" aria-hidden="true"></i></a>
     <a onclick='showUserInfo()' class="w3-bar-item foxcloud-button"><i class="fa fa-user" aria-hidden="true"></i></a>
     <a href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
-    <a href="/u/<?= $_SESSION["user"]; ?>/sharedList" class="w3-bar-item foxcloud-button"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>
+    <a href="/u/<?= $_SESSION["user"]; ?>/sharedList/" class="w3-bar-item foxcloud-button"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>
     <a href="/u/<?= $_SESSION["user"]; ?>/settings" class="w3-bar-item foxcloud-button w3-right"><i class="fa fa-cogs" aria-hidden="true"></i></a>
 <?php
+  $b = '';
 }
 ?>
   </div>
+<?php
+if (isset($b)) {
+  require 'protected/components/frames.php';
+}
+?>
   <div id='footer' class='w3-container'  style='padding: 5px; position: absolute; left: 0px; width: 100%;'>
    <br><br>
    <div id='footerContent' class='w3-white' style='padding: 0px; position: absolute; bottom: 0px; text-align: center; width: 100%'>
