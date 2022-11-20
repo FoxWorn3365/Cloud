@@ -1,0 +1,28 @@
+.foxcloud-navbar {
+  background-color: #ff6200;
+  padding: 7px;
+  color: white;
+  font-weight: bold;
+}
+
+.foxcloud-button {
+  background-color: #ff6608;
+  padding: 3px;
+  border: solid 2px #ff6608;
+  border-radius: 22px;
+  font-size: 19px;
+  text-decoration: none;
+}
+
+.foxcloud-button:hover {
+  background-color: #f05c00;
+  border-color: #f05c00;
+}
+
+.foxcloud-input {
+  background-color: black;
+  border: solid 2px #0d0d0d;
+  color: white;
+  padding: 16px;
+  border-radius: 20px;
+}
