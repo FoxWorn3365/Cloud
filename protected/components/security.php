@@ -25,6 +25,6 @@ if (empty($temp)) {
   die();
 } elseif ($temp !== $pp[0]) {
   // Non è la sua dashboard
-  header("Location: /u/$temp/dashboard");
+  header("Location: /u/$temp/files/");
   die("Non è il tuo pannello");
 }
