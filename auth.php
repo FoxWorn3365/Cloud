@@ -55,7 +55,7 @@ if (hash("sha512", $p) == file_get_contents("protected/users/$u/userpass.conf"))
    }
 
    if ($r != "true") {
-     header("Location: /u/$u/dashboard");
+     header("Location: /u/$u/files/");
    } else {
      header("Location: " . $_SERVER["HTTP_REFERER"]);
    }
