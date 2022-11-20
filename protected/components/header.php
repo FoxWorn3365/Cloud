@@ -54,7 +54,7 @@ if ($a == "/login") {
     <a onclick='showUserInfo()' class="w3-bar-item foxcloud-button"><i class="fa fa-user" aria-hidden="true"></i></a>
     <a href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
     <a href="/u/<?= $_SESSION["user"]; ?>/sharedList/" class="w3-bar-item foxcloud-button"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>
-    <a href="/u/<?= $_SESSION["user"]; ?>/settings" class="w3-bar-item foxcloud-button w3-right"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+    <a onclick='showUserSettings()' class="w3-bar-item foxcloud-button w3-right"><i class="fa fa-cogs" aria-hidden="true"></i></a>
 <?php
   $b = '';
 }
