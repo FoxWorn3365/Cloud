@@ -25,6 +25,11 @@
    </div>
   </div>
   <script>
+  document.body.onload = function() {
+     document.getElementById('footer').style.display = "block";
+     document.getElementById('footer').style.top = document.body.scrollHeight + 50 + "px";
+  }
+
   function isInDarkMode() {
     if (document.cookie.split(';').some((item) => item.includes('mode=dark'))) {
       return true;
