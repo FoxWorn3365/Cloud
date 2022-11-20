@@ -24,7 +24,7 @@ $bb = str_replace("%20", " ", $bb);
  <br><br>
  <form method="post" action="/sharing">
    Inserisci una password.<br><u>Se non desideri usare una password lascia vuoto</u><br>
-   <input type="text" name="typePasswordOfShared1"><br><br>
+   <input type="text" name="typePasswordOfShared1" class='foxcloud-input'><br><br>
    <button class="w3-button w3-orange w3-text-white">Condividi</button>
  </form>
  <br><br><br>
