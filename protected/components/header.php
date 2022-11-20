@@ -4,6 +4,7 @@
   <title>Fox Cloud</title>
   <meta charset="UTF-8">
   <?php require_once("protected/components/meta.php"); ?>
+
   <meta name="keywords" content="FoxCloud, Cloud, File, PHP, PHP Made, PHP Art">
   <meta name="author" content="Federico Cosma">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +21,15 @@
   <div id='footer' class='w3-container w3-bottom'  style='padding: 5px'>
    <br><br>
    <div id='footerContent' class='w3-white' style='padding: 0px; position: absolute; bottom: 0px; text-align: center; width: 100%'>
-    <span>&copy; 2021 - 2022 <a href='https://foxcloud.fcosma.it/'>FoxCloud</a> by <a href='https://github.com/FoxWorn3365'>FoxWorn3365</a> | Rilasciato sotto <a href='https://github.com/FoxWorn3365/Cloud/blob/v1.5/LICENSE'>GNU General Public License v3.0<a class='w3-right w3-button' onclick='changeTon()'><i id='ton' class="fa-solid fa-sun"></i></a></span>
     <span>&copy; 2021 - 2022 <a href='https://foxcloud.fcosma.it/'>FoxCloud</a> by <a href='https://github.com/FoxWorn3365'>FoxWorn3365</a> | Rilasciato sotto <a href='https://github.com/FoxWorn3365/Cloud/blob/v1.5/LICENSE'>GNU General Public License v3.0</a><a class='w3-right w3-button' onclick='changeTon()'><i id='ton' class="fa-solid fa-sun"></i></a></span>
    </div>
   </div>
   <script>
+  document.body.onload = function() {
+     document.getElementById('footer').style.display = "block";
+     document.getElementById('footer').style.top = document.body.scrollHeight + 50 + "px";
+  }
+
   function isInDarkMode() {
     if (document.cookie.split(';').some((item) => item.includes('mode=dark'))) {
       return true;
@@ -32,6 +37,7 @@
       return false;
     }
   }
+
   // caricamento
   document.getElementById('body').addEventListener('load', checkView());
   
@@ -44,3 +50,47 @@
       changeTon();
     }
   }
+
+  function setViewCookie(mode) {
+    if (mode == "dark") {
+      document.cookie = "mode=dark; Secure";
+    } else {
+      document.cookie = "mode=light; Secure";
+    }
+  }
+      
+  function changeTon() {
+    document.getElementById('temp_1').innerHTML = Number(document.getElementById('temp_1').innerHTML) + 1;
+ 
+    if (Number(document.getElementById('temp_1').innerHTML) == 5) {
+      window.location.href = "/admin/easter-egg/bazinga";
+    }
+
+    if (document.getElementById('ton').classList == "fa-solid fa-sun") {
+      // Mettiamo in modalità notte
+      document.getElementById('ton').classList = "fa-solid fa-moon";
+      document.getElementById('body').style.color = "white";
+      document.getElementById('body').style.backgroundColor = "black";
+      document.getElementById('footerContent').classList = "w3-black w3-text-white";
+      setViewCookie('dark');
+    } else {
+      document.getElementById('ton').classList = "fa-solid fa-sun";
+      document.getElementById('body').style.color = "black";
+      document.getElementById('body').style.backgroundColor = "white";
+      document.getElementById('footerContent').classList = "w3-white w3-text-black";
+      setViewCookie('light');
+    }
+  }
+   
+  function getDevice() {
+    const ua = navigator.userAgent;
+    if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+      return "tablet";
+    } else if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(ua)) {
+      return "mobile";
+    } else {
+      return "desktop";
+    }
+  }
+  </script>
+ <?php require_once("protected/components/menu.php"); ?>
