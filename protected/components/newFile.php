@@ -25,7 +25,7 @@ $bb = str_replace("%20", " ", $bb);
  <div id='form'>
   <div id='in'>
     Nome del file:<br>
-    <input type='text' name='nome' id='filename'>
+    <input type='text' name='nome' id='filename' class='foxcloud-input'>
     <select name="exte" class='ex-select'>
      <option value="txt">.txt</option>
      <option value="md">.md</option>
@@ -33,8 +33,8 @@ $bb = str_replace("%20", " ", $bb);
     </select><br>
     <br><br>
     Scrivi qualcosa nel tuo file:<br>
-    <textarea name='content' id='content'></textarea><br>
-    <button class="w3-button w3-orange w3-text-white" onclick='sendForm()'>Crea!</button>
+    <textarea name='content' id='content' class='foxcloud-input'></textarea><br>
+    <button class="foxcloud-button" onclick='sendForm()'>Crea!</button>
   </div>
  </div>
  <div id='load' style='display: none;'>
