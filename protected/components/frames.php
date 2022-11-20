@@ -1,8 +1,8 @@
   <div id='userinfo' class='foxcloud-userinfo' style='display: none'>
 <?php
-$info = json_decode(file_get_contents('protected/users/' . USER . '/userinfo.conf'));
+$info = json_decode(file_get_contents('protected/users/' . $_SESSION["user"] . '/userinfo.conf'));
 ?>
-   <h1><?= USER; ?></h1>
+   <h1><?= $_SESSION["user"]; ?></h1>
    <div class='foxcloud-userinfo-internalInfo'>
     <b>Nome:</b> <?= $info->name; ?><br>
     <b>Cognome:</b> <?= $info->surname; ?><br>
