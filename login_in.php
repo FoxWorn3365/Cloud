@@ -8,9 +8,9 @@ require_once("protected/components/header.php");
   <form method="post" action="/auth.php">
     <input type="hidden" name="redi" value="true">
     Username:<br>
-    <input type="text" name="username"><br>
+    <input type="text" name="username" class='foxcloud-input'><br>
     Password:<br>
-    <input type="password" name="password">
+    <input type="password" name="password" class='foxcloud-input'>
     <br><br>
-    <button class="w3-button w3-green">Accedi!</button>
+    <button class="foxcloud-button">Accedi!</button>
   </form>
