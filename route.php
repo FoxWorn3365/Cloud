@@ -68,20 +68,8 @@ $plugins->execute();
 // Carichiamo subito il pluginManager
 // $plugin->start("plugins/", "folder");
 
-// Verifico che l'utente sia loggato e in caso che un file sia condiviso
-if (stripos($url, "/oldshared/") !== false) {
-  require_once("protected/components/header.php");
-  // File condiviso, recupero subito l'ID
-  $pid = str_replace("/s/", "", $url);
-  $dir = str_replace("/s/$pid/", "", $url);
-  // Verifichiamo che lo shared esista
-  if (!file_exists("protected/shared/$pid")) {
-   require_once("protected/error/notshared.html");
-  } else {
-   // Buildo la dir con il builderdir
-   require_once("protected/components/builder_dir.php");
-  }
-} elseif (stripos($url, "/u/") !== false) {
+// Verifico che l'utente sia loggato 
+if (stripos($url, "/u/") !== false) {
   // Pagina utente
   $u = str_replace("/u/", "", $url);
   $pp = explode("/", $u);
@@ -94,10 +82,6 @@ if (stripos($url, "/oldshared/") !== false) {
   if ($url == '/u/' .$pp[0]) {
     require_once("protected/components/header.php");
     require_once("protected/components/build_user.php");
-  } elseif ($url == '/u/' . $pp[0] . '/dashboard') {
-    require_once("protected/components/header.php");
-    require_once("protected/components/security.php");
-    require_once("protected/components/build_dashboard.php");
   } elseif ($url == '/u/' . $pp[0] . '/file') {
     require_once("protected/components/header.php");
     require_once("protected/components/security.php");
