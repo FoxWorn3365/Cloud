@@ -1,4 +1,7 @@
 <?php
+// Valori banditi
+$special_chars = array("?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}", "%", "+", chr(0));
+
 session_start();
 
 // per prima cosa verifico che il file sia stato effettivamente caricato
@@ -41,7 +44,7 @@ if ($_FILES['userfile']['size'] > $freebytes) {
 }
 
 //recupero il nome originale del file caricato
-$userfile_name = $_FILES['userfile']['name'];
+$userfile_name = str_replace(" ", "_", str_replace($special_chars, '-', $_FILES['userfile']['name']));
 
 //copio il file dalla sua posizione temporanea alla mia cartella upload
 if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
@@ -52,6 +55,5 @@ if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
   echo $texta;
 }else{
   //Se l'operazione è fallta...
-  echo 'Upload NON valido!'; 
+  echo 'Upload fallito!'; 
 }
-?>
