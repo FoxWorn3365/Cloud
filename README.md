@@ -12,9 +12,9 @@ FoxPlayer è user-friendly, semplice da usare ed esteticamente allineato al rest
 ![FoxPlayer](https://i.imgur.com/ydDC2IH.png)
 
 ## Link utili
--  [Documentazione ufficiale](https://github.com/FoxWorn3365/Cloud/wiki/v1.7)
+-  [Documentazione ufficiale](https://github.com/FoxWorn3365/Cloud/wiki/v1.7)   *Sì è quella della versione precedente perché tecnicamente parlando non è cambiato molto*
 -  [Sito ufficiale](https://foxcloud.fcosma.it/)
--  [Plugins per FoxCloud](https://github.com/FoxWorn3365/Cloud/blob/v1.7/plugins.md)
+-  [Plugins per FoxCloud](https://github.com/FoxWorn3365/Cloud/blob/v1.8/plugins.md)
 
 ## Cosa è cambiato
 ### Aggiunte
