@@ -32,6 +32,14 @@
 .foxcloud-button {
   background-color: #ff6200;
   color: white;
+  padding: 7px;
+  border: solid 2px #ff6200;
+  border-radius: 24px;
+}
+
+.foxcloud-button-expanded {
+  background-color: #ff6200;
+  color: white;
   font-weight: bold;
   padding: 7px;
   border: solid 2px #ff6200;
@@ -109,4 +117,24 @@
 
 .foxcloud-popupbutton, foxcloud-popupbuttonFolder {
   width: 150%;
+}
+
+.foxcloud-textContent {
+  background-color: #0f0f0f;
+  border-radius: 13px;
+  padding: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: 16px;
+}
+
+.foxcloud-settings {
+  padding: 25px;
+  display: none;
+  position: absolute;
+  right: 0px;
+  width: 45%;
+  background-color: #0d0d0d;
+  color: white;
+  z-index: 70;
 }
