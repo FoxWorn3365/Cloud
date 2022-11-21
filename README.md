@@ -1,7 +1,7 @@
 # FoxCloud - Versione 1.8
 **FoxCloud** è un cloud creato in PHP che ti permette di gestire i tuoi file online.<br>
 
-![https://i.imgur.com/IjGXDWS.png|Immagine di presentazione]
+![Immagine di presentazione](https://i.imgur.com/IjGXDWS.png)
 
 Grazie alla sua interfaccia estremamente semplice ed ovviamente al restyling che ha caratterizzato<br>questa versione è veramente facile e veloce da usare dove vuoi.<br>
 Inoltre, grazie al supporto dei plugin puoi integrare molte funzionalità aggiuntive senza toccare il codice sorgente!<br>
@@ -9,7 +9,7 @@ Inoltre, grazie al supporto dei plugin puoi integrare molte funzionalità aggiun
 Un'altra cosa importante è stata l'ascesa di **FoxPlayer**, un player personalizzato di FoxCloud che va a sostituire quello default dei vostri browser.<br>
 FoxPlayer è user-friendly, semplice da usare ed esteticamente allineato al resto del cloud.
 
-![https://i.imgur.com/ydDC2IH.png|FoxPlayer]
+![FoxPlayer](https://i.imgur.com/ydDC2IH.png)
 
 ## Link utili
 -  [Documentazione ufficiale](https://github.com/FoxWorn3365/Cloud/wiki/v1.7)
