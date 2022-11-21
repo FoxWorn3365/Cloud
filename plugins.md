@@ -1,4 +1,4 @@
-# Plugins per FoxCloud - v1.7
+# Plugins per FoxCloud - v1.8
 In questo file sono elencati tutti i plugin aggiuntivi per **FoxCloud**.<br>
 I plugin ufficiali sono contrassegnati dall'emoji 🛡️.<br>
 Per le versioni dei plugin c'è anche questa legenda:<br>
@@ -15,17 +15,16 @@ Per le versioni dei plugin c'è anche questa legenda:<br>
 
 **Ricordiamo che noi di .FoxOrg forniamo supporto tecnico solo per i plugin ufficiali**
 ## Lista dei Plugin
-### [➕] 🛡️🟡 [ShareLinks](https://github.com/FoxWorn3365/ShareLinks)
+### [➕] 🛡️🟢 [ShareLinks](https://github.com/FoxWorn3365/ShareLinks)
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **ShareLinks** è un semplice plugin per condividere link con gli amici tramite FoxCloud.<br>
 Per condividere un file andate all'URL `/u/NOME UTENTE/link`.<br>
 ### [😄] 🛡️🟢 [SuperEasterEgg](https://github.com/FoxWorn3365/SuperEasterEgg)
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **SuperEasterEgg** è un plugin che aggiunge degli easter egg quando si creano, modificano e rinominano file
-### [🚨 ⌨️] 🛡️🛠️ [CodeChecker](https://github.com/FoxWorn3365/CodeChecker)
+### [🚨 ⌨️] 🛡️🔴🛠️ [CodeChecker](https://github.com/FoxWorn3365/CodeChecker)
 **Autore:** [`FoxWorn3365`](https://github.com/FoxWorn3365)<br>
 **CodeChecker** è un plugin che controlla il sorgente di tutti i plugin caricati per rilevare eventuali plugin dannosi e bloccarli in tempo.
-_Work in progress!_
 
 ## Vuoi creare un plugin per FoxCloud
 Abbiamo una semplice e rapida guida che puoi trovare al [questo link](https://foxcloud.fcosma.it/docs/v1.7#plugins-preparazione)<br>
