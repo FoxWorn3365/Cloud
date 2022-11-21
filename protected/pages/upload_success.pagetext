@@ -3,4 +3,4 @@
   <b>Nome File:</b> %filename%<br>
   <b>Directory:</b> %dir%%filename%<br><br>
   <br>
-  <a href='/u/%user%/files/'><button class="w3-button w3-orange w3-text-white">Torna ai tuoi File</button></a>
+  <a href='/u/%user%/file'><button class="foxcloud-button">Torna ai tuoi File</button></a>
