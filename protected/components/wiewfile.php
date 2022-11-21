@@ -41,10 +41,12 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
    foreach ($tempText as $row) {
      $text = $text . $row . '<br>';
    }
-   echo "<div>";
-   echo '<p style="margin: 25px; text-align: left; max-width: 90%">' . $text . '</pre>';
-   echo '<br><br><br><br><br>';
-   echo "</div>";
+?>
+  <div class='foxcloud-textContent'>
+   <p style="margin: 25px; text-align: left; max-width: 90%"><?= $text; ?></p>
+   <br><br><br><br>
+  </div>
+<?php
 } elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "gif") {
    echo '<img src="/u/' .$pp[0]. '/getcontentfile/' .$bb . '" id="resized">';
 } elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav" || $ext[$cc-1] == "m4a") {
@@ -70,3 +72,4 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
 } else {
    die("Il file che stai cercando di visualizzare non è supportato!<br>Per aprirlo, scaricalo.");
 }
+?>
