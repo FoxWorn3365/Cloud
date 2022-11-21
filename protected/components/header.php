@@ -44,17 +44,17 @@ if (empty($_SESSION["user"])) {
 <?php
 if ($a == "/login") {
 ?>
-    <a href="/" class="w3-bar-item foxcloud-button">Home</a>
-    <a href="/info" class="w3-bar-item foxcloud-button">Info</a>
-    <a href="<?= $a; ?>" class="w3-bar-item foxcloud-button w3-right"><?= $text; ?></a>
+    <a href="/" class="w3-bar-item foxcloud-button-expanded">Home</a>
+    <a href="/info" class="w3-bar-item foxcloud-button-expanded">Info</a>
+    <a href="<?= $a; ?>" class="w3-bar-item foxcloud-button-expanded w3-right"><?= $text; ?></a>
 <?php
 } else {
 ?>
-    <a href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button"><i class="fa fa-home" aria-hidden="true"></i></a>
-    <a onclick='showUserInfo()' class="w3-bar-item foxcloud-button"><i class="fa fa-user" aria-hidden="true"></i></a>
-    <a href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
-    <a href="/u/<?= $_SESSION["user"]; ?>/sharedList/" class="w3-bar-item foxcloud-button"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>
-    <a onclick='showUserSettings()' class="w3-bar-item foxcloud-button w3-right"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+    <a title='Home' href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button-expanded"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <a title="Informazioni sull'utente" onclick='showUserInfo()' class="w3-bar-item foxcloud-button-expanded"><i class="fa fa-user" aria-hidden="true"></i></a>
+    <a title='I tuoi file' href="/u/<?= $_SESSION["user"]; ?>/files/" class="w3-bar-item foxcloud-button-expanded"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
+    <a title='I tuoi file condivisi' href="/u/<?= $_SESSION["user"]; ?>/sharedList/" class="w3-bar-item foxcloud-button-expanded"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>
+    <a title='Imposazioni' onclick='showUserSettings()' class="w3-bar-item foxcloud-button-expanded w3-right"><i class="fa fa-cogs" aria-hidden="true"></i></a>
 <?php
   $b = '';
 }
