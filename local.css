@@ -6,16 +6,7 @@
   font-weight: bold;
 }
 
-.foxcloud-button {
-  background-color: #ff6608;
-  padding: 3px;
-  border: solid 2px #ff6608;
-  border-radius: 22px;
-  font-size: 19px;
-  text-decoration: none;
-}
-
-.foxcloud-button:hover {
+.foxcloud-button-expanded:hover {
   background-color: #f05c00;
   border-color: #f05c00;
 }
@@ -30,6 +21,7 @@
 }
 
 .foxcloud-button {
+  text-decoration: none;
   background-color: #ff6200;
   color: white;
   padding: 7px;
@@ -38,6 +30,7 @@
 }
 
 .foxcloud-button-expanded {
+  text-decoration: none;
   background-color: #ff6200;
   color: white;
   font-weight: bold;
