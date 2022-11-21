@@ -28,7 +28,7 @@ let volume = 1;
 let icons;
 let play = false;
 let videoDuration;
-let time = 0;
+let time = -1;
 let fullscreen = false;
 
 // Recuperiamo il video
@@ -39,6 +39,7 @@ if (typeof player != 'undefined') {
 
 // Funzione di avvio del player
 async function initPlayer() {
+  player.classList.add('w3-display-container');
 // Andiamo ad applicare i controlli
   let controls = await fetch('/videoplayerstemplate.html').then(response => { return response.text() });
   if (controls == undefined) {
@@ -48,10 +49,18 @@ async function initPlayer() {
   controlsDiv.innerHTML = controls;
   // Per lo styling andiamo prima a recuperare le misure del div
   let playerPos = player.getBoundingClientRect();
-  controlsDiv.style = 'position: absolute; top: ' + playerPos.bottom + 'px;';
-  controlsDiv.style.left = playerPos.left + 'px';
+  // controlsDiv.style = 'position: absolute; top: ' + (document.documentElement.scrollTop + playerPos.bottom) + 'px;';
+  //  controlsDiv.style.left = playerPos.left + 'px';
+  controlsDiv.classList.add('w3-display-bottommiddle');
   controlsDiv.style.width = player.offsetWidth + 'px';
-  document.body.appendChild(controlsDiv);
+  controlsDiv.id = 'foxplayerControls';
+  // Ora creiamo il DIV contenitore
+  const mainDiv = document.createElement('div');
+  mainDiv.id = 'foxPlayerMain';
+  mainDiv.classList = 'w3-display-container';
+  document.body.appendChild(mainDiv);
+  mainDiv.appendChild(player);
+  mainDiv.appendChild(controlsDiv);
   // Il player ora è avviato, definiamo giusto due variabili finali
   icons = {play:'<i class="fa-solid fa-play"></i>', pause:'<i class="fa-solid fa-pause"></i>', muted:'<i class="fa-solid fa-volume-xmark"></i>', audioMedium:'<i class="fa-solid fa-volume-low"></i>', audio:'<i class="fa-solid fa-volume-high"></i>', error:'<i class="fa-solid fa-circle-exclamation"></i>', full:'<i class="fa fa-arrows-alt" aria-hidden="true"></i>', normal:'<i class="fa fa-compress" aria-hidden="true"></i>'};
   // Ora procediamo con il verificare che non siano già attivi i controls nel player
@@ -155,8 +164,16 @@ player.addEventListener('fullscreenchange', function() {
   }
 });
 
-player.addEventListener('play', function() { play = true; document.getElementById('foxplayer-buttons-duration').max = videoDuration; });
-player.addEventListener('pause', function() { play = false; });
+player.addEventListener('play', function() {
+  play = true;
+  document.getElementById('foxplayer-buttons-duration').max = videoDuration;
+  document.getElementById('foxplayer-buttons-duration').value = player.currentTime;
+  mainEventsGo();
+ });
+
+player.addEventListener('pause', function() {
+  play = false; 
+});
 
 setInterval(() => {
     if (play) {
@@ -169,12 +186,6 @@ setInterval(() => {
 
       var temp = toAcceptableData(time);
       document.getElementById('foxplayer-buttons-timeLabel').innerHTML = temp.hours + ':' + temp.minutes + ':' + temp.seconds;
-
-      if (document.getElementById('foxplayer-buttons-duration').value == document.getElementById('foxplayer-buttons-duration').max) {
-        document.getElementById('foxplayer-buttons-duration').value = document.getElementById('foxplayer-buttons-duration').value + 1;
-        play = false;
-        video.pause();
-      }  
     }
 }, 1000);
 
@@ -206,4 +217,24 @@ function toAcceptableData(seconds) {
   hr = hr ?? '00';
   minute = minute ?? '00';
   return {'seconds':temps, 'minutes':minute, 'hours':hr};
+}
+
+function mainEventsGo() {
+  player.addEventListener('ended', function() {
+    document.getElementById('foxplayer-buttons-duration').value = document.getElementById('foxplayer-buttons-duration').value + 1;
+    document.getElementById('foxplayer-buttons-play').innerHTML = icons.play;
+    document.getElementById('foxplayer-buttons-play').onclick = function() { video.play(); };
+  });
+
+  document.getElementsByClassName('foxPlayer')[0].addEventListener('mouseenter', function() {
+    document.getElementById('foxplayerControls').style.display = "block";
+  });
+
+  document.getElementsByClassName('foxPlayer')[0].addEventListener('mouseout', function() {
+    document.getElementById('foxplayerControls').style.display = "none";
+  });
+
+  document.getElementById('foxplayerControls').addEventListener('mouseenter', function() {  
+    document.getElementById('foxplayerControls').style.display = "block";
+  });
 }
