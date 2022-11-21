@@ -134,7 +134,7 @@
 
 // @IMPORTED
 .foxcloud-foxplayer-controls {
-  background-color: #121212;
+  // background-color: #121212;
   color: white;
   text-align: left;
 }
@@ -142,11 +142,13 @@
 .foxcloud-foxplayer-elementsLeft {
   float: left;
   font-size: 20px;
-  margin: 3px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
 
 .foxcloud-foxplayer-elementsRight {
   float: right;
   font-size: 20px;
-  margin: 3px;
+  margin-bottom: 10px;
+  margin-left: 10px;
 }
