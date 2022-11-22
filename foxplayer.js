@@ -67,6 +67,9 @@ async function initPlayer() {
   player.controls = false;
   // Mettiamo come durata massima quella del video
   videoDuration = player.duration;
+  mainDiv.style.maxHeight = '70%';
+  body.style.height = window.innerHeight + 'px';
+  player.style.height = mainDiv.offsetHeight + 'px';
   // Avviamo il video
   player.play();
 }
