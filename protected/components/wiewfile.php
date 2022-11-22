@@ -36,10 +36,16 @@ $cc = count($ext);
 require_once("protected/components/wiew_header.php");
 
 if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
+   require 'protected/packages/Parsedown/parsedown.php';
+   $markdown = new Parsedown();
    $tempText = preg_split('/\r\n|\r|\n/', file_get_contents("protected/disk/" . $user->dir . "/$bb"));
    $text = "<!-- Generato da FoxCloud Line Reader -->";
    foreach ($tempText as $row) {
-     $text = $text . $row . '<br>';
+     if ($ext[$cc-1] == "md") {
+       $text = $text . $markdown->line($row) . '<br>';
+     } else {
+       $text = $text . $row . '<br>';
+     }
    }
 ?>
   <div class='foxcloud-textContent'>
