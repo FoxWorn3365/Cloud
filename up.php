@@ -16,7 +16,7 @@
 // +-----------------------------------+
 
 // Valori banditi
-$special_chars = array("?", "[", "]", "/", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}", "%", "+", chr(0));
+$special_chars = array("?", "[", "]", "\\", "=", "<", ">", ":", ";", ",", "'", "\"", "&", "$", "#", "*", "(", ")", "|", "~", "`", "!", "{", "}", "%", "+", chr(0));
 
 session_start();
 
@@ -63,7 +63,7 @@ if ($_FILES['userfile']['size'] > $freebytes) {
 $userfile_name = str_replace(" ", "_", str_replace($special_chars, '-', $_FILES['userfile']['name']));
 
 //copio il file dalla sua posizione temporanea alla mia cartella upload
-if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name)) {
+if (move_uploaded_file($userfile_tmp, str_replace("%2F", "/", $uploaddir . $userfile_name))) {
   //Se l'operazione è andata a buon fine...
   $text = file_get_contents("protected/pages/upload_success.pagetext");
   $texta = str_replace("%user%", $u, str_replace("%dir%", $dir, str_replace("%filename%", $userfile_name, $text)));
