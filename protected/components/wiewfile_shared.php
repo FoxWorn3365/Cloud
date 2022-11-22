@@ -29,15 +29,23 @@ $cc = count($ext);
 require_once("protected/components/wiew_header.php");
 
 if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
+   require 'protected/packages/Parsedown/parsedown.php';
+   $markdown = new Parsedown();
    $tempText = preg_split('/\r\n|\r|\n/', file_get_contents("protected/disk/" . $user->dir . "/$bb"));
    $text = "<!-- Generato da FoxCloud Line Reader -->";
    foreach ($tempText as $row) {
-     $text = $text . $row . '<br>';
+     if ($ext[$cc-1] == "md") {
+       $text = $text . $markdown->line($row) . '<br>';
+     } else {
+       $text = $text . $row . '<br>';
+     }
    }
-   echo "<div>";
-   echo '<p style="margin: 25px; text-align: left; max-width: 90%">' . $text . '</pre>';
-   echo '<br><br><br><br><br>';
-   echo "</div>";
+?>
+  <div class='foxcloud-textContent'>
+   <p style="margin: 25px; text-align: left; max-width: 90%"><?= $text ?></p>
+   <br><br><br><br>
+  </div>
+<?php
 } elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "gif") {
    echo '<img id="img" src="/image?user=' . $shared[0]. '&sharedurl=' .$link. '&type=shared" style="height: 80%; width: 100%">';
 } elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav" || $ext[$cc-1] == "m4a") {
