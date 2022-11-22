@@ -132,9 +132,17 @@
   z-index: 70;
 }
 
+.foxcloud-fileheader-input {
+  background-color: #141414;
+  border: solid 2px #141414;
+  border-radius: 10px;
+  width: 30%;
+  color: white;
+}
+
 // @IMPORTED
 .foxcloud-foxplayer-controls {
-  // background-color: #121212;
+  background-color: #121212;
   color: white;
   text-align: left;
 }
@@ -150,5 +158,5 @@
   float: right;
   font-size: 20px;
   margin-bottom: 10px;
-  margin-left: 10px;
+  margin-right: 10px;
 }
