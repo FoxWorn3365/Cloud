@@ -140,6 +140,16 @@
   color: white;
 }
 
+.foxcloud-goup {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  background-color: #141414;
+  color: white;
+  border: solid 15px #141414;
+  border-radius: 7px;
+}
+
 // @IMPORTED
 .foxcloud-foxplayer-controls {
   background-color: #121212;
