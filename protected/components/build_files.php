@@ -38,7 +38,7 @@
    if (is_dir($file)) {
      $f = str_replace(str_replace("%20", " ", $replace), "", $file);
 ?>
-   <div id='<?= $h . $f; ?>/' class='foxcloud-filelist-file w3-display-container'>
+   <div id='<?= $h . $f; ?>/' class='foxcloud-filelist-file w3-display-container foxcloud-queryselectors-files'>
     <a onclick='evidenziaFile("<?= $h . $f; ?>/")'><i class="fa fa-folder" aria-hidden="true"></i></a> <a href='/u/<?= $pp[0]; ?>/files/<?= $h.$f; ?>/'><b><?= $f; ?>/</b></a>
     <a onclick='showSettingsFor(this, "folder");' class='foxcloud-filelist-fileSettings w3-right'><i class="fa fa-bars" aria-hidden="true"></i></a>
    </div>
@@ -66,7 +66,7 @@
        $icona = '<i class="fa-solid fa-file"></i>';
      }
 ?>
-   <div id='<?= $h . $f; ?>' class='foxcloud-filelist-file w3-display-container'>
+   <div id='<?= $h . $f; ?>' class='foxcloud-filelist-file w3-display-container foxcloud-queryselectors-files'>
     <a onclick='evidenziaFile("<?= $h . $f; ?>")'><?= $icona; ?></a> <a href='/u/<?= $pp[0]; ?>/fileopen/<?= $h.$f; ?>'><?= $f; ?></a>
     <a onclick='showSettingsFor(this, "file");' class='foxcloud-filelist-fileSettings w3-right'><i class="fa fa-bars" aria-hidden="true"></i></a>
    </div>
@@ -137,6 +137,19 @@
      file.style.display = "block";
    }
  }
+
+ document.getElementById('fileSearchTerm').addEventListener('input', function() {
+   var el = document.getElementById('fileSearchTerm');
+   var file = el.value;
+   var elements = document.getElementsByClassName('foxcloud-queryselectors-files'); 
+   for (element of elements) {
+     if (!element.id.includes(file)) {
+       element.style.display = "none";
+     } else {
+       element.style.display = "block";
+     }
+   }
+ });
 
  function evidenziaFile(number) {
     var res = JSON.parse(http_request('/evidenziaFile?file=' + number));
