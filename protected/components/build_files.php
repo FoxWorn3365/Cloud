@@ -20,6 +20,11 @@
  a {
   text-decoration: none;
  }
+
+ html {
+   scroll-behavior: smooth;
+   margin: 0;
+ }
  </style>
  <?php
  if (empty($bb)) {
@@ -92,7 +97,6 @@
  <script>
  let showed = false;
  let last = null;
-
  const folder = document.getElementById('hudden_folderMenu');
  const file = document.getElementById('hudden_fileMenu');
 
@@ -169,4 +173,28 @@
      }
    }
  }
+
+ function goTop() {
+   document.getElementById('navbar').scrollIntoView();
+ }
+
+ window.addEventListener('scroll', function() {
+   if (document.documentElement.scrollTop > 100) {
+     if (!document.getElementById('goTopButton')) {
+       const el = document.createElement('a');
+       el.id = 'goTopButton';
+       el.onclick = function() { goTop(); };
+       el.classList.add('foxcloud-goup');
+       el.style.display = 'block';
+       el.innerHTML = '<i class="fa-solid fa-arrow-up"></i>';
+       document.body.appendChild(el);
+     } else {
+       document.getElementById('goTopButton').style.display = 'block';
+     }
+   } else {
+     if (document.getElementById('goTopButton')) {
+       document.getElementById('goTopButton').style.display = 'none';
+     }
+   }
+ });
  </script>
