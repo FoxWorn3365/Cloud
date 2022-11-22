@@ -38,8 +38,8 @@
    if (is_dir($file)) {
      $f = str_replace(str_replace("%20", " ", $replace), "", $file);
 ?>
-   <div id='<?= $f . $h; ?>' class='foxcloud-filelist-file w3-display-container'>
-    <a onclick='evidenziaFile("<?= $f . $h; ?>")'><i class="fa fa-folder" aria-hidden="true"></i></a> <a href='/u/<?= $pp[0]; ?>/files/<?= $h.$f; ?>/'><b><?= $f; ?>/</b></a>
+   <div id='<?= $h . $f; ?>/' class='foxcloud-filelist-file w3-display-container'>
+    <a onclick='evidenziaFile("<?= $h . $f; ?>/")'><i class="fa fa-folder" aria-hidden="true"></i></a> <a href='/u/<?= $pp[0]; ?>/files/<?= $h.$f; ?>/'><b><?= $f; ?>/</b></a>
     <a onclick='showSettingsFor(this, "folder");' class='foxcloud-filelist-fileSettings w3-right'><i class="fa fa-bars" aria-hidden="true"></i></a>
    </div>
 <?php
@@ -66,8 +66,8 @@
        $icona = '<i class="fa-solid fa-file"></i>';
      }
 ?>
-   <div id='<?= $f . $h; ?>' class='foxcloud-filelist-file w3-display-container'>
-    <a onclick='evidenziaFile("<?= $f . $h; ?>")'><?= $icona; ?></a> <a href='/u/<?= $pp[0]; ?>/fileopen/<?= $h.$f; ?>'><?= $f; ?></a>
+   <div id='<?= $h . $f; ?>' class='foxcloud-filelist-file w3-display-container'>
+    <a onclick='evidenziaFile("<?= $h . $f; ?>")'><?= $icona; ?></a> <a href='/u/<?= $pp[0]; ?>/fileopen/<?= $h.$f; ?>'><?= $f; ?></a>
     <a onclick='showSettingsFor(this, "file");' class='foxcloud-filelist-fileSettings w3-right'><i class="fa fa-bars" aria-hidden="true"></i></a>
    </div>
 <?php
@@ -152,9 +152,6 @@
      for (let a = 0; a < 250; a++) {
        if (res.evidenziati[a] != "" && document.getElementById(res.evidenziati[a]) != null) {
          document.getElementById(res.evidenziati[a]).style.backgroundColor = "yellow";
-         if (isInDarkMode()) {
-           document.getElementById(res.evidenziati[a]).style.color = "white";
-         }
        }
      }
    }
