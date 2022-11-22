@@ -38,7 +38,7 @@ if (stripos(file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEviden
   // Rimuoviamolo 
   file_put_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array', str_replace($file, "", file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array')));
 } else {
-  file_put_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array', file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array') . $file . '//!!\\(())(())(())((((()()()()()(()()984984578475987357/////(/&&\\');
+  file_put_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array', file_get_contents('protected/sys/' . $_SESSION["user"] . 'fileEvidenziati.array') . $file . '[[FoxCloudEvidenziatiSeparator]]');
 }
 
 // Ok, tutto apposto, ritorno con un 200
