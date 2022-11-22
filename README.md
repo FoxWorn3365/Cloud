@@ -16,6 +16,9 @@ FoxPlayer è user-friendly, semplice da usare ed esteticamente allineato al rest
 -  [Sito ufficiale](https://foxcloud.fcosma.it/)
 -  [Plugins per FoxCloud](https://github.com/FoxWorn3365/Cloud/blob/v1.8/plugins.md)
 
+## Pacchetti aggiuntivi usati
+### [**Parsedawn**](https://github.com/erusev/parsedown) by [`erusev`](https://github.com/erusev) per il markdown ai file `.md`
+
 ## Cosa è cambiato
 ### Aggiunte
 - Restyling totale del Cloud, ora l'interfaccia è più user-friendly
