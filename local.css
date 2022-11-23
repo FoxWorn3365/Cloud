@@ -132,12 +132,18 @@
   z-index: 70;
 }
 
+.foxcloud-settings-list {
+  text-align: left;
+  margin-left: 5px;
+}
+
 .foxcloud-fileheader-input {
   background-color: #141414;
   border: solid 2px #141414;
   border-radius: 10px;
   width: 30%;
   color: white;
+  margin-right: 10%;
 }
 
 .foxcloud-goup {
@@ -150,7 +156,7 @@
   border-radius: 7px;
 }
 
-// @IMPORTED
+// @IMPORTED [FoxPlayer\main-min.css]
 .foxcloud-foxplayer-controls {
   background-color: #121212;
   color: white;
