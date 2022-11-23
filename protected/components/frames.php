@@ -45,12 +45,36 @@ $info = json_decode(file_get_contents('protected/users/' . $_SESSION["user"] . '
   }
   </script>
   <!-- SEPARATORIO > IMPOSTAZIONI -->
+<?php
+$localS = json_decode(file_get_contents('protected/sys/.' . $_SESSION["user"] . '_preferences.sys'));
+if ($localS->foxPlayer == "true") {
+  $a = ' checked';
+} else {
+  $a = '';
+}
+
+if ($localS->searchBar == "true") {
+  $b = ' checked';
+} else {
+  $b = '';
+}
+?>
   <div id='settings' class='foxcloud-settings'>
    <a href='/logout' class='foxcloud-button' style='float: right'><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-   <h1>Hej!</h1>
-   Al momento non ci sono impostazioni da impostare, provvederemo ad aggiungerle nella v1.9.<br>
+   <h1>Impostazioni di FoxCloud</h1>
+   <div class='foxcloud-settings-list'>
+    <b>Usa <a href='https://github.com/FoxWorn3365/FoxPlayer' target='about:blank'>FoxPlayer</a></b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $a; ?>><br>
+    <b>Abilita la searchBox nella lista file</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $b; ?>>
+   </div>
+   <br>
   </div>
   <script>
+  async function updateSettings() {
+    const settings = document.getElementsByClassName('foxcloud-iterator-settings');
+    await fetch('/updateSettings.php?foxPlayer=' + settings[0].checked + '&searchBar=' + settings[1].checked);
+    alert('Impostazioni aggiornate con successo!');
+  }
+
   document.body.onload = function() {
     document.getElementById('userinfo').style.top = document.getElementById('navbar').offsetHeight + 'px';
     document.getElementById('settings').style.top = document.getElementById('navbar').offsetHeight + 'px';
@@ -68,4 +92,3 @@ $info = json_decode(file_get_contents('protected/users/' . $_SESSION["user"] . '
     }
   }
   </script>
-
