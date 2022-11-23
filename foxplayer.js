@@ -62,7 +62,13 @@ async function initPlayer() {
   mainDiv.appendChild(player);
   mainDiv.appendChild(controlsDiv);
   // Il player ora è avviato, definiamo giusto due variabili finali
-  icons = {play:'<i class="fa-solid fa-play"></i>', pause:'<i class="fa-solid fa-pause"></i>', muted:'<i class="fa-solid fa-volume-xmark"></i>', audioMedium:'<i class="fa-solid fa-volume-low"></i>', audio:'<i class="fa-solid fa-volume-high"></i>', error:'<i class="fa-solid fa-circle-exclamation"></i>', full:'<i class="fa fa-arrows-alt" aria-hidden="true"></i>', normal:'<i class="fa fa-compress" aria-hidden="true"></i>'};
+  icons = {play:'<i class="fa-solid fa-play"></i>', pause:'<i class="fa-solid fa-pause"></i>', muted:'<i class="fa-solid fa-volume-xmark"></i>', audioMedium:'<i class="fa-solid fa-volume-low"></i>', audio:'<i class="fa-solid fa-volume-high"></i>', error:'<i class="fa-solid fa-circle-exclamation"></i>', full:'<i class="fa fa-arrows-alt" aria-hidden="true"></i>', normal:'<i class="fa fa-compress" aria-hidden="true"></i>', loading:'<i class="fa-solid fa-spinner"></i>'};
+  // Creiamo il div per il caricamento
+  const loadDiv = document.createElement('div');
+  loadDiv.classList = 'w3-display-middle w3-spinner';
+  loadDiv.id = 'foxplayer-middleelement';
+  loadDiv.innerHTML = icons.error;
+  mainDiv.appendChild(loadDiv);
   // Ora procediamo con il verificare che non siano già attivi i controls nel player
   player.controls = false;
   // Mettiamo come durata massima quella del video
@@ -168,6 +174,7 @@ player.addEventListener('fullscreenchange', function() {
 });
 
 player.addEventListener('play', function() {
+  document.getElementById('foxplayer-middleelement').style.display = "none";
   play = true;
   document.getElementById('foxplayer-buttons-duration').max = videoDuration;
   document.getElementById('foxplayer-buttons-duration').value = player.currentTime;
@@ -177,20 +184,6 @@ player.addEventListener('play', function() {
 player.addEventListener('pause', function() {
   play = false; 
 });
-
-setInterval(() => {
-    if (play) {
-      if (time != document.getElementById('foxplayer-buttons-duration').value) {
-        time = document.getElementById('foxplayer-buttons-duration').value;
-      }
-
-      document.getElementById('foxplayer-buttons-duration').value = Number(document.getElementById('foxplayer-buttons-duration').value) + 1;
-      time++;
-
-      var temp = toAcceptableData(time);
-      document.getElementById('foxplayer-buttons-timeLabel').innerHTML = temp.hours + ':' + temp.minutes + ':' + temp.seconds;
-    }
-}, 1000);
 
 // Funzioni di utilità estetica
 function toAcceptableData(seconds) {
@@ -223,6 +216,12 @@ function toAcceptableData(seconds) {
 }
 
 function mainEventsGo() {
+  player.addEventListener('timeupdate', function() {
+    document.getElementById('foxplayer-buttons-duration').value = player.currentTime;
+      var temp = toAcceptableData(player.currentTime);
+      document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes) + ':' + temp.seconds;
+  });
+
   player.addEventListener('ended', function() {
     document.getElementById('foxplayer-buttons-duration').value = document.getElementById('foxplayer-buttons-duration').value + 1;
     document.getElementById('foxplayer-buttons-play').innerHTML = icons.play;
@@ -241,3 +240,26 @@ function mainEventsGo() {
     document.getElementById('foxplayerControls').style.display = "block";
   });
 }
+
+// Eventi esterni
+player.addEventListener('progress', function() {
+  console.log('load');
+  if (document.getElementById('foxplayer-middleelement')) {
+    document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
+    document.getElementById('foxplayer-middleelement').classList = 'w3-spin w3-display-middle';
+  }
+});
+
+player.addEventListener('canplay', function() {
+  console.log('canplay');
+  if (document.getElementById('foxplayer-middleelement')) {
+    document.getElementById('foxplayer-middleelement').style.display = "none";
+  }
+});
+
+player.addEventListener('waiting', function() {
+  console.log('waiting');
+  if (document.getElementById('foxplayer-middleelement')) {
+    document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
+  }
+});
