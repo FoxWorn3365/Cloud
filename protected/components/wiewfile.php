@@ -33,6 +33,8 @@ $ext = explode(".", $bb);
 
 $cc = count($ext);
 
+$localS = json_decode(file_get_contents('protected/sys/.' . $_SESSION["user"] . '_preferences.sys'));
+
 require_once("protected/components/wiew_header.php");
 
 if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
@@ -49,7 +51,7 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
    }
 ?>
   <div class='foxcloud-textContent'>
-   <p style="margin: 25px; text-align: left; max-width: 90%"><?= $text; ?></p>
+   <p style="margin: 25px; text-align: left; max-width: 90%"><?= $text ?></p>
    <br><br><br><br>
   </div>
 <?php
@@ -73,8 +75,12 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
   <source src="<?= '/video?user=' . $pp[0] . '&dir=' . $bb; ?>" type="video/x-matroska">
   Il tuo browser non supporta il tag video di HTML!
 </video>
+<?php
+if ($localS->foxPlayer == "true") {
+?>
 <script src='/foxplayer.js'></script>
 <?php
+  }
 } else {
    die("Il file che stai cercando di visualizzare non è supportato!<br>Per aprirlo, scaricalo.");
 }
