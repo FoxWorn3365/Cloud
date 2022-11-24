@@ -1,4 +1,5 @@
 {
   "admin_username":"root",
-  "admin_password":"lamiapassword"
+  "admin_password":"lamiapassword",
+  "foxcloudworld":true
 }
