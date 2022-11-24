@@ -156,13 +156,7 @@
   border-radius: 7px;
 }
 
-// @IMPORTED [FoxPlayer\main-min.css]
-.foxcloud-foxplayer-controls {
-  background-color: #121212;
-  color: white;
-  text-align: left;
-}
-
+/* @IMPORTED [FoxPlayer\main-min.css] */
 .foxcloud-foxplayer-elementsLeft {
   float: left;
   font-size: 20px;
@@ -175,4 +169,25 @@
   font-size: 20px;
   margin-bottom: 10px;
   margin-right: 10px;
+}
+
+/* @IMPORTED [FoxCloud-OsD\main.css] */
+.foxcloud-homepage-box {
+  background-color: #121212;
+  color: white;
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  border: solid 10px #121212;
+  border-radius: 10px;
+}
+
+.foxcloud-homepage-inBox-left {
+  margin-left: 15px;
+  text-align: left;
+}
+
+.foxcloud-homepage-inBox-right {
+  margin-right: 15px;
+  text-align: right;
 }
