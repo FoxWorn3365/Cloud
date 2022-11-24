@@ -38,8 +38,6 @@ if (empty($namedir)) {
 }
 
 // Allora creiamo questa directory!
-mkdir('protected/disk/' . $user->dir . '/' . $dir . $namedir, 0777, true);
-
-chmod('protected/disk/' . $user->dir . '/' . $dir . $namedir, 0777);
+mkdir('protected/disk/' . $user->dir . '/' . $dir . $namedir);
 
 header("Location: /u/" . $_SESSION["user"] . "/files/" . $dir . $namedir);
