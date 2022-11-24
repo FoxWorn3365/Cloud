@@ -38,12 +38,13 @@ session_start();
 $url = $_SERVER["REQUEST_URI"];
 
 // Registriamo l'istanza su FoxCloud World se necessario e permesso
-if (json_decode(file_get_contents('protected/config/config.json'))->foxcloudworld && !file_exists('protected/sys/foxworld.key')) {
-  $res = json_decode(file_get_contents('https://foxcloud.fcosma.it/api/world/p?host=' . $_SERVER['HTTP_HOST'] . '&version=' . file_get_contents('version.txt')));
-  if ($res->status == 200) {
-    file_put_contents('protected/sys/foxworld.key', $res->id);
-  } else {
-    die("[FoxCloudWorld] ERROR");
+if (json_decode(file_get_contents('protected/config/config.json'))->foxcloudworld && !file_exists('protected/sys/foxworldverifycodemain.temp.txt')) {
+  $ver = rand(1000, 9999) . rand(1000, 9999);
+  file_put_contents('protected/sys/foxworldverifycodemain.temp.txt', $ver);
+  $res = json_decode(file_get_contents('https://foxcloud.fcosma.it/api/world/p?host=' . $_SERVER['HTTP_HOST'] . '&version=' . file_get_contents('version.txt') . '&verify=' . $ver));
+  if ($res->status != 200) {
+    @unlink('protected/sys/foxworldverifycodemain.temp.txt');
+    die("[FoxCloudWorld] ERROR - {$res->message}");
   }
 }
 
