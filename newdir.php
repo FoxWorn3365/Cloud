@@ -42,6 +42,4 @@ mkdir('protected/disk/' . $user->dir . '/' . $dir . $namedir, 0777, true);
 
 chmod('protected/disk/' . $user->dir . '/' . $dir . $namedir, 0777);
 
-require_once("protected/components/header.php");
-echo loadSuccess("Directory creata con Successo!", $u, "01", "La directory è stata creata con successo!");
-
+header("Location: /u/" . $_SESSION["user"] . "/files/" . $dir . $namedir);
