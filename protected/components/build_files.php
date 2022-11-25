@@ -72,7 +72,7 @@
      }
 ?>
    <div id='<?= $h . $f; ?>' class='foxcloud-filelist-file w3-display-container foxcloud-queryselectors-files'>
-    <a onclick='evidenziaFile("<?= $h . $f; ?>")'><?= $icona; ?></a> <a href='/u/<?= $pp[0]; ?>/fileopen/<?= $h.$f; ?>'><?= $f; ?></a>
+    <a onclick='evidenziaFile("<?= $h . $f; ?>")'><?= $icona; ?></a> <a title='Peso: <?= round((filesize($file)/1000)/1000, 2); ?>MB - Creazione file: <?= date('d/m/Y - H:i', filemtime($file)); ?>' href='/u/<?= $pp[0]; ?>/fileopen/<?= $h.$f; ?>'><?= $f; ?></a>
     <a onclick='showSettingsFor(this, "file");' class='foxcloud-filelist-fileSettings w3-right'><i class="fa fa-bars" aria-hidden="true"></i></a>
    </div>
 <?php
@@ -97,6 +97,7 @@
  <script>
  let showed = false;
  let last = null;
+
  const folder = document.getElementById('hudden_folderMenu');
  const file = document.getElementById('hudden_fileMenu');
 
