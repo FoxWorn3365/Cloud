@@ -53,10 +53,16 @@ if ($localS->foxPlayer == "true") {
   $a = '';
 }
 
-if ($localS->searchBar == "true") {
+if ($localS->foxPlayerBlob == "true") {
   $b = ' checked';
 } else {
   $b = '';
+}
+
+if ($localS->searchBar == "true") {
+  $c = ' checked';
+} else {
+  $c = '';
 }
 ?>
   <div id='settings' class='foxcloud-settings'>
@@ -64,14 +70,15 @@ if ($localS->searchBar == "true") {
    <h1>Impostazioni di FoxCloud</h1>
    <div class='foxcloud-settings-list'>
     <b>Usa <a href='https://github.com/FoxWorn3365/FoxPlayer' target='about:blank'>FoxPlayer</a></b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $a; ?>><br>
-    <b>Abilita la searchBox nella lista file</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $b; ?>>
+    <b>Nascondi l'URL del video con <b>FoxPlayerBlob</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $b; ?>><br>
+    <b>Abilita la searchBox nella lista file</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $c; ?>>
    </div>
    <br>
   </div>
   <script>
   async function updateSettings() {
     const settings = document.getElementsByClassName('foxcloud-iterator-settings');
-    await fetch('/updateSettings.php?foxPlayer=' + settings[0].checked + '&searchBar=' + settings[1].checked);
+    await fetch('/updateSettings.php?foxPlayer=' + settings[0].checked + '&blob=' + settings[1].checked + '&searchBar=' + settings[2].checked);
     alert('Impostazioni aggiornate con successo!');
   }
 
