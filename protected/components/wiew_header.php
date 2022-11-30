@@ -20,9 +20,9 @@ for ($a = 0; $a < count($textAbout)-1; $a++) {
   $list = $list . $textAbout[$a] . '/';
 }
 if (!empty($link)) {
-  $download = '/download?file=' . $bb . '&type=shared&shared=' . $link;
+  $download = '/download?url=' . $bb . '&type=shared&shared=' . $link;
 } else {
-  $download = $bb;
+  $download = '/download?url=' . $bb;
 }
 ?>
 <br>
