@@ -84,7 +84,7 @@ async function initPlayer() {
 
 // Creazione del BLOB
 // Verifichiamo che sia ammesso dalle impostazioni di FoxCloud
-if (isBlobLoad && playerSrc != undefined) {
+if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined') {
   // Triggering load event
   // Loading blob event
   if (document.getElementById('foxplayer-middleelement')) {
