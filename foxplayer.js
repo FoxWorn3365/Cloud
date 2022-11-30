@@ -77,26 +77,38 @@ async function initPlayer() {
   body.style.height = window.innerHeight + 'px';
   player.style.height = mainDiv.offsetHeight + 'px';
   // Avviamo il video
-  player.play();
+  if (!isBlobLoad) {
+    player.play();
+  }
 }
 
-/*
-let playButton = document.getElementById('foxplayer-buttons-play');
-let back = document.getElementById('foxplayer-buttons-back');
-let next = document.getElementById('foxplayer-buttons-next');
-let volumeButton = document.getElementById('foxplayer-buttons-volumeIcon');
-let volumeBar = document.getElementById('foxplayer-buttons-volume');
-let duration = document.getElementById('foxplayer-buttons-duration');
-let timeSeconds = document.getElementById('foxplayer-buttons-second');
-let timeMinute = document.getElementById('foxplayer-buttons-minute');
-*/
+// Creazione del BLOB
+// Verifichiamo che sia ammesso dalle impostazioni di FoxCloud
+if (isBlobLoad && playerSrc != undefined) {
+  // Triggering load event
+  // Loading blob event
+  if (document.getElementById('foxplayer-middleelement')) {
+    document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
+    document.getElementById('foxplayer-middleelement').classList = 'w3-spin w3-display-middle';
+  }
+
+  const URL = this.window.URL || this.window.webkitURL;
+  fetch(playerSrc).then(response => response.blob()).then(blob => { 
+    console.info('FoxPlayer v1 > Received data from ' + player.src);
+    player.src = URL.createObjectURL(blob);
+    player.load();
+    player.oncontextmenu = function() { return false; };
+  });
+}
 
 // Funzioni per i vari bottoni
 const video = {
   play: function() {
     document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
     document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
-    player.play();
+    player.play().catch((err) => {
+      console.warn('FoxPlayer v1 > ' + err);
+    });
   },
   
   pause: function() {
@@ -218,8 +230,9 @@ function toAcceptableData(seconds) {
 function mainEventsGo() {
   player.addEventListener('timeupdate', function() {
     document.getElementById('foxplayer-buttons-duration').value = player.currentTime;
-      var temp = toAcceptableData(player.currentTime);
-      document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes) + ':' + temp.seconds;
+    document.getElementById('foxplayer-buttons-duration').max = player.duration;
+    var temp = toAcceptableData(player.currentTime);
+    document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes) + ':' + temp.seconds;
   });
 
   player.addEventListener('ended', function() {
@@ -251,6 +264,7 @@ player.addEventListener('progress', function() {
 });
 
 player.addEventListener('canplay', function() {
+  URL.revokeObjectURL(player.src);
   console.log('canplay');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').style.display = "none";
