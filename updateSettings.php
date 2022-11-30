@@ -25,10 +25,11 @@ if (!empty($_SESSION["user"])) {
 }
 
 $fp = filter_var($_GET["foxPlayer"], FILTER_SANITIZE_STRING);
+$blob = filter_var($_GET["blob"], FILTER_SANITIZE_STRING);
 $sb = filter_var($_GET["searchBar"], FILTER_SANITIZE_STRING);
 
 if (!empty($fp) && !empty($sb)) {
-  file_put_contents('protected/sys/.' . USER . '_preferences.sys', json_encode(array('foxPlayer' => $fp, 'searchBar' => $sb)));
+  file_put_contents('protected/sys/.' . USER . '_preferences.sys', json_encode(array('foxPlayer' => $fp, 'foxPlayerBlob' => $blob, 'searchBar' => $sb)));
   die('done');
 } else {
   die('error');
