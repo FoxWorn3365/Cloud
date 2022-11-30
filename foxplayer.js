@@ -31,6 +31,7 @@ let videoDuration;
 let time = -1;
 let fullscreen = false;
 const useBlob = true;
+let canPlay = false;
 
 // Recuperiamo il video
 const player = document.getElementsByClassName('foxPlayer')[0];
@@ -79,7 +80,7 @@ async function initPlayer() {
   player.style.height = mainDiv.offsetHeight + 'px';
   // Avviamo il video
   if (!isBlobLoad && useBlob) {
-    player.play();
+    video.play();
   }
 }
 
@@ -105,11 +106,15 @@ if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBl
 // Funzioni per i vari bottoni
 const video = {
   play: function() {
-    document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
-    document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
-    player.play().catch((err) => {
-      console.warn('FoxPlayer v1 > ' + err);
-    });
+    if (canPlay) {
+      document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
+      document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
+      player.play().catch((err) => {
+        console.warn('FoxPlayer v1 > ' + err);
+      });
+    } else {
+      console.error('FoxPlayer V1 > Avviare un video non ancora caricato non risulta possibile!');
+    }
   },
   
   pause: function() {
@@ -265,6 +270,7 @@ player.addEventListener('progress', function() {
 });
 
 player.addEventListener('canplay', function() {
+  canPlay = true;
   URL.revokeObjectURL(player.src);
   console.log('canplay');
   if (document.getElementById('foxplayer-middleelement')) {
