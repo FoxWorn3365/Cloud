@@ -30,6 +30,7 @@ let play = false;
 let videoDuration;
 let time = -1;
 let fullscreen = false;
+const useBlob = true;
 
 // Recuperiamo il video
 const player = document.getElementsByClassName('foxPlayer')[0];
@@ -77,14 +78,14 @@ async function initPlayer() {
   body.style.height = window.innerHeight + 'px';
   player.style.height = mainDiv.offsetHeight + 'px';
   // Avviamo il video
-  if (!isBlobLoad) {
+  if (!isBlobLoad && useBlob) {
     player.play();
   }
 }
 
 // Creazione del BLOB
 // Verifichiamo che sia ammesso dalle impostazioni di FoxCloud
-if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined') {
+if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBlob) {
   // Triggering load event
   // Loading blob event
   if (document.getElementById('foxplayer-middleelement')) {
