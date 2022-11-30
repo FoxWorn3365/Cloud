@@ -30,8 +30,9 @@ let play = false;
 let videoDuration;
 let time = -1;
 let fullscreen = false;
-const useBlob = true;
+const useBlob = false;
 let canPlay = false;
+let loadQueue = [];
 
 // Recuperiamo il video
 const player = document.getElementsByClassName('foxPlayer')[0];
@@ -79,7 +80,7 @@ async function initPlayer() {
   body.style.height = window.innerHeight + 'px';
   player.style.height = mainDiv.offsetHeight + 'px';
   // Avviamo il video
-  if (!isBlobLoad && useBlob) {
+  if ((!isBlobLoad && useBlob) || !useBlob) {
     video.play();
   }
 }
@@ -101,6 +102,9 @@ if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBl
     player.load();
     player.oncontextmenu = function() { return false; };
   });
+} else if (!useBlob) {
+  player.src = playerSrc;
+  player.load();
 }
 
 // Funzioni per i vari bottoni
@@ -110,10 +114,12 @@ const video = {
       document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
       document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
       player.play().catch((err) => {
-        console.warn('FoxPlayer v1 > ' + err);
+        console.warn('FoxPlayer v1 > Errore durante l`azione playVideo(): ' + err);
       });
     } else {
-      console.error('FoxPlayer V1 > Avviare un video non ancora caricato non risulta possibile!');
+      console.warn('FoxPlayer V1 > Avviare un video non ancora caricato non risulta possibile!');
+      loadQueue = [1];
+      console.info('FoxPlayer V1 > Avvio aggiunto alla queue');
     }
   },
   
@@ -262,7 +268,6 @@ function mainEventsGo() {
 
 // Eventi esterni
 player.addEventListener('progress', function() {
-  console.log('load');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
     document.getElementById('foxplayer-middleelement').classList = 'w3-spin w3-display-middle';
@@ -270,9 +275,23 @@ player.addEventListener('progress', function() {
 });
 
 player.addEventListener('canplay', function() {
+  if (loadQueue != '') {
+    loadQueue = '';
+    console.info('FoxPlayer V1 - Video avviato da un event nella queue');
+
+    player.play()
+      .then(() => {
+        document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
+        document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
+      })
+      .catch((e) => {
+        console.error('FoxPlayer V1 > Errore durante l`avvio del video da queue: ' + e);
+      });
+  }
+
   canPlay = true;
   URL.revokeObjectURL(player.src);
-  console.log('canplay');
+  console.info('FoxPlayer V1 - CanPlayEvent ricevuto, il video può essere riprodotto | BLOB URL revocato con successo!');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').style.display = "none";
   }
