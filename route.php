@@ -78,6 +78,11 @@ $plugins->execute();
 // Carichiamo subito il pluginManager
 // $plugin->start("plugins/", "folder");
 
+// Carichiamo subito l'integrity checker per sicurezza
+if ($url == "/admin/integrity") {
+  require_once('protected/components/integrity.php');
+}
+
 // Verifico che l'utente sia loggato 
 if (stripos($url, "/u/") !== false) {
   // Pagina utente
