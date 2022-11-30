@@ -15,7 +15,7 @@ Come indicato dalla Normativa Europera sul Trattamento dei Dati Personali online
 
 ## Come posso evitare questo
 ### Se avevo FoxCloudWorld attivo
-In questo caso basterà rimuovere il file `foxworld.key` situato in `protected/sys/` e cambiare la configurazione impostando:
+In questo caso basterà rimuovere il file `foxworldverifycodemain.temp.txt` situato in `protected/sys/` e cambiare la configurazione impostando:
 ```json
   "foxcloudworld":false
 ```
