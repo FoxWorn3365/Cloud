@@ -55,7 +55,7 @@
 
      $ext = end(explode('.', $f));
 
-     if ($ext == "png" || $ext == "jpg" || $ext == "jpeg"  || $ext == "gif") {
+     if ($ext == "png" || $ext == "jpg" || $ext == "jpeg"  || $ext == "gif" || $ext == "webp") {
        $icona = '<i class="fa-solid fa-file-image"></i>';
      } elseif ($ext == "txt" || $ext == "md" || $ext == "fox") {
        $icona = '<i class="fa-solid fa-file-lines"></i>';
