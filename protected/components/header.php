@@ -49,7 +49,7 @@ if (empty($_SESSION["user"])) {
   <meta name="keywords" content="FoxCloud, Cloud, File, PHP, PHP Made, PHP Art">
   <meta name="author" content="Federico Cosma">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="https://foxcloud.fcosma.it/assets/img/icon.png">
+  <link rel="icon" type="image/png" href="https://resources.fcosma.it/foxcloud/logo.png">
   <link rel="stylesheet" href="/w3.css">
   <link rel="stylesheet" href="/local.css">
   <link rel="stylesheet" href="<?= $resources; ?>">
