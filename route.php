@@ -75,6 +75,9 @@ $plugins->load();
 // Carico i plugin
 $plugins->execute();
 
+// Carico la configurazione
+$cloudConfig = json_decode(file_get_contents('protected/config/config.json'));
+
 // Carichiamo subito il pluginManager
 // $plugin->start("plugins/", "folder");
 
