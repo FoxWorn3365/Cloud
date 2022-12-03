@@ -256,7 +256,7 @@ function mainEventsGo() {
     document.getElementById('foxplayer-buttons-duration').value = player.currentTime;
     document.getElementById('foxplayer-buttons-duration').max = player.duration;
     var temp = toAcceptableData(player.currentTime);
-    document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes) + ':' + temp.seconds;
+    document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes).replace('00', '') + ':' + temp.seconds;
   });
 
   player.addEventListener('ended', function() {
