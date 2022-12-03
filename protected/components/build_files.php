@@ -156,8 +156,8 @@
    }
  });
 
- function evidenziaFile(number) {
-    var res = JSON.parse(http_request('/evidenziaFile?file=' + number));
+ async function evidenziaFile(number) {
+    var res = JSON.parse(await http_request('/evidenziaFile?file=' + number));
     alert(res.message);
     location.reload(); 
  }
