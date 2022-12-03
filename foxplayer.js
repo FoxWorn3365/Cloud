@@ -30,7 +30,7 @@ let play = false;
 let videoDuration;
 let time = -1;
 let fullscreen = false;
-const useBlob = false;
+const useBlob = true;
 let canPlay = false;
 let loadQueue = [];
 
@@ -79,11 +79,23 @@ async function initPlayer() {
   mainDiv.style.maxHeight = '70%';
   body.style.height = window.innerHeight + 'px';
   player.style.height = mainDiv.offsetHeight + 'px';
+  // Sistemiamo un attimo il sistema dei blob
+  loadBlobICO();
   // Avviamo il video
   if ((!isBlobLoad && useBlob) || !useBlob) {
     video.play();
   }
 }
+
+function loadBlobICO() {
+  if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBlob) {
+    if (document.getElementById('foxplayer-middleelement')) {
+      document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
+      document.getElementById('foxplayer-middleelement').classList = 'w3-spin w3-display-middle';
+    }
+  }
+}
+
 
 // Creazione del BLOB
 // Verifichiamo che sia ammesso dalle impostazioni di FoxCloud
@@ -290,12 +302,24 @@ player.addEventListener('canplay', function() {
   }
 
   canPlay = true;
-  URL.revokeObjectURL(player.src);
+  if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+    URL.revokeObjectURL(player.src);
   console.info('FoxPlayer V1 - CanPlayEvent ricevuto, il video può essere riprodotto | BLOB URL revocato con successo!');
+  } else {
+    console.warn('FoxPlayer V1 - Rimozione dell`URL (blob) non possibile a causa del browser, provvedo a lasciare un trigger');
+  }
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').style.display = "none";
   }
 });
+
+if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+  // Non è firefox
+  player.addEventListener('loadeddata', function() {
+    URL.revokeObjectURL(player.src);
+    console.info('FoxPlayer V1 - Rimozione dell`URL (blob) richiamata da un trigger precedente completato!');
+  });
+}
 
 player.addEventListener('waiting', function() {
   console.log('waiting');
