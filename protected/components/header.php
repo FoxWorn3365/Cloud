@@ -15,6 +15,22 @@
 // | talk!                             |
 // +-----------------------------------+
 
+// Verifichiamo l'URL del caricamento delle cose che ci interessano tipo il mirror delle risorse
+if (!isset($cloudConfig)) {
+  $cloudConfig = json_decode(file_get_contents('protected/config/config.json'));
+}
+$mirror = $cloudConfig->resourcesMirror;
+$elements = explode(' ', $mirror);
+if ($elements[0] == "auto") {
+  $resources = 'https://resources.fcosma.it/fa/css/all.min.css';
+} elseif ($elements[0] == "defined") {
+  $resources = 'https://resources.fcosma.it/fa/css/all.min.css?' . $elements[1];
+} elseif ($elements[0] == "custom") {
+  if ($elements[1] == "HTTP") {
+    $resources = $elements[2];
+  }
+}
+
 if (empty($_SESSION["user"])) {
   $a = "/login";
   $text = "Accedi";
@@ -36,7 +52,7 @@ if (empty($_SESSION["user"])) {
   <link rel="icon" type="image/png" href="https://foxcloud.fcosma.it/assets/img/icon.png">
   <link rel="stylesheet" href="/w3.css">
   <link rel="stylesheet" href="/local.css">
-  <link rel="stylesheet" href="https://resources.fcosma.it/fa/css/all.min.css">
+  <link rel="stylesheet" href="<?= $resources; ?>">
  </head>
  <body style="text-align: center; background: black; color: white;height: fit-content" id='body'>
   <div id='temp_1' style='display: none'></div>
