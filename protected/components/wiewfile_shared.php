@@ -46,7 +46,7 @@ if ($ext[$cc-1] == "txt" || $ext[$cc-1] == "md" || $ext[$cc-1] == "fox") {
    <br><br><br><br>
   </div>
 <?php
-} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "gif") {
+} elseif ($ext[$cc-1] == "png" || $ext[$cc-1] == "jpg" || $ext[$cc-1] == "jpeg" || $ext[$cc-1] == "webm" || $ext[$cc-1] == "gif" || $ext[$cc-1] == "webp") {
    echo '<img id="img" src="/image?user=' . $shared[0]. '&sharedurl=' .$link. '&type=shared" style="height: 80%; width: 100%">';
 } elseif ($ext[$cc-1] == "mp3" || $ext[$cc-1] == "ogg" || $ext[$cc-1] == "wav" || $ext[$cc-1] == "m4a") {
 ?>
