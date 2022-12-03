@@ -1,5 +1,6 @@
 {
   "admin_username":"root",
   "admin_password":"lamiapassword",
-  "foxcloudworld":true
+  "foxcloudworld":true,
+  "resourcesMirror":"auto"
 }
