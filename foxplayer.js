@@ -84,6 +84,8 @@ async function initPlayer() {
   // Avviamo il video
   if ((!isBlobLoad && useBlob) || !useBlob) {
     video.play();
+  } else {
+    video.load();
   }
 }
 
