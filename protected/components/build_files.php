@@ -164,8 +164,8 @@
 
  document.getElementById('body').addEventListener('load', loadFileEvidenziati());
 
- function loadFileEvidenziati() {
-   var res = JSON.parse(http_request('/getEvidenziati'));
+ async function loadFileEvidenziati() {
+   var res = JSON.parse(await http_request('/getEvidenziati'));
    if (res.presence == true) {
      for (let a = 0; a < 250; a++) {
        if (res.evidenziati[a] != "" && document.getElementById(res.evidenziati[a]) != null) {
