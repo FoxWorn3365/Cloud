@@ -149,6 +149,7 @@ if (stripos($url, "/u/") !== false) {
     require_once("protected/components/security.php");
     // Recupero il file
     $bb = str_replace('/u/' . $pp[0] . '/deleteFile/', '', $url);
+    $bb = str_replace("%20", " ", $bb);
     unlink("protected/disk/$user->dir/$bb");
     $bb = '';
     require_once("protected/components/header.php");
@@ -177,6 +178,7 @@ if (stripos($url, "/u/") !== false) {
     $bb = str_replace('/u/' . $pp[0] . '/deleteDirectory/', '', $url);
     require_once("protected/components/functions.php");
     if (!empty($bb)) {
+     $bb = str_replace("%20", " ", $bb);
      rmdir_recursive('protected/disk/' .$user->dir . '/' . $bb);
      require_once("protected/components/header.php");
      $bb = '';
