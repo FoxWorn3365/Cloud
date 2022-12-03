@@ -31,9 +31,9 @@ require_once("protected/components/header.php");
   </div>
   <script src='/http.js'></script>
   <script>
-  function deleteUser() {
+  async function deleteUser() {
     var user = "<?= $us; ?>";
-    var res = JSON.parse(http_request('/admin.php?action=delete&user=' + user));
+    var res = JSON.parse(await http_request('/admin.php?action=delete&user=' + user));
     if (res.status == 200) {
       document.getElementById('result').style.display = "block";
       document.getElementById('statCode').innerHTML = res.status;
