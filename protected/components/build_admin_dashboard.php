@@ -109,8 +109,8 @@ foreach (glob("protected/users/*") as $user) {
    document.getElementById('errors').style.display = "none";
  }
 
- function manageUser(user) {
-   var res = JSON.parse(http_request('/admin?action=manage&user=' + user));
+ async function manageUser(user) {
+   var res = JSON.parse(await http_request('/admin?action=manage&user=' + user));
    document.getElementById('success').style.display = "block";
    if (res.status == 200) {
      if (res.action == "ban") {
@@ -129,4 +129,3 @@ foreach (glob("protected/users/*") as $user) {
    }
  }
  </script>
-
