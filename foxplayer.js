@@ -205,6 +205,8 @@ player.addEventListener('fullscreenchange', function() {
     player.controls = false;
     fullscreen = false;
   } else {
+    document.getElementById('foxplayer-buttons-full').innerHTML = icons.full;
+    document.getElementById('foxplayer-buttons-full').onclick = function() { video.fullscreen(); };
     fullscreen = true;
   }
 });
