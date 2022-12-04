@@ -55,11 +55,11 @@ if ($cloudConf->fewShared) {
   Il file non è stato propriamente condiviso, a causa di un'impostazione voluta dall'admin non puoi creare più link di condivisione per un unico file.<br>
   Pertanto quello che sta per essere fornito sarà quello già esistente. Ti ricordiamo che puoi sempre eliminare i tuoi shared<br><br>
   <b>Codice dello shared:</b> <?= $shared; ?><br>
-  <b>Link dello shared:</b> <a onclick='copyurl()' title='Clicca per copiare'>https://cloud.fcosma.it/s/<?= $shared; ?></a><br><br><br>
+  <b>Link dello shared:</b> <a onclick='copyurl()' title='Clicca per copiare'>https://<?= $_SERVER["SERVER_NAME"]; ?>/s/<?= $shared; ?></a><br><br><br>
   <a href="/u/<?= $user; ?>/files/"><button class="foxcloud-button">Torna ai tuoi File</button></a>
   <script>
   function copyurl() {
-    navigator.clipboard.writeText('https://cloud.fcosma.it/s/<?= $shared; ?>');
+    navigator.clipboard.writeText('https://<?= $_SERVER["SERVER_NAME"]; ?>/s/<?= $shared; ?>');
   }
   </script>
 <?php
@@ -67,7 +67,6 @@ if ($cloudConf->fewShared) {
     }
   }
 }
-
 if (!empty($password)) {
   // Ok, niente password
   file_put_contents("protected/shared/$s", $string . '{}' . $password);
@@ -84,13 +83,13 @@ require("protected/components/header.php");
  <h3 style="color: green">File condiviso con successo!</h3>
  <br><br><br>
  <b>Codice dello shared:</b> <?= $s; ?><br>
- <b>Link dello shared:</b> <a onclick='copyurl()' title='Clicca per copiare'>https://cloud.fcosma.it/s/<?= $s; ?></a><br>
+ <b>Link dello shared:</b> <a onclick='copyurl()' title='Clicca per copiare'>https://<?= $_SERVER["SERVER_NAME"]; ?>/s/<?= $s; ?></a><br>
  <b>Password:</b> <?= $password; ?>
  <br><br><br>
  <a href="/u/<?= $user; ?>/files/"><button class="foxcloud-button">Torna ai tuoi File</button></a>
  <br><br><br>
  <script>
  function copyurl() {
-   navigator.clipboard.writeText('https://cloud.fcosma.it/s/<?= $s; ?>');
+   navigator.clipboard.writeText('https://<?= $_SERVER["SERVER_NAME"]; ?>/s/<?= $s; ?>');
  }
  </script>
