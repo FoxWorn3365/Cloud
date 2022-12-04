@@ -63,16 +63,8 @@ if ($do == "auth") {
 
   if (!is_dir('protected/users/' . $user . '/')) {
     if (mkdir('protected/users/' . $user . '/', 0770) && mkdir('protected/disk/' . $dir . '/', 0770)) {
-      $json = '
-{
-  "name":"' . $name . '",
-  "surname":"' . $surname . '",
-  "email":"' . $email . '",
-  "diskSpace":' . $disk . ',
-  "firstLogin":"' . $join . '",
-  "isVisible":' . $visible . ',
-  "dir":"' . $dir . '"
-}';
+      $json = json_encode(array('name' => $name, 'surname' => $surname, 'email' => $email, 'diskSpace' => $diskSpace, 'firstLogin' => $join, 'isVisible' => $visible, 'dir' => $dir));
+      file_put_contents('protected/sys/.' . $user . '_preferences.sys', '{"foxPlayer":"true","foxPlayerBlob":"false","searchBar":"true"}');
       file_put_contents('protected/users/' . $user . '/userinfo.conf', $json);
       header("refresh:5;url=/admin/mep");
       echo "UTENTE CREATO CON SUCCESSO!<br>Reindirizzamento in 5 secondi...";
