@@ -27,7 +27,6 @@ require_once("protected/components/header.php");
  <br>
  <form method="post" action="/changepassword.php">
   <input type="hidden" name="user" value="<?= $_SESSION["user"]; ?>">
-  Inserisci la nuova password: <input type="text" name="password">
-  <br><br><button class="w3-button w3-green w3-text-white">Imposta!</button>
+  Inserisci la nuova password: <input type="password" name="password" class='foxcloud-input'>
+  <br><br><button class="foxcloud-button">Imposta!</button>
  </form>
-  
