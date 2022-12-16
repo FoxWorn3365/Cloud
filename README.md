@@ -43,6 +43,15 @@ let fullscreen = false;
 const useBlob = true;  // ANDIAMO A MODIFICARE QUESTO VALORE
 ```
 
+## Sistema per la riduzione degli shared
+FoxCloud salva gli shared in semplici file di testo e questo può portare, a lungo termine, ad un peso a dir poco eccessivo della cartella in questione, pertanto per questa nuova versione è stato implementato un semplice sistema che permette all'amministratore di ridurre il numero di shared che vengono generati.<br>
+E' possibile attivarla dal file `config.json`:
+```json
+  "fewShared":false
+```
+Attivando quest'opzione FoxCloud non permetterà la generazione di uno shared per un file **che ne possiede già uno**, riproponendo invece quest'ultimo.<br>
+
+
 ## Servizi esterni
 Al momento **FoxCloud** utilizza un unico servizio esterno per praticità e per evitare di far pesare il Cloud più del dovuto.<br>
 L'unico servizio in uso esterno (oltre a [FoxCloudWorld](#FoxCloud-World)) è relativo al caricamento delle icone di FontAwesome ed è comunque gestito dalla .FoxOrg.<br>
