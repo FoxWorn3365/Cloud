@@ -29,7 +29,7 @@ $info = json_decode(file_get_contents('protected/users/' . $_SESSION["user"] . '
    <?php require_once("protected/components/pesoUser.php"); ?>
    <h3>Spazio su Disco</h3><br>
    Al momento stai usando <b><?= $gb; ?>GB</b> sul disco.<br><br>
-   <b><?= $gb; ?></b> <progress max='<?= $info->diskSpace; ?>' value='<?= $gb; ?>'></progress> <b><?= $info->diskSpace; ?></b><br><br>
+   <b><?= $gb; ?>GB</b> <progress max='<?= $info->diskSpace; ?>' value='<?= $gb; ?>'></progress> <b><?= $info->diskSpace; ?>GB</b><br><br>
   </div>
   <script>
   var b = 0;
@@ -71,7 +71,9 @@ if ($localS->searchBar == "true") {
    <div class='foxcloud-settings-list'>
     <b>Usa <a href='https://github.com/FoxWorn3365/FoxPlayer' target='about:blank'>FoxPlayer</a></b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $a; ?>><br>
     <b>Nascondi l'URL del video con <b>FoxPlayerBlob</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $b; ?>><br>
-    <b>Abilita la searchBox nella lista file</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $c; ?>>
+    <b>Abilita la searchBox nella lista file</b> <input type='checkBox' class='foxcloud-iterator-settings' value='1' onclick='updateSettings()'<?= $c; ?>><br>
+    <b>Sfondo personalizzato:</b><br>
+    <a onclick='resetBackgroundNow()'><i class="fa-solid fa-delete-left"></i></a> <input type='text' id='backgroundInputUrl' value='<?= $localS->background; ?>' class='foxcloud-fileheader-input' style='width: 75%' oninput='resolveSettings(this)'><br>
    </div>
    <br>
   </div>
@@ -98,4 +100,33 @@ if ($localS->searchBar == "true") {
       d = 0;
     }
   }
+
+  async function resolveSettings(el) {
+    var value = el.value;
+    if (value != undefined && value != '' && value.length > 20) {
+      await http_request('/updateSettings.php?onlyBg=true&background=' + value);
+      console.log('legittimate HTTP REQ');
+    }
+  }
+
+  function unfunctionalAwaitingCallFromPHP() {
+    document.body.style.backgroundImage = "url('<?= $localS->background; ?>')";
+    // document.body.style.backgroundPosition = 'center';
+    // document.body.style.backgroundRepeat = 'no-repeat';
+    document.body.style.backgroundSize = 'cover';
+  }
+
+  async function resetBackgroundNow() {
+    await http_request('/updateSettings.php?onlyBg=true&background=none');
+    console.log('reset');
+    location.reload();
+  }
+
+<?php
+if (!empty($localS->background) && $localS->background != 'none') {
+?>
+  unfunctionalAwaitingCallFromPHP();
+<?php
+}
+?>
   </script>
