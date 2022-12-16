@@ -81,10 +81,13 @@ $cloudConfig = json_decode(file_get_contents('protected/config/config.json'));
 // Carichiamo subito il pluginManager
 // $plugin->start("plugins/", "folder");
 
-// Carichiamo subito l'integrity checker per sicurezza
+// Carichiamo subito l'integrity e l'update checker per sicurezza
 if ($url == "/admin/integrity") {
   require_once('protected/components/integrity.php');
+} elseif ($url == '/admin/update') {
+  require_once('protected/components/updateCloud.php');
 }
+
 
 // Verifico che l'utente sia loggato 
 if (stripos($url, "/u/") !== false) {
