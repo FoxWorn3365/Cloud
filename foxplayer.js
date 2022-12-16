@@ -1,4 +1,4 @@
-// +-----------------------------------+
+/ +-----------------------------------+
 // |             FoxCloud              |
 // +-----------------------------------+
 // | Questo file fa parte del progetto |
@@ -30,9 +30,6 @@ let play = false;
 let videoDuration;
 let time = -1;
 let fullscreen = false;
-const useBlob = true;
-let canPlay = false;
-let loadQueue = [];
 
 // Recuperiamo il video
 const player = document.getElementsByClassName('foxPlayer')[0];
@@ -79,37 +76,15 @@ async function initPlayer() {
   mainDiv.style.maxHeight = '70%';
   body.style.height = window.innerHeight + 'px';
   player.style.height = mainDiv.offsetHeight + 'px';
-  // Verifichiamo l'integrazione di un easter-egg
-  if (window.location.href.toLowerCase().includes('good') && window.location.href.toLowerCase().includes('mood')) {
-    console.info('FoxPlayer V1 - Starting easter egg :D');
-    const scc = document.createElement('script');
-    scc.src = 'https://resources.fcosma.it/foxplayer/easteregg.js';
-    scc.defer = true;
-    document.body.appendChild(scc);
-  }
-  // Sistemiamo un attimo il sistema dei blob
-  loadBlobICO();
   // Avviamo il video
-  if ((typeof isBlobLoad != 'undefined' && !isBlobLoad && useBlob) || !useBlob) {
+  if (!isBlobLoad) {
     player.play();
-  } else {
-    player.load();
   }
 }
-
-function loadBlobICO() {
-  if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBlob) {
-    if (document.getElementById('foxplayer-middleelement')) {
-      document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
-      document.getElementById('foxplayer-middleelement').classList = 'w3-spin w3-display-middle';
-    }
-  }
-}
-
 
 // Creazione del BLOB
 // Verifichiamo che sia ammesso dalle impostazioni di FoxCloud
-if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBlob) {
+if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined') {
   // Triggering load event
   // Loading blob event
   if (document.getElementById('foxplayer-middleelement')) {
@@ -124,25 +99,16 @@ if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBl
     player.load();
     player.oncontextmenu = function() { return false; };
   });
-} else if (!useBlob) {
-  player.src = playerSrc;
-  player.load();
 }
 
 // Funzioni per i vari bottoni
 const video = {
   play: function() {
-    if (canPlay) {
-      document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
-      document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
-      player.play().catch((err) => {
-        console.warn('FoxPlayer v1 > Errore durante l`azione playVideo(): ' + err);
-      });
-    } else {
-      console.warn('FoxPlayer V1 > Avviare un video non ancora caricato non risulta possibile!');
-      loadQueue = [1];
-      console.info('FoxPlayer V1 > Avvio aggiunto alla queue');
-    }
+    document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
+    document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
+    player.play().catch((err) => {
+      console.warn('FoxPlayer v1 > ' + err);
+    });
   },
   
   pause: function() {
@@ -215,17 +181,11 @@ player.addEventListener('fullscreenchange', function() {
     player.controls = false;
     fullscreen = false;
   } else {
-    document.getElementById('foxplayer-buttons-full').innerHTML = icons.full;
-    document.getElementById('foxplayer-buttons-full').onclick = function() { video.fullscreen(); };
     fullscreen = true;
   }
 });
 
 player.addEventListener('play', function() {
-  if (loadQueue != '') {
-    loadQueue = '';
-  }
-
   document.getElementById('foxplayer-middleelement').style.display = "none";
   play = true;
   document.getElementById('foxplayer-buttons-duration').max = videoDuration;
@@ -272,7 +232,7 @@ function mainEventsGo() {
     document.getElementById('foxplayer-buttons-duration').value = player.currentTime;
     document.getElementById('foxplayer-buttons-duration').max = player.duration;
     var temp = toAcceptableData(player.currentTime);
-    document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes).replace('00', '') + ':' + temp.seconds;
+    document.getElementById('foxplayer-buttons-timeLabel').innerHTML = (temp.hours + temp.minutes) + ':' + temp.seconds;
   });
 
   player.addEventListener('ended', function() {
@@ -296,6 +256,7 @@ function mainEventsGo() {
 
 // Eventi esterni
 player.addEventListener('progress', function() {
+  console.log('load');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
     document.getElementById('foxplayer-middleelement').classList = 'w3-spin w3-display-middle';
@@ -303,50 +264,16 @@ player.addEventListener('progress', function() {
 });
 
 player.addEventListener('canplay', function() {
-  if (loadQueue != '') {
-    loadQueue = '';
-    console.info('FoxPlayer V1 - Video avviato da un event nella queue');
-
-    player.play()
-      .then(() => {
-        document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
-        document.getElementById('foxplayer-buttons-play').onclick = function() { video.pause(); };
-      })
-      .catch((e) => {
-        console.error('FoxPlayer V1 > Errore durante l`avvio del video da queue: ' + e);
-      });
-  }
-
-  canPlay = true;
-  if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-    URL.revokeObjectURL(player.src);
-  console.info('FoxPlayer V1 - CanPlayEvent ricevuto, il video può essere riprodotto | BLOB URL revocato con successo!');
-  } else {
-    console.warn('FoxPlayer V1 - Rimozione dell`URL (blob) non possibile a causa del browser, provvedo a lasciare un trigger');
-  }
+  URL.revokeObjectURL(player.src);
+  console.log('canplay');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').style.display = "none";
   }
 });
 
-if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-  // Non è firefox
-  player.addEventListener('loadeddata', function() {
-    URL.revokeObjectURL(player.src);
-    console.info('FoxPlayer V1 - Rimozione dell`URL (blob) richiamata da un trigger precedente completato!');
-  });
-}
-
 player.addEventListener('waiting', function() {
+  console.log('waiting');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
-  }
-});
-
-player.addEventListener('click', function() {
-  if (play) {
-    video.pause();
-  } else {
-    video.play();
   }
 });
