@@ -51,14 +51,16 @@ E' possibile attivarla dal file `config.json`:
 ```
 Attivando quest'opzione FoxCloud non permetterà la generazione di uno shared per un file **che ne possiede già uno**, riproponendo invece quest'ultimo.<br>
 
+## Integrity Checker
+Semplifichiamo la vita agli amministratori di un cloud FoxCloud dando loro la possibilità di controllare in automatico che tutti i file e tutte le directory siano presenti e leggibili.
 
 ## Servizi esterni
 Al momento **FoxCloud** utilizza un unico servizio esterno per praticità e per evitare di far pesare il Cloud più del dovuto.<br>
 L'unico servizio in uso esterno (oltre a [FoxCloudWorld](#FoxCloud-World)) è relativo al caricamento delle icone di FontAwesome ed è comunque gestito dalla .FoxOrg.<br>
-L'url in questione è presente nel file `[header.php](https://github.com/FoxWorn3365/Cloud/blob/v1.9/protected/components/header.php)` e richiede il file `all.min.css` dal seguente url:
+L'url in questione è presente nel file [`header.php`](https://github.com/FoxWorn3365/Cloud/blob/v1.9/protected/components/header.php) e richiede il file `all.min.css` dal seguente url:
 `https://resources.fcosma.it/fa/css/all.min.css`.<br>
 Questo servizio è da poco dotato del sistema **NoWebDown** della .FoxOrg che impedisce che il sito vada offline, servendo i file da un mirror secondario quando il primario è offline.<br>
-Per evitare la scelta del mirror (che aggiunge circa `10ms` al tempo di ricezione dei file) potete andare a modificare il parametro `resourcesMirror` nel file `[config.json](https://github.com/FoxWorn3365/Cloud/blob/v1.9/protected/config/config.json)` modificandolo in questo modo:<br>
+Per evitare la scelta del mirror (che aggiunge circa `10ms` al tempo di ricezione dei file) potete andare a modificare il parametro `resourcesMirror` nel file [`config.json`](https://github.com/FoxWorn3365/Cloud/blob/v1.9/protected/config/config.json) modificandolo in questo modo:<br>
 ### Se volete la selezione automatica
 ```json
    "resourcesMirror":"auto"
