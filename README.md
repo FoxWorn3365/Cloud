@@ -82,6 +82,12 @@ oppure
 - Aggiunti gli url `blob`
 - Aggiunte impostazioni relative a FoxPlayer
 - Aggiunto un **Integrity Checker** per controllare l'integrità del Cloud
+- Aggiunto un installer (file `install.php`) per un'installazione veloce del Cloud con una GUI basica
+- Aggiunta la possibilità di implementare sfondi personalizzati
+- Aggiunto un'easter-egg su FoxPlayer
+- Aggiunta la funzione per fermare il video anche cliccando solo sul video
+- Sistemati alcuni errori dei blob:url
+- Migliorato il caricamento dei file evidenziati: ora non viene eseguita una richiesta ogni volta ma viene semplicemente salvato in `sessionStorage`
 ### Bug fix
 - Ottimizzato FoxPlayer, rimuovendo bug dovuti al codice nativo
 
