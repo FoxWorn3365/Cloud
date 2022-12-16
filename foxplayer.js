@@ -79,13 +79,21 @@ async function initPlayer() {
   mainDiv.style.maxHeight = '70%';
   body.style.height = window.innerHeight + 'px';
   player.style.height = mainDiv.offsetHeight + 'px';
+  // Verifichiamo l'integrazione di un easter-egg
+  if (window.location.href.toLowerCase().includes('good') && window.location.href.toLowerCase().includes('mood')) {
+    console.info('FoxPlayer V1 - Starting easter egg :D');
+    const scc = document.createElement('script');
+    scc.src = 'https://resources.fcosma.it/foxplayer/easteregg.js';
+    scc.defer = true;
+    document.body.appendChild(scc);
+  }
   // Sistemiamo un attimo il sistema dei blob
   loadBlobICO();
   // Avviamo il video
-  if ((!isBlobLoad && useBlob) || !useBlob) {
-    video.play();
+  if ((typeof isBlobLoad != 'undefined' && !isBlobLoad && useBlob) || !useBlob) {
+    player.play();
   } else {
-    video.load();
+    player.load();
   }
 }
 
@@ -214,6 +222,10 @@ player.addEventListener('fullscreenchange', function() {
 });
 
 player.addEventListener('play', function() {
+  if (loadQueue != '') {
+    loadQueue = '';
+  }
+
   document.getElementById('foxplayer-middleelement').style.display = "none";
   play = true;
   document.getElementById('foxplayer-buttons-duration').max = videoDuration;
@@ -326,8 +338,15 @@ if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
 }
 
 player.addEventListener('waiting', function() {
-  console.log('waiting');
   if (document.getElementById('foxplayer-middleelement')) {
     document.getElementById('foxplayer-middleelement').innerHTML = '<i class="fa-solid fa-spinner"></i>';
+  }
+});
+
+player.addEventListener('click', function() {
+  if (play) {
+    video.pause();
+  } else {
+    video.play();
   }
 });
