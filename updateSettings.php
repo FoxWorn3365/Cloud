@@ -24,6 +24,14 @@ if (!empty($_SESSION["user"])) {
   exit;
 }
 
+if (!empty($_GET["onlyBg"])) {
+  $bg = filter_var($_GET["background"], FILTER_SANITIZE_STRING);
+  $config = (array)json_decode(file_get_contents('protected/sys/.' . USER . '_preferences.sys'));
+  $config['background'] = $bg;
+  file_put_contents('protected/sys/.' . USER . '_preferences.sys', json_encode($config));
+  die('done_1');
+}
+
 $fp = filter_var($_GET["foxPlayer"], FILTER_SANITIZE_STRING);
 $blob = filter_var($_GET["blob"], FILTER_SANITIZE_STRING);
 $sb = filter_var($_GET["searchBar"], FILTER_SANITIZE_STRING);
