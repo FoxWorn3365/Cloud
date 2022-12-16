@@ -28,7 +28,7 @@
    <div class='foxcloud-filelist-file w3-display-container'>
     <i class="fa-solid fa-file"></i> <a href='/s/<?= $file ?>'><?= $file ?></a>
     <span style='font-size: 13px;' class='w3-display-middle'><?= $sc[2]; ?></span>
-    <a title='Revoca la condivisione' href='/u/<?= USER; ?>/removeShared/$file' class='foxcloud-filelist-fileSettings w3-right'><i class="fa-solid fa-trash-can"></i></a>
+    <a title='Revoca la condivisione' href='/u/<?= $_SESSION["user"]; ?>/removeShared/<?= $file; ?>' class='foxcloud-filelist-fileSettings w3-right'><i class="fa-solid fa-trash-can"></i></a>
    </div>
 <?php
       // RICORDI    echo "<a href='/s/$file'>$file</a> <span style='font-size: 10px'>FILE: (" . str_replace("%20", " ", $sc[2]) . ")</span><a href='/u/$pp[0]/removeShared/$file' style='position: absolute; text-align: right; right: -50%'><i class='fa fa-trash' aria-hidden='true'></i></i></a><br>";
