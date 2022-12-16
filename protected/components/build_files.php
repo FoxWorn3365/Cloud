@@ -145,10 +145,21 @@
 
  document.getElementById('fileSearchTerm').addEventListener('input', function() {
    var el = document.getElementById('fileSearchTerm');
-   var file = el.value;
    var elements = document.getElementsByClassName('foxcloud-queryselectors-files'); 
+   var file = el.value;
+   if (file == '*') {
+     for (element of elements) {
+       if (element.style.backgroundColor != 'yellow') {
+         element.style.display = 'none';
+       } else {
+         element.style.display = 'block';
+       }
+     }
+     return;
+   }
+
    for (element of elements) {
-     if (!element.id.includes(file)) {
+     if (!element.id.toLowerCase().includes(file.toLowerCase())) {
        element.style.display = "none";
      } else {
        element.style.display = "block";
@@ -160,12 +171,18 @@
     var res = JSON.parse(await http_request('/evidenziaFile?file=' + number));
     alert(res.message);
     location.reload(); 
+    sessionStorage.removeItem('evidenziati');
  }
 
  document.getElementById('body').addEventListener('load', loadFileEvidenziati());
 
  async function loadFileEvidenziati() {
-   var res = JSON.parse(await http_request('/getEvidenziati'));
+   if (sessionStorage.getItem('evidenziati') != null) {
+     var res = JSON.parse(sessionStorage.getItem('evidenziati'));
+   } else {
+     var res = JSON.parse(await http_request('/getEvidenziati'));
+     sessionStorage.setItem('evidenziati', JSON.stringify(res));
+   }
    if (res.presence == true) {
      for (let a = 0; a < 250; a++) {
        if (res.evidenziati[a] != "" && document.getElementById(res.evidenziati[a]) != null) {
@@ -199,3 +216,4 @@
    }
  });
  </script>
+
