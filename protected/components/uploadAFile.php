@@ -45,8 +45,7 @@ function uploadFile() {
   ajax.addEventListener("load", completeHandler, false);
   ajax.addEventListener("error", errorHandler, false);
   ajax.addEventListener("abort", abortHandler, false);
-  ajax.open("POST", "/up"); // http://www.developphp.com/video/JavaScript/File-Upload-Progress-Bar-Meter-Tutorial-Ajax-PHP
-  //use file_upload_parser.php from above url
+  ajax.open("POST", "/up");
   ajax.send(formdata);
 }
 
@@ -54,19 +53,19 @@ function progressHandler(event) {
   _("loaded_n_total").innerHTML = "Caricati " + (event.loaded/1000000) + "MB su " + (event.total/1000000) + "MB";
   var percent = (event.loaded / event.total) * 100;
   _("progressBar").value = Math.round(percent);
-  _("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
+  _("status").innerHTML = Math.round(percent) + "% caricato... per favore aspetta";
 }
 
 function completeHandler(event) {
   _("status").innerHTML = event.target.responseText;
-  _("progressBar").value = 0; //wil clear progress bar after successful upload
+  _("progressBar").value = 0;
 }
 
 function errorHandler(event) {
-  _("status").innerHTML = "Upload Failed";
+  _("status").innerHTML = "Upload Fallito";
 }
 
 function abortHandler(event) {
-  _("status").innerHTML = "Upload Aborted";
+  _("status").innerHTML = "Upload Annullato";
 }
 </script>
