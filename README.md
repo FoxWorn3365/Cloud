@@ -1,4 +1,5 @@
 # FoxCloud - Versione 1.9
+![FoxCloudLogo](https://resources.fcosma.it/foxcloud/logo.png)
 **FoxCloud** è un cloud creato in PHP che ti permette di gestire i tuoi file online.<br>
 
 ![Immagine di presentazione](https://i.imgur.com/IjGXDWS.png)
@@ -105,3 +106,4 @@ Puoi scrivermi quando vuoi via Email e Discord:
 `FoxCloud@v1.9 - 21/11/2022 by FoxWorn3365`
 
 &copy; 2021 - 2022 [.FoxOrg](https://foxorg.fcosma.it/)
+Powered with **<3++ by <img src='https://resources.fcosma.it/foxorg/logo.png' height='20px'>
