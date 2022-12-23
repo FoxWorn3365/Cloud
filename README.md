@@ -52,7 +52,8 @@ E' possibile attivarla dal file `config.json`:
 Attivando quest'opzione FoxCloud non permetterà la generazione di uno shared per un file **che ne possiede già uno**, riproponendo invece quest'ultimo.<br>
 
 ## Integrity Checker
-Semplifichiamo la vita agli amministratori di un cloud FoxCloud dando loro la possibilità di controllare in automatico che tutti i file e tutte le directory siano presenti e leggibili.
+Semplifichiamo la vita agli amministratori di un cloud FoxCloud dando loro la possibilità di controllare in automatico che tutti i file e tutte le directory siano presenti e leggibili.<br>
+Questa funzionalità è inclusa nel cloud nativo ed è possibile trovarla all'URL `/admin/integrity`.
 
 ## Servizi esterni
 Al momento **FoxCloud** utilizza un unico servizio esterno per praticità e per evitare di far pesare il Cloud più del dovuto.<br>
@@ -90,6 +91,10 @@ oppure
 - Migliorato il caricamento dei file evidenziati: ora non viene eseguita una richiesta ogni volta ma viene semplicemente salvato in `sessionStorage`
 ### Bug fix
 - Ottimizzato FoxPlayer, rimuovendo bug dovuti al codice nativo
+
+## Risoluzione di errori
+A volte potrebbero esserci dei problemi con il recupero della versione di FoxCloud dal file `version.txt` durante, per esempio, l'integrity check.<br>
+In questo caso vi suggerisco vivamente di andare a controllare quest'ultimo e rimuovendo un'eventuale riga di troppo.
 
 ## Contattami
 Puoi scrivermi quando vuoi via Email e Discord:
