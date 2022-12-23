@@ -18,7 +18,4 @@
 <br>
  <h1>Carica un file sul Cloud</h1>
  <a href='<?= $_SERVER["HTTP_REFERER"]; ?>'><i class="fa fa-level-up" aria-hidden="true"></i></a><br>
- <hr>
- <br>
- <b>Per caricare un file trascinalo sull'apposito form.<br>La massima dimensione dipende dal vostro WebMaster.</b>
  <br><br>
