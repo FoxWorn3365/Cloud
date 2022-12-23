@@ -106,4 +106,4 @@ Puoi scrivermi quando vuoi via Email e Discord:
 `FoxCloud@v1.9 - 21/11/2022 by FoxWorn3365`
 
 &copy; 2021 - 2022 [.FoxOrg](https://foxorg.fcosma.it/)
-Powered with **<3++ by <img src='https://resources.fcosma.it/foxorg/logo.png?s3' height='20px'>
+Powered with **<3** by [<img src='https://resources.fcosma.it/foxorg/logo.png?s3' height='55px'>](https://foxorg.it)
