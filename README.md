@@ -73,7 +73,7 @@ Per evitare la scelta del mirror (che aggiunge circa `10ms` al tempo di ricezion
 ```
 oppure
 ```json
-   "resourcesMirror":"defined s2"
+   "resourcesMirror":"defined s3"
 ```
 ### Se volete impostare un mirror vostro
 ```json
@@ -105,5 +105,5 @@ Puoi scrivermi quando vuoi via Email e Discord:
 
 `FoxCloud@v1.9 - 21/11/2022 by FoxWorn3365`
 
-&copy; 2021 - 2022 [.FoxOrg](https://foxorg.fcosma.it/)
+&copy; 2021 - 2023 [.FoxOrg](https://foxorg.fcosma.it/)
 Powered with **<3** by [<img src='https://resources.fcosma.it/foxorg/logo.png?s3' height='55px'>](https://foxorg.it)
