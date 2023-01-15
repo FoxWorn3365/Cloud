@@ -33,6 +33,8 @@ let fullscreen = false;
 const useBlob = true;
 let canPlay = false;
 let loadQueue = [];
+let loaded = false;
+let playerControls;
 
 // Recuperiamo il video
 const player = document.getElementsByClassName('foxPlayer')[0];
@@ -64,6 +66,7 @@ async function initPlayer() {
   document.body.appendChild(mainDiv);
   mainDiv.appendChild(player);
   mainDiv.appendChild(controlsDiv);
+  playerControls = controlsDiv;
   // Il player ora è avviato, definiamo giusto due variabili finali
   icons = {play:'<i class="fa-solid fa-play"></i>', pause:'<i class="fa-solid fa-pause"></i>', muted:'<i class="fa-solid fa-volume-xmark"></i>', audioMedium:'<i class="fa-solid fa-volume-low"></i>', audio:'<i class="fa-solid fa-volume-high"></i>', error:'<i class="fa-solid fa-circle-exclamation"></i>', full:'<i class="fa fa-arrows-alt" aria-hidden="true"></i>', normal:'<i class="fa fa-compress" aria-hidden="true"></i>', loading:'<i class="fa-solid fa-spinner"></i>'};
   // Creiamo il div per il caricamento
@@ -131,6 +134,7 @@ if (typeof isBlobLoad != 'undefined' && typeof playerSrc != 'undefined' && useBl
 
 // Funzioni per i vari bottoni
 const video = {
+  oldData: {},
   play: function() {
     if (canPlay) {
       document.getElementById('foxplayer-buttons-play').innerHTML = icons.pause;
@@ -152,18 +156,17 @@ const video = {
   },
 
   fullscreen: function() {
-    document.getElementById('foxplayer-buttons-full').innerHTML = icons.normal;
-    document.getElementById('foxplayer-buttons-full').onclick = function() { video.normalize(); };
-    player.requestFullscreen();
-    player.controls = true;
-  },
-
-  normalize: function() {
-    fullscreen = false;
-    document.getElementById('foxplayer-buttons-full').innerHTML = icons.full;
-    document.getElementById('foxplayer-buttons-full').onclick = function() { video.fullscreen(); };
-    document.exitFullscreen();
-    player.controls = false;
+    if (!fullscreen) {
+      document.getElementById('foxPlayerMain').requestFullscreen();
+      document.getElementById('foxplayer-buttons-full').innerHTML = icons.normal;
+      fullscreen = true;
+      video.onFullScreen();
+    } else {
+      document.exitFullscreen();
+      document.getElementById('foxplayer-buttons-full').innerHTML = icons.full;
+      fullscreen = false;
+      video.quitFullScreen();
+    }
   },
  
   changeAudio: function() {
@@ -204,23 +207,28 @@ const video = {
    
   hideVolumeBar: function() {
     document.getElementById('foxplayer-buttons-volume').style.display = "none";
+  },
+
+  // Funzioni relative al resizing per quanto concerne il fullscreen
+  onFullScreen: function() {
+    player.setAttribute('oldHeight', player.style.height);
+    player.setAttribute('oldWidth', player.style.width);
+    player.style.height = '100%';
+    player.style.width = '100%';
+    playerControls.setAttribute('oldWidth', playerControls.style.width);
+    playerControls.style.width = '100%';
+  },
+
+  quitFullScreen: function() {
+    player.style.height = player.getAttribute('oldHeight');
+    player.style.width = player.getAttribute('oldWidth');
+    playerControls.style.width = playerControls.getAttribute('oldWidth');
   }
 }
 
 
 
 // Aggiungiamo degli eventi obbligatori
-player.addEventListener('fullscreenchange', function() {
-  if (fullscreen) {
-    player.controls = false;
-    fullscreen = false;
-  } else {
-    document.getElementById('foxplayer-buttons-full').innerHTML = icons.full;
-    document.getElementById('foxplayer-buttons-full').onclick = function() { video.fullscreen(); };
-    fullscreen = true;
-  }
-});
-
 player.addEventListener('play', function() {
   if (loadQueue != '') {
     loadQueue = '';
@@ -303,6 +311,11 @@ player.addEventListener('progress', function() {
 });
 
 player.addEventListener('canplay', function() {
+  if (loaded) {
+    return;
+  }
+  loaded = true;
+
   if (loadQueue != '') {
     loadQueue = '';
     console.info('FoxPlayer V1 - Video avviato da un event nella queue');
@@ -347,6 +360,7 @@ player.addEventListener('click', function() {
   if (play) {
     video.pause();
   } else {
+    console.info('FoxPlayer V1 - Video avviato dall`evento onClick sul player stesso!');
     video.play();
   }
 });
