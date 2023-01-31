@@ -97,6 +97,9 @@ oppure
 A volte potrebbero esserci dei problemi con il recupero della versione di FoxCloud dal file `version.txt` durante, per esempio, l'integrity check.<br>
 In questo caso vi suggerisco vivamente di andare a controllare quest'ultimo e rimuovendo un'eventuale riga di troppo.
 
+> **Warning**
+> Aggiornare il file `version.txt` senza però aver prima aggiornato la versione potrebbe causare grandi problemi di incompatibilità!
+
 ## Contattami
 Puoi scrivermi quando vuoi via Email e Discord:
 - Discord: `FoxWorn#0001`
